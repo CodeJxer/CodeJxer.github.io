@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 小小的思考 | CodeJxer</title>
+  <title>使用yilia主题遇到的一些问题 | CodeJxer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="just write it down">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CodeJxer">
-<meta property="og:url" content="http://yoursite.com/tags/小小的思考/index.html">
+  <meta name="description" content="&amp;lt;未完待续&amp;gt;
+###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用yilia主题遇到的一些问题">
+<meta property="og:url" content="http://yoursite.com/2017/03/29/使用yilia主题遇到的一些问题/index.html">
 <meta property="og:site_name" content="CodeJxer">
-<meta property="og:description" content="just write it down">
+<meta property="og:description" content="&amp;lt;未完待续&amp;gt;
+###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png">
+<meta property="og:updated_time" content="2017-03-29T15:19:24.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CodeJxer">
-<meta name="twitter:description" content="just write it down">
+<meta name="twitter:title" content="使用yilia主题遇到的一些问题">
+<meta name="twitter:description" content="&amp;lt;未完待续&amp;gt;
+###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -156,60 +162,138 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-使用yilia主题遇到的一些问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/29/小计/" class="archive-article-date">
-  	<time datetime="2017-03-29T09:03:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/29/小计/">小计</a>
+    <h1 class="article-title" itemprop="name">
+      使用yilia主题遇到的一些问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/03/29/使用yilia主题遇到的一些问题/" class="archive-article-date">
+  	<time datetime="2017-03-29T13:56:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&lt;未完待续&gt;</p>
+<p>###1.主页文章如何只显示部分预览，而不是整篇文章<br>yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式<br><a id="more"></a><br>所以就去翻yilia的配置文件啦<br>到blog目录下：  </p>
+<pre><code>vim ./themes/yilia/_config.yml
+</code></pre><p>打开yilia的配置文件<br>经过一番(神TM)推断-.-<br>觉得文章显示全文与否的关键地方应该是这里：   </p>
+<pre><code># 文章太长，截断按钮文字         
+excerpt_link: more   
+</code></pre><p>虽然看不懂英文，但是看懂了“文章太长”这四个字，然而下面这一句没看懂…..<br>查了一下：excerpt–摘录、引用。   确认是这个<br>但是还是不明白是如何使用它。经过一番天真的猜测，难道是文中出现这个词就会截断，所以叫截断按钮文字？？但是万一文档中本来就要有这个词[more]那不就有二义性了吗=.=<br>先不想那么多，有猜想就试试吧~<br>打开markdown文档，在第一段之后加了more，然后提交更改：<br><code>hexo g -d</code><br>然而….并没有预期中的效果，好吧，不是原来想的这个<br>求问度娘0.0      然而…找半天也没看到我这个问题的解决方法，屁颠屁颠跑去知乎提了这个问题，问题挂上去之后又翻了翻度娘，竟然意外翻到了，原来是要把more放在标签里。好吧….我好傻<br>格式是：<br><code>&lt;!-- more --&gt;</code><br>在文中要截断的地方加上这个标签就可以在主页上实现预览的效果了，主页里显示到这个标签之前的内容，剩下的内容可以点击展开，效果如下：<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">小小的思考</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技巧</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/29/使用yilia主题遇到的一些问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/29/密码学的数学基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">密码学的数学基础</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -232,9 +316,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
