@@ -11,6 +11,7 @@
   <meta name="description" content="#信息安全的数学基础##目录
 
 信息安全的数学基础  
+
 欧几里得算法
 扩展欧几里得算法
 乘法逆元
@@ -18,16 +19,7 @@
 快速幂取模
 欧拉函数 
 中国剩余定理
-费马定理优化快速冥取模
-
-
-
-欧几里得算法gcd()
-/*******************
-@function int gcd(int a, int b)
-@author ZXLiao
-@data 2017-3-2 10:28:22
-@para">
+费马定理优化快速冥取模">
 <meta property="og:type" content="article">
 <meta property="og:title" content="密码学的数学基础">
 <meta property="og:url" content="http://yoursite.com/2017/03/29/密码学的数学基础/index.html">
@@ -35,6 +27,7 @@
 <meta property="og:description" content="#信息安全的数学基础##目录
 
 信息安全的数学基础  
+
 欧几里得算法
 扩展欧几里得算法
 乘法逆元
@@ -42,22 +35,14 @@
 快速幂取模
 欧拉函数 
 中国剩余定理
-费马定理优化快速冥取模
-
-
-
-欧几里得算法gcd()
-/*******************
-@function int gcd(int a, int b)
-@author ZXLiao
-@data 2017-3-2 10:28:22
-@para">
-<meta property="og:updated_time" content="2017-03-29T12:22:06.017Z">
+费马定理优化快速冥取模">
+<meta property="og:updated_time" content="2017-03-29T13:25:23.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码学的数学基础">
 <meta name="twitter:description" content="#信息安全的数学基础##目录
 
 信息安全的数学基础  
+
 欧几里得算法
 扩展欧几里得算法
 乘法逆元
@@ -65,16 +50,7 @@
 快速幂取模
 欧拉函数 
 中国剩余定理
-费马定理优化快速冥取模
-
-
-
-欧几里得算法gcd()
-/*******************
-@function int gcd(int a, int b)
-@author ZXLiao
-@data 2017-3-2 10:28:22
-@para">
+费马定理优化快速冥取模">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -236,7 +212,8 @@
       
         <h2 id="信息安全的数学基础"><a href="#信息安全的数学基础" class="headerlink" title="#信息安全的数学基础"></a>#信息安全的数学基础</h2><p>##目录</p>
 <ul>
-<li>信息安全的数学基础  <ul>
+<li><p>信息安全的数学基础  </p>
+<ul>
 <li><a href="#gcd">欧几里得算法</a></li>
 <li><a href="#extent_gcd">扩展欧几里得算法</a></li>
 <li><a href="#mod_inverse">乘法逆元</a></li>
@@ -244,27 +221,18 @@
 <li><a href="#quick_pow">快速幂取模</a></li>
 <li><a href="#Phi">欧拉函数</a> </li>
 <li><a href="#chinese_remaining_theory">中国剩余定理</a></li>
-<li><a href="#Format_pow">费马定理优化快速冥取模</a></li>
+<li><p><a href="#Format_pow">费马定理优化快速冥取模</a></p>
+<a id="more"></a>
+<p></p><h2 id="gcd">欧几里得算法<code>gcd()</code><p></p>
+<p>/<strong><strong><strong><strong><em>*</em></strong></strong></strong></strong><br>@function int gcd(int a, int b)<br>@author ZXLiao<br>@data 2017-3-2 10:28:22<br>@param a integer<br>@param b integer<br>@return Greatest Common Divisor<br><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong>/</p>
+<p>int gcd(int a, int b){<br>  if(b == 0){</p>
+<pre><code>return a;
+</code></pre><p>  }<br>  return gcd(b, a % b);<br>}</p>
+</h2></li>
 </ul>
 </li>
 </ul>
-<p></p><h2 id="gcd">欧几里得算法<code>gcd()</code><p></p>
-<pre><code>/*******************
-@function int gcd(int a, int b)
-@author ZXLiao
-@data 2017-3-2 10:28:22
-@param a integer
-@param b integer
-@return Greatest Common Divisor
-********************/
-
-int gcd(int a, int b){
-    if(b == 0){
-        return a;
-    }
-    return gcd(b, a % b);
-}
-</code></pre><p></p><h2 id="extent_gcd">扩展欧几里得算法<code>extent_gcd()</code><p></p>
+<p></p><h2 id="extent_gcd">扩展欧几里得算法<code>extent_gcd()</code><p></p>
 <pre><code>/********************
 @function int extend_gcd(int a, int b, int &amp;x, int &amp;y)
 @author ZXLiao
@@ -496,7 +464,7 @@ int Format_pow(int a, int n, int __MOD){
     }
     return quick_pow(a, n, __MOD);
 }
-</code></pre></h2></h2></h2></h2></h2></h2></h2></h2>
+</code></pre></h2></h2></h2></h2></h2></h2></h2>
       
 
       
