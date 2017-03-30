@@ -16,11 +16,14 @@
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="&amp;lt;未完待续&amp;gt;
 ###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
-<meta property="og:updated_time" content="2017-03-30T05:48:47.363Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/tags.png">
+<meta property="og:updated_time" content="2017-03-30T05:55:02.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用yilia主题遇到的一些问题">
 <meta name="twitter:description" content="&amp;lt;未完待续&amp;gt;
 ###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -182,9 +185,26 @@
       
         <p>&lt;未完待续&gt;</p>
 <p>###1.主页文章如何只显示部分预览，而不是整篇文章<br>yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式<br><a id="more"></a><br>所以就去翻yilia的配置文件啦<br>到blog目录下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">vim ./themes/yilia/_config.yml</div><div class="line">```    </div><div class="line"></div><div class="line">打开yilia的配置文件</div><div class="line">经过一番(神TM)推断-.-    </div><div class="line">觉得文章显示全文与否的关键地方应该是这里：   </div><div class="line"></div><div class="line">	# 文章太长，截断按钮文字         </div><div class="line">	excerpt_link: more   </div><div class="line">虽然看不懂英文，但是看懂了“文章太长”这四个字，然而下面这一句没看懂.....   </div><div class="line">查了一下：excerpt--摘录、引用。   确认是这个      </div><div class="line">但是还是不明白是如何使用它。经过一番天真的猜测，难道是文中出现这个词就会截断，所以叫截断按钮文字？？但是万一文档中本来就要有这个词[more]那不就有二义性了吗=.=       </div><div class="line">先不想那么多，有猜想就试试吧~     </div><div class="line">打开markdown文档，在第一段之后加了more，然后提交更改：     </div><div class="line">`hexo g -d`</div><div class="line">然而....并没有预期中的效果，好吧，不是原来想的这个     </div><div class="line">求问度娘0.0      然而...找半天也没看到我这个问题的解决方法，屁颠屁颠跑去知乎提了这个问题，问题挂上去之后又翻了翻度娘，竟然意外翻到了，原来是要把more放在标签里。好吧....我好傻    </div><div class="line">格式是：   </div><div class="line">`&lt;!-- more --&gt;`    </div><div class="line">在文中要截断的地方加上这个标签就可以在主页上实现预览的效果了，主页里显示到这个标签之前的内容，剩下的内容可以点击展开，效果如下：      </div><div class="line">![](https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png)</div><div class="line"></div><div class="line">###2.如何给文章添加多标签</div><div class="line">在文章的tag标签下以无序列表的形式列出，比如：      </div><div class="line"></div><div class="line">	---</div><div class="line">	</div><div class="line">	title: 使用yilia主题遇到的一些问题</div><div class="line">	date: 2017-03-29 21:56:33</div><div class="line">	tags: </div><div class="line">		- 笔记</div><div class="line">		- 技巧</div><div class="line">	</div><div class="line">	---</div><div class="line"></div><div class="line">效果如下：    </div><div class="line">![](https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/tags.png)</div><div class="line"></div><div class="line">3.如何更改主页的头像</div><div class="line"></div><div class="line">到blog目录下：</div></pre></td></tr></table></figure>
-<p>vim ./themes/yilia/_config.yml<br>```    </p>
-<p>打开yilia的配置文件</p>
+<pre><code>vim ./themes/yilia/_config.yml
+</code></pre><p>打开yilia的配置文件<br>经过一番(神TM)推断-.-<br>觉得文章显示全文与否的关键地方应该是这里：   </p>
+<pre><code># 文章太长，截断按钮文字         
+excerpt_link: more   
+</code></pre><p>虽然看不懂英文，但是看懂了“文章太长”这四个字，然而下面这一句没看懂…..<br>查了一下：excerpt–摘录、引用。   确认是这个<br>但是还是不明白是如何使用它。经过一番天真的猜测，难道是文中出现这个词就会截断，所以叫截断按钮文字？？但是万一文档中本来就要有这个词[more]那不就有二义性了吗=.=<br>先不想那么多，有猜想就试试吧~<br>打开markdown文档，在第一段之后加了more，然后提交更改：<br><code>hexo g -d</code><br>然而….并没有预期中的效果，好吧，不是原来想的这个<br>求问度娘0.0      然而…找半天也没看到我这个问题的解决方法，屁颠屁颠跑去知乎提了这个问题，问题挂上去之后又翻了翻度娘，竟然意外翻到了，原来是要把more放在标签里。好吧….我好傻<br>格式是：<br><code>&lt;!-- more --&gt;</code><br>在文中要截断的地方加上这个标签就可以在主页上实现预览的效果了，主页里显示到这个标签之前的内容，剩下的内容可以点击展开，效果如下：<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png" alt=""></p>
+<p>###2.如何给文章添加多标签<br>在文章的tag标签下以无序列表的形式列出，比如：      </p>
+<pre><code>---
+
+title: 使用yilia主题遇到的一些问题
+date: 2017-03-29 21:56:33
+tags: 
+    - 笔记
+    - 技巧
+
+---
+</code></pre><p>效果如下：<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/tags.png" alt=""></p>
+<p>3.如何更改主页的头像</p>
+<p>到blog目录下：  </p>
+<pre><code>vim ./themes/yilia/_config.yml
+</code></pre><p>打开yilia的配置文件</p>
 <p>找到这个：</p>
 <pre><code>#你的头像url
 avatar:
