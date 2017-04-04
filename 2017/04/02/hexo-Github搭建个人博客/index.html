@@ -6,17 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | CodeJxer</title>
+  <title>hexo+Github搭建个人博客 | CodeJxer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="just write it down">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CodeJxer">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="&amp;lt;未完待续&amp;gt;    
+这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    
+如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+Github搭建个人博客">
+<meta property="og:url" content="http://yoursite.com/2017/04/02/hexo-Github搭建个人博客/index.html">
 <meta property="og:site_name" content="CodeJxer">
-<meta property="og:description" content="just write it down">
+<meta property="og:description" content="&amp;lt;未完待续&amp;gt;    
+这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    
+如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/installnodejs.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/nodejs2.1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/check-node.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/node-Path.jpg">
+<meta property="og:updated_time" content="2017-04-02T09:26:08.823Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CodeJxer">
-<meta name="twitter:description" content="just write it down">
+<meta name="twitter:title" content="hexo+Github搭建个人博客">
+<meta name="twitter:description" content="&amp;lt;未完待续&amp;gt;    
+这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    
+如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/installnodejs.jpg">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -156,36 +174,124 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hexo-Github搭建个人博客" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/02/hexo-Github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2017-04-02T07:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/02/hexo-Github搭建个人博客/">hexo+Github搭建个人博客</a>
+    <h1 class="article-title" itemprop="name">
+      hexo+Github搭建个人博客
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/02/hexo-Github搭建个人博客/" class="archive-article-date">
+  	<time datetime="2017-04-02T07:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&lt;未完待续&gt;    </p>
+<p>这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    </p>
+<p>如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可搭建出一个漂亮的个人博客。<br><!-- moer --><br>这篇教程会从零开始，何为从零开始，就是假设你没有github账号，没有配置git，不会用markdown写文档。在这篇教程的引导下你依然可以畅通无阻！      </p>
+<p>那么，开始吧~</p>
+<p>目录：      </p>
+<ul>
+<li><a href="#nodejs">Node.js</a><ul>
+<li><a href="#download-nodejs">下载</a></li>
+<li><a href="#install-nodejs">安装</a></li>
+<li><a href="#check-nodejs">检查</a></li>
+</ul>
+</li>
+<li><a href="#Github">Github</a><ul>
+<li><a href="#Github-introduce">Github介绍</a></li>
+<li><a href="#Github-registe">注册</a></li>
+<li><a href="#">添加仓库</a></li>
+<li><a href="#">添加ssh</a></li>
+</ul>
+</li>
+<li><a href="#">Git Bash</a><ul>
+<li><a href="#">Git介绍</a></li>
+<li><a href="#">下载</a></li>
+<li><a href="#">安装</a></li>
+<li><a href="#">配置</a></li>
+</ul>
+</li>
+<li><a href="#">markdown</a><ul>
+<li><a href="#">markdown介绍</a></li>
+<li><a href="#">下载</a></li>
+<li><a href="#">安装</a></li>
+<li><a href="#">markdown简单语法</a></li>
+</ul>
+</li>
+<li><a href="#">sublime</a><ul>
+<li><a href="#">sublime介绍</a></li>
+<li><a href="#">sublime下载</a> </li>
+<li><a href="#">sublime安装</a></li>
+</ul>
+</li>
+<li><a href="#">hexo</a><ul>
+<li><a href="#">hexo介绍</a></li>
+<li><a href="#">hexo下载</a></li>
+<li><a href="#">hexo配置文件介绍</a></li>
+<li><a href="#">hexo操作示例</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>##<code id="nodejs">Node.js</code></p>
+<p>###<code id="download-nodejs">1.进入官网，选择对应版本下载<br>点此处打开node.js官网 → <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a>     </code></p>
+<p>进入官网之后点击DOWNLOADS页面<br>选择相应的版本下载即可：  .msi文件有安装引导程序，会更方便一些<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/installnodejs.jpg" alt="">      </p>
+<p>###<code id="install-nodejs">2.安装<br>下载完成后双击运行下载完成的.msi文件，弹出安装引导程序：<br>2.1安装引导程序-Next</code></p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/nodejs2.1.jpg" alt=""></p>
+<p>2.2许可协议界面-同意之后Next   </p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-2.png" alt=""></p>
+<p>2.3选择安装路径-Next</p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-3.png" alt=""><br>这里你可以更改node.js的存储路径</p>
+<p>2.4自定义安装-Next</p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-4.png" alt=""></p>
+<p>2.5准备就绪-Install</p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-5.png" alt=""></p>
+<p>2.6安装中-等待安装完毕</p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-6.png" alt=""></p>
+<p>2.7安装完成-Finish</p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-7.png" alt=""></p>
+<p>###<code id="check-nodejs">3.检查是否正确配置<br>Home + R 然后 cmd 呼出控制台, 执行：</code></p>
+<pre><code>node -v   
+</code></pre><p>如果返回node的版本就说明node已经加到系统的PATH中，可以在任何地方运行node相关命令<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/check-node.jpg" alt=""></p>
+<p>如果提示</p>
+<pre><code>&apos;node&apos; 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+</code></pre><p>需要把你刚才安装node的路径添加到系统path变量中。</p>
+<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/node-Path.jpg" alt=""></p>
+<p>##<code id="Github">Github   </code></p>
+<p>###<code id="Github-introduce">Github介绍<br>GitHub 是一个面向开源及私有软件项目的托管平台，可以实现软件的版本控制<br>你也可以把它当做你的代码的云备份</code></p>
+<p>###<code id="Github-registe">注册Github账号<br>点击此处跳转到Github注册界面 → <a href="https://github.com/" target="_blank" rel="external">Github注册</a></code></p>
+<p>###</p>
+<p>2.验证邮箱                      √<br>3.添加ssh验证                  √   </p>
+<p>##安装markdown<br>1.下载                          √<br>2.安装                          √<br>3.破解                          √<br>4.基本语法                      √   </p>
+<p>##安装Git Bash<br>1.下载                          √<br>2.安装                          √</p>
+<p>现在你需要创建一个文件夹，以后专门给github用</p>
+<p>github是一个代码托管网站</p>
+<p>也就是说你写的代码可以放到这里，当做云备份<br>待会的博客代码是需要放到github上的<br>所以才配置了github</p>
+<p>现在需要在github上创建一个项目(github把项目称做仓库)</p>
+<p>这个博客的话，因为一些原因，名字必须叫做 “用户名.github.io”</p>
+<p>github上这个叫做远程库</p>
+<p>你本地这个叫做本地仓库</p>
+<p>现在这两个仓库还没有建立连接</p>
+<p>首先，需要把本地仓库初始化成git可以管理的文件夹</p>
+<p>现在需要安装hexo(就是博客的模板)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,343 +307,88 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/02/hexo-Github搭建个人博客/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/Python异常解决方法小计/" class="archive-article-date">
-  	<time datetime="2017-03-30T14:04:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/Python异常解决方法小计/">Python程序异常解法方法</a>
-    </h1>
+  
+    <a href="/2017/03/30/Python异常解决方法小计/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python程序异常解法方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/Python小技巧/" class="archive-article-date">
-  	<time datetime="2017-03-30T13:24:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/Python小技巧/">Python小技巧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小技巧</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/程序员小技巧/" class="archive-article-date">
-  	<time datetime="2017-03-30T12:31:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/程序员小技巧/">程序员小技巧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小技巧</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/HTTP协议/" class="archive-article-date">
-  	<time datetime="2017-03-30T06:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/HTTP协议/">HTTP协议</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/Python网络爬虫与信息提取/" class="archive-article-date">
-  	<time datetime="2017-03-30T06:16:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/Python网络爬虫与信息提取/">Python网络爬虫与信息提取</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/29/使用yilia主题遇到的一些问题/" class="archive-article-date">
-  	<time datetime="2017-03-29T13:56:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/29/使用yilia主题遇到的一些问题/">使用yilia主题遇到的一些问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技巧</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/29/密码学的数学基础/" class="archive-article-date">
-  	<time datetime="2017-03-29T12:03:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/29/密码学的数学基础/">密码学的数学基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">信息安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/29/小计/" class="archive-article-date">
-  	<time datetime="2017-03-29T09:03:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/29/小计/">小计</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">小小的思考</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -560,8 +411,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
