@@ -6,41 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>HTTP协议 | CodeJxer</title>
+  <title>Tag: Flask-Web开发 | CodeJxer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="http请求头目录：    
-
-请求方法         
-状态码 
-通用   
-通用头域   
-请求头(Requests Headers)   
-响应头(Response)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HTTP协议">
-<meta property="og:url" content="http://yoursite.com/2017/03/30/HTTP协议/index.html">
+  <meta name="description" content="just write it down">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CodeJxer">
+<meta property="og:url" content="http://yoursite.com/tags/Flask-Web开发/index.html">
 <meta property="og:site_name" content="CodeJxer">
-<meta property="og:description" content="http请求头目录：    
-
-请求方法         
-状态码 
-通用   
-通用头域   
-请求头(Requests Headers)   
-响应头(Response)">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/HTTP%E8%AF%B7%E6%B1%82/HTTP%E8%AF%B7%E6%B1%82%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
-<meta property="og:updated_time" content="2017-03-31T08:02:41.286Z">
+<meta property="og:description" content="just write it down">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP协议">
-<meta name="twitter:description" content="http请求头目录：    
-
-请求方法         
-状态码 
-通用   
-通用头域   
-请求头(Requests Headers)   
-响应头(Response)">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/HTTP%E8%AF%B7%E6%B1%82/HTTP%E8%AF%B7%E6%B1%82%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta name="twitter:title" content="CodeJxer">
+<meta name="twitter:description" content="just write it down">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -180,320 +156,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HTTP协议" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      HTTP协议
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/27/Flask-Web开发[学习笔记]/" class="archive-article-date">
+  	<time datetime="2017-04-27T03:02:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-27</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/04/27/Flask-Web开发[学习笔记]/">Flask-Web开发|学习笔记</a>
     </h1>
   
 
-        
-        <a href="/2017/03/30/HTTP协议/" class="archive-article-date">
-  	<time datetime="2017-03-30T06:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/HTTP%E8%AF%B7%E6%B1%82/HTTP%E8%AF%B7%E6%B1%82%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
-<h2 id="http请求头"><a href="#http请求头" class="headerlink" title="http请求头"></a>http请求头</h2><p>目录：    </p>
-<ul>
-<li><a href="#1">请求方法</a>         </li>
-<li><a href="#2">状态码</a> </li>
-<li><a href="#3">通用</a>   </li>
-<li><a href="#4">通用头域</a>   </li>
-<li><a href="#5">请求头(Requests Headers)</a>   </li>
-<li><a href="#6">响应头(Response)</a>   </li>
-</ul>
-<a id="more"></a>
-<p>##<code id="1">请求方法</code></p>
-<p>请求方法有以下这些，常用的是GET,POST  </p>
-<ul>
-<li>GET：向指定的资源发出“显示”请求。使用GET方法应该只用在读取数据，而不应当被用于产生“副作用”的操作中，例如在Web Application中。其中一个原因是GET可能会被网络蜘蛛等随意访问。参见安全方法</li>
-<li>POST：向指定资源提交数据，请求服务器进行处理（例如提交表单或者上传文件）。数据被包含在请求本文中。这个请求可能会创建新的资源或修改现有资源，或二者皆有。</li>
-<li>OPTIONS：这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。</li>
-<li>HEAD：与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。</li>
-<li>PUT：向指定资源位置上传其最新内容。</li>
-<li>DELETE：请求服务器删除Request-URI所标识的资源。</li>
-<li>TRACE：回显服务器收到的请求，主要用于测试或诊断。</li>
-<li>CONNECT：HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。</li>
-</ul>
-<p>##<code id="2">状态码</code></p>
-<blockquote>
-<p>所有HTTP响应的第一行都是状态行，依次是当前HTTP版本号，3位数字组成的状态代码，以及描述状态 &gt;的短语，彼此由空格分隔。 状态代码的第一个数字代表当前响应的类型：</p>
-</blockquote>
-<ul>
-<li>1xx消息——请求已被服务器接收，继续处理</li>
-<li>2xx成功——请求已成功被服务器接收、理解、并接受</li>
-<li>3xx重定向——需要后续操作才能完成这一请求</li>
-<li>4xx请求错误——请求含有词法错误或者无法被执行</li>
-<li>5xx服务器错误——服务器在处理某个正确请求时发生错误</li>
-</ul>
-<p>常见状态代码、状态描述、说明：  </p>
-<ul>
-<li>200 OK //请求成功  </li>
-<li>400 Bad Request //客户端请求有语法错误，不能被服务器所理解  </li>
-<li>401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用  </li>
-<li>403 Forbidden //服务器收到请求，但是拒绝提供服务    </li>
-<li>404 Not Found //请求资源不存在，eg：输入了错误的URL  </li>
-<li>500 Internal Server Error //服务器发生不可预期的错误</li>
-<li>503 Server Unavailable //服务器当前不能处理客户端的请求，一段时间后可能恢复正常</li>
-</ul>
-<p>##<code id="3">通用</code></p>
-<ul>
-<li><p><code>Request URL:https://zhuanlan.zhihu.com/p/25296437</code><br>请求网址：这个对应HTTP协议中的统一资源定位符也就是我们打开的网址</p>
-</li>
-<li><p><code>Request Method:GET</code><br>请求方法：这个对应HTTP协议中的请求方法</p>
-</li>
-<li><p><code>Status Code:200 OK</code><br>状态码：这个对应HTTP协议中的状态码</p>
-</li>
-</ul>
-<p>##<code id="4">通用头域</code><br>通用头域包含请求和响应消息都支持的头域，通用头域包含Cache-Control、 Connection、Date、Pragma、Transfer-Encoding、Upgrade、Via。对通用头域的扩展要求通讯双方都支持此扩展，如果存在不支持的通用头域，一般将会作为实体头域处理。下面简单介绍几个在UPnP消息中使用的通用头域。</p>
-<ul>
-<li><p>实体<br>　　请求消息和响应消息都可以包含实体信息，实体信息一般由实体头域和实体组成。实体头域包含关于实体的原信息，实体头包括Allow、Content-Base、Content-Encoding、Content-Language、Content-Length、Content-Location、Content-MD5、Content-Range、Content-Type、Etag、Expires、Last-Modified、extension-header。extension-header允许客户端定义新的实体头，但是这些域可能无法未接受方识别。实体可以是一个经过编码的字节流，它的编码方式由Content-Encoding或Content-Type定义，它的长度由Content-Length或Content-Range定义。</p>
-</li>
-<li><p><code>Cache-Control头域</code><br>  Cache- Control指定请求和响应遵循的缓存机制。在请求消息或响应消息中设置 Cache-Control并不会修改另一个消息处理过程中的缓存处理过程。请求时的缓存指令包括no-cache、no-store、max-age、 max-stale、min-fresh、only-if-cached，响应消息中的指令包括public、private、no-cache、no- store、no-transform、must-revalidate、proxy-revalidate、max-age。各个消息中的指令含义如下：</p>
-<ul>
-<li>Public指示响应可被任何缓存区缓存。 </li>
-<li>Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。 </li>
-<li>no-cache指示请求或响应消息不能缓存 </li>
-<li>no-store用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。 </li>
-<li>max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。</li>
-<li>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应。 </li>
-<li>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。      </li>
-</ul>
-</li>
-<li><p><code>Connection:keep-alive</code><br>  HTTP持久连接（HTTP persistent connection，也称作HTTP keep-alive或HTTP connection reuse）是使用同一个TCP连接来发送和接收多个HTTP请求/应答，而不是为每一个新的请求/应答打开新的连接的方法。</p>
-</li>
-<li><p><code>Content-Encoding</code><br>  Accept-Encoding 和 Content-Encoding 是 HTTP 中用来对「采用何种编码格式传输正文」进行协定的一对头部字段。它的工作原理是这样：浏览器发送请求时，通过 Accept-Encoding 带上自己支持的内容编码格式列表；服务端从中挑选一种用来对正文进行编码，并通过 Content-Encoding 响应头指明选定的格式；浏览器拿到响应正文后，依据 Content-Encoding 进行解压。当然，服务端也可以返回未压缩的正文，但这种情况不允许返回 Content-Encoding。这个过程就是 HTTP 的内容编码机制。</p>
-</li>
-<li><p><code>Content-Type</code><br>  用于定义网络文件的类型和网页的编码，决定文件接收方将以什么形式、什么编码读取这个文件，这就是经常看到一些Asp网页点击的结果却是下载到的一个文件或一张图片的原因。      </p>
-<p>  如果未指定 ContentType，默认为TEXT/HTML。</p>
-<p>  用于向接收方指示实体的介质类型，指定HEAD方法送到接收方的实体介质类型，或GET方法发送的请求介质类型Content-Range实体头</p>
-</li>
-<li><p><code>Date头域</code><br>  Date头域表示消息发送的时间，时间的描述格式由rfc822定义。例如，Date:Mon,31Dec200104:25:57GMT。Date描述的时间表示世界标准时，换算成本地时间，需要知道用户所在的时区。</p>
-</li>
-<li><p><code>Expires（过期时间）HTTP头信息</code></p>
-<p>  Expires（过期时间） 属性是HTTP控制缓存的基本手段，这个属性告诉缓存器：相关副本在多长时间内是新鲜的。过了这个时间，缓存器就会向源服务器发送请求，检查文档是否被修 改。</p>
-<p>  Expires 头信息：对于设置静态图片文件（例如导航栏和图片按钮）可缓存特别有用；因为这些图片修改很少，你可以给它们设置一个特别长的过期时间，这会使你的网站对 用户变得相应非常快；他们对于控制有规律改变的网页也很有用，例如：你每天早上6点更新新闻页，你可以设置副本的过期时间也是这个时间，这样缓存 服务器就知道什么时候去取一个更新版本，而不必让用户去按浏览器的“刷新”按钮。</p>
-</li>
-<li><p><code>Pragma头域</code><br>  Pragma头域用来包含实现特定的指令，最常用的是Pragma:no-cache。在HTTP/1.1协议中，它的含义和Cache-Control:no-cache相同。    </p>
-</li>
-<li><p><code>Host头域</code><br>  Host头域指定请求资源的Intenet主机和端口号，必须表示请求url的原始服务器或网关的位置。HTTP/1.1请求必须包含主机头域，否则系统会以400状态码返回。</p>
-</li>
-<li><p><code>Referer头域</code><br>  Referer 头域允许客户端指定请求uri的源资源地址，这可以允许服务器生成回退链表，可用来登陆、优化cache等。他也允许废除的或错误的连接由于维护的目的被追踪。如果请求的uri没有自己的uri地址，Referer不能被发送。如果指定的是部分uri地址，则此地址应该是一个相对地址。</p>
-</li>
-<li><p><code>Range头域</code><br>  Range头域可以请求实体的一个或者多个子范围。例如，<br>  表示头500个字节：bytes=0-499<br>  表示第二个500字节：bytes=500-999<br>  表示最后500个字节：bytes=-500<br>  表示500字节以后的范围：bytes=500-<br>  第一个和最后一个字节：bytes=0-0,-1<br>  同时指定几个范围：bytes=500-600,601-999<br>  但是服务器可以忽略此请求头，如果无条件GET包含Range请求头，响应会以状态码206（PartialContent）返回而不是以200 （OK）。 </p>
-</li>
-</ul>
-<p>##<code id="5">请求头(Requests Headers)</code></p>
-<ul>
-<li><p><code>Host头域</code>     </p>
-<p>  Host头域指定请求资源的Intenet主机和端口号，必须表示请求url的原始服务器或网关的位置。HTTP/1.1请求必须包含主机头域，否则系统会以400状态码返回。<br>  当前请求网址的请求域</p>
-</li>
-<li><p><code>User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36</code></p>
-<p>  用户是通过什么工具来请求的<br>  User-Agent头域的内容包含发出请求的用户信息。 </p>
-</li>
-<li><p><code>Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</code>            </p>
-<p>  Accept请求报头域用于指定客户端接受哪些类型的信息。eg：Accept：image/gif，表明客户端希望接受GIF图象格式的资源；Accept：text/html，表明客户端希望接受html文本。</p>
-</li>
-<li><p><code>Accept-Language:zh-CN,zh;q=0.8</code></p>
-<p>  Accept-Language请求报头域类似于Accept，但是它是用于指定一种自然语言。eg：Accept-Language:zh-cn.如果请求消息中没有设置这个报头域，服务器假定客户端对各种语言都可以接受</p>
-</li>
-<li><p><code>Accept-Encoding:gzip, deflate, sdch, br</code>     </p>
-<p>  Accept-Encoding请求报头域类似于Accept，但是它是用于指定可接受的内容编码。eg：Accept-Encoding:gzip.deflate.如果请求消息中没有设置这个域服务器假定客户端对各种内容编码都可以接受。</p>
-</li>
-<li><p><code>Content-Type</code>   </p>
-<p>  用于定义网络文件的类型和网页的编码，决定文件接收方将以什么形式、什么编码读取这个文件，这就是经常看到一些Asp网页点击的结果却是下载到的一个文件或一张图片的原因。      </p>
-<p>  如果未指定 ContentType，默认为TEXT/HTML。</p>
-<p>  在Http协议消息头中，使用Content-Type来表示具体请求中的媒体类型信息。<br>  <strong>例如</strong>： Content-Type: text/html;charset:utf-8;</p>
-<p>   常见的媒体格式类型如下：</p>
-<ul>
-<li>text/html ： HTML格式</li>
-<li>text/plain ：纯文本格式     </li>
-<li>text/xml ：  XML格式</li>
-<li>image/gif ：gif图片格式   </li>
-<li>image/jpeg ：jpg图片格式</li>
-<li><p>image/png：png图片格式</p>
-<p> 以application开头的媒体格式类型：</p>
-</li>
-<li><p>application/xhtml+xml ：XHTML格式</p>
-</li>
-<li>application/xml     ： XML数据格式</li>
-<li>application/atom+xml  ：Atom XML聚合格式   </li>
-<li>application/json    ： JSON数据格式</li>
-<li>application/pdf       ：pdf格式 </li>
-<li>application/msword  ： Word文档格式</li>
-<li>application/octet-stream ： 二进制流数据（如常见的文件下载）</li>
-<li><p>application/x-www-form-urlencoded ： <form enctype="””">中默认的encType，form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）</form></p>
-<p> 另外一种常见的媒体格式是上传文件之时使用的：</p>
-</li>
-<li><p>multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式</p>
-<p> 以上就是我们在日常的开发中，经常会用到的若干content-type的内容格式。</p>
-</li>
-</ul>
-</li>
-<li><p><code>Content-Encoding</code></p>
-<p>  Accept-Encoding 和 Content-Encoding 是 HTTP 中用来对「采用何种编码格式传输正文」进行协定的一对头部字段。它的工作原理是这样：浏览器发送请求时，通过 Accept-Encoding 带上自己支持的内容编码格式列表；服务端从中挑选一种用来对正文进行编码，并通过 Content-Encoding 响应头指明选定的格式；浏览器拿到响应正文后，依据 Content-Encoding 进行解压。当然，服务端也可以返回未压缩的正文，但这种情况不允许返回 Content-Encoding。这个过程就是 HTTP 的内容编码机制。</p>
-<p>  内容编码目的是优化传输内容大小，通俗地讲就是进行压缩。一般经过 gzip 压缩过的文本响应，只有原始大小的 1/4。对于文本类响应是否开启了内容压缩，是我们做性能优化时首先要检查的重要项目；而对于 JPG / PNG 这类本身已经高度压缩过的二进制文件，不推荐开启内容压缩，效果微乎其微还浪费 CPU。</p>
-</li>
-<li><p><code>Referer:https://www.zhihu.com/people/pa-chong-21/activities</code></p>
-<p>  是通过哪个页面到当前页面的（也就是上一个页面是什么？）<br>  举个例子，当我是通过百度搜索页面点到当前页面的，那么Referer就是百度搜索页</p>
-</li>
-<li><p><code>Content-Length</code></p>
-<p>  用于描述HTTP消息实体的传输长度。</p>
-<p>  消息实体长度：即Entity-length，压缩之前的message-body的长度<br>  消息实体的传输长度：Content-length，压缩后的message-body的长度。</p>
-</li>
-<li><p><code>Origin</code>    </p>
-<p>  origin主要是用来说明最初请求是从哪里发起的；<br>  origin只用于Post请求，而Referer则用于所有类型的请求；<br>  origin的方式比Referer更安全点吧。 </p>
-</li>
-<li><p><code>Cookie:d_c0=&quot;AACAWNtZswqPTnJ8dFXqaygiq82ekPD5_-xxxx</code></p>
-<p>  举个例子，当我登录知乎后，知乎会给我一个cookie，然后我在以后的一段时间内，每次打开知乎，都不需要重新登录。这是因为浏览器每次都会把我之前存储的cookie带上。</p>
-</li>
-<li><p><code>Connection:keep-alive</code></p>
-<p>  HTTP持久连接（HTTP persistent connection，也称作HTTP keep-alive或HTTP connection reuse）是使用同一个TCP连接来发送和接收多个HTTP请求/应答，而不是为每一个新的请求/应答打开新的连接的方法。</p>
-</li>
-<li><p><code>Upgrade Insecure Requests</code></p>
-<p>  我们的页面是 https 的，而这个页面中包含了大量的 http 资源（图片、iframe等），页面一旦发现存在上述响应头，会在加载 http 资源时自动替换成 https 请求。</p>
-</li>
-<li><p><code>Cache-Control:no-cache</code></p>
-<p>  Cache-Control 是用来控制网页的缓存</p>
-</li>
-</ul>
-<ul>
-<li><code>If-Modified-Since:Wed, 15 Feb 2017 09:14:13 GMT</code>(缓存时间) </li>
-<li><code>If-None-Match:W/&quot;58a41be5-190aa&quot;</code></li>
-<li><code>Last-Modified:Wed, 15 Feb 2017 09:14:13 GMT</code> </li>
-<li><code>ETag:&quot;58a41be5-190aa&quot;</code><br>  这4个一般静态页面会用到 If-Modified-Since,If-None-Match这两个是请求头，ETag,Last-Modified是返回头（服务器返回的）<br>  如果If-Modified-Since的值和Last-Modified相等 则表明当前请求的内容没有变动，服务器返回,If-None-Match和ETag 同理</li>
-</ul>
-<p>##<code id="6">响应头(Response)</code></p>
-<ul>
-<li><p><code>Public-Key- Pins</code></p>
-<p>  Public-Key- Pins (PKP)的目的主要是允许网站经营者提供一个哈希过的公共密钥存储在用户的浏览器缓存里。跟Strict-Transport-Security功能相 似的是，它能保护用户免遭中间人攻击。这个header可能包含多层的哈希运算，比如pin-sha256=base64(sha256(SPKI))， 具体是先将 X.509 证书下的Subject Public Key Info (SPKI) 做sha256哈希运算，然后再做base64编码。然而，这些规定有可能更改，例如有人指出，在引号中封装哈希是无效的，而且在33版本的chrome 中也不会保存pkp的哈希到缓存中。</p>
-<p>  这个header和 STS的作用很像，因为它规定了最大子域名的数量。此外，pkp还提供了一个Public-Key-Pins-Report-Only 头用来报告异常，但是不会强制阻塞证书信息。当然，这些chrome都是不支持的。</p>
-</li>
-<li><p><code>Server响应头</code><br>  Server响应头包含处理请求的原始服务器的软件信息。此域能包含多个产品标识和注释，产品标识一般按照重要性排序。</p>
-</li>
-</ul>
-<p>来自：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/mm2223/article/details/8089645/" target="_blank" rel="external">http://blog.csdn.net/mm2223/article/details/8089645/</a><br><a href="http://fex.baidu.com/blog/2014/05/what-happen/" target="_blank" rel="external">http://fex.baidu.com/blog/2014/05/what-happen/</a>      (计算机网络)<br><a href="http://blog.csdn.net/blueheart20/article/details/45174399" target="_blank" rel="external">http://blog.csdn.net/blueheart20/article/details/45174399</a>    (请求头、响应头)<br><a href="http://www.tuicool.com/articles/b6BNNfN" target="_blank" rel="external">http://www.tuicool.com/articles/b6BNNfN</a>       (Accept-Encoding 和 Content-Encoding)      </p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Flask-Web开发</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/30/HTTP协议/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/04/02/hexo-Github搭建个人博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hexo+Github搭建个人博客
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/03/30/Python网络爬虫与信息提取/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python网络爬虫与信息提取</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-    <div class="duoshuo"></div>
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -516,9 +236,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
