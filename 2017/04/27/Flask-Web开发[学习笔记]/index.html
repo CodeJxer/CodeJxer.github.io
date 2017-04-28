@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/Flask-Web%E5%BC%80%E5%8F%91/%E7%8B%97%E4%B9%A6%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:updated_time" content="2017-04-28T07:33:49.797Z">
+<meta property="og:updated_time" content="2017-04-28T07:34:21.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask-Web开发|学习笔记">
 <meta name="twitter:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
@@ -622,7 +622,19 @@ def internal_server_error(e):
 			<h1>Not Found</h1> 
 		</div> 	
 	{% endblock %}
-</code></pre>
+</code></pre><p>错误页面在浏览器中的显示效果如图 3-2 所示。<br>templates/user.html 现在可以通过继承这个基模板来简化内容，如示例 3-9 所示。<br>示例 3-9　templates/user.html：使用模板继承机制简化页面模板 </p>
+<pre><code>{% extends "base.html" %} 
+
+{% block title %}Flasky{% endblock %} 
+ 
+	{% block page_content %} 
+		<div class="page-header">     	
+			<h1>Hello, {{ name }}!</h1> 
+		</div> 
+	{% endblock %}
+</code></pre><p>##3.4　链接<br>任何具有多个路由的程序都需要可以连接不同页面的链接，例如导航条。<br>在模板中直接编写简单路由的 URL 链接不难，但对于包含可变部分的动态路由，在模板 中构建正确的 URL 就很困难。而且，直接编写 URL 会对代码中定义的路由产生不必要的 依赖关系。如果重新定义路由，模板中的链接可能会失效。<br>为了避免这些问题，Flask 提供了 url_for() 辅助函数，它可以使用程序 URL 映射中保存 的信息生成 URL。<br>url_for() 函数最简单的用法是以视图函数名（或者 app.add_url_route() 定义路由时使用 的端点名）作为参数，返回对应的 URL。例如，在当前版本的 hello.py 程序中调用 url_for(‘index’) 得到的结果是/。调用 url_for(‘index’, _external=True) 返回的则是绝对地址，在这个示例中是 <a href="http://localhost:5000/。" target="_blank" rel="external">http://localhost:5000/。</a></p>
+<p>##3.5　静态文件<br>Web 程序不是仅由 Python 代码和模板组成。大多数程序还会使用静态文件，例如 HTML 代码中引用的图片、JavaScript 源码文件和 CSS。<br>默认设置下，Flask 在程序根目录中名为 static 的子目录中寻找静态文件。如果需要，可在 static 文件夹中使用子文件夹存放文件。服务器收到前面那个 URL 后，会生成一个响应， 包含文件系统中 static/css/styles.css 文件的内容。</p>
+
       
 
       
@@ -848,11 +860,11 @@ def internal_server_error(e):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技巧</a>
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+                <a href="javascript:void(0)" class="js-tag color3">技巧</a>
               </li>
              
               <li class="article-tag-list-item">
