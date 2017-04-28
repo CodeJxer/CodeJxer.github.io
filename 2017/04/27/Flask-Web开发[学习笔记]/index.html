@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/Flask-Web%E5%BC%80%E5%8F%91/%E7%8B%97%E4%B9%A6%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:updated_time" content="2017-04-28T07:28:41.713Z">
+<meta property="og:updated_time" content="2017-04-28T07:29:26.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask-Web开发|学习笔记">
 <meta name="twitter:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
@@ -517,6 +517,61 @@ Jinja2 会将其渲染成 &apos;&amp;lt;h1&amp;gt;Hello&amp;lt;/ h1&amp;gt;&apos
 浏览器能显示这个 h1 元素，但不会进行解释。
 很多情况下需要显示变量中存储 的 HTML 代码，这时就可使用 safe 过滤器。
 </code></pre><p><strong>千万别在不可信的值上使用 safe 过滤器，例如用户在表单中输入的文本。</strong></p>
+<p>###3.1.3　控制结构<br>Jinja2 提供了多种控制结构，可用来改变模板的渲染流程。本节使用简单的例子介绍其中 最有用的控制结构。<br>下面这个例子展示了如何在模板中使用条件控制语句：</p>
+<pre><code>{% if user %}     
+		Hello, {{ user }}! 
+	{% else %}     
+		Hello, Stranger! 
+	{% endif %}
+</code></pre><p>另一种常见需求是在模板中渲染一组元素。下例展示了如何使用 for 循环实现这一需求：</p>
+<pre><code>&lt;ul&gt;     
+    {% for comment in comments %}         
+			<li>{{ comment }}</li>     
+		{% endfor %} 
+&lt;/ul&gt;
+</code></pre><p>Jinja2 还支持宏。宏类似于 Python 代码中的函数。例如：</p>
+<pre><code>{% macro render_comment(comment) %}     
+		<li>{{ comment }}</li> 
+	{% endmacro %} 
+
+&lt;ul&gt;     
+    {% for comment in comments %}         
+			{{ render_comment(comment) }}     
+		{% endfor %} 
+&lt;/ul&gt;
+</code></pre><p>为了重复使用宏，我们可以将其保存在单独的文件中，然后在需要使用的模板中导入：</p>
+<pre><code>{% import 'macros.html' as macros %} 
+&lt;ul&gt;     
+    {% for comment in comments %}         
+			{{ macros.render_comment(comment) }}     
+		{% endfor %} 
+&lt;/ul&gt;
+</code></pre><p> `<br>需要在多处重复使用的模板代码片段可以写入单独的文件，再包含在所有模板中，以避免 重复：  </p>
+<pre><code>{% include 'common.html' %}
+</code></pre><p>另一种重复使用代码的强大方式是模板继承，它类似于 Python 代码中的类继承。首先，创 建一个名为 base.html 的基模板：    </p>
+<pre><code>&lt;html&gt; 
+&lt;head&gt;     
+    {% block head %}     
+		<title>{% block title %}{% endblock %} - My Application&lt;/title&gt;     
+    {% endblock %} 
+&lt;/head&gt; 
+&lt;body&gt;     
+    {% block body %}     
+		{% endblock %} 
+&lt;/body&gt; 
+&lt;/html&gt;
+</title></code></pre><p>block 标签定义的元素可在衍生模板中修改。在本例中，我们定义了名为 head、title 和 body 的块。注意，title 包含在 head 中。下面这个示例是基模板的衍生模板：</p>
+<pre><code>{% extends "base.html" %} 
+{% block title %}Index{% endblock %} 
+	{% block head %}     
+		{{ super() }}     
+		<style>     
+		</style> 
+	{% endblock %} 
+{% block body %} 
+	<h1>Hello, World!</h1> 
+	{% endblock %}
+</code></pre><p>extends 指令声明这个模板衍生自 base.html。在 extends 指令之后，基模板中的 3 个块被 重新定义，模板引擎会将其插入适当的位置。注意新定义的 head 块，在基模板中其内容不 是空的，所以使用 super() 获取原来的内容。</p>
 
       
 
@@ -719,6 +774,18 @@ Jinja2 会将其渲染成 &apos;&amp;lt;h1&amp;gt;Hello&amp;lt;/ h1&amp;gt;&apos
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Flask-Web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
@@ -740,18 +807,6 @@ Jinja2 会将其渲染成 &apos;&amp;lt;h1&amp;gt;Hello&amp;lt;/ h1&amp;gt;&apos
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Flask-Web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
