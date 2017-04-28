@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/Flask-Web%E5%BC%80%E5%8F%91/%E7%8B%97%E4%B9%A6%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:updated_time" content="2017-04-28T07:30:52.374Z">
+<meta property="og:updated_time" content="2017-04-28T07:33:49.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask-Web开发|学习笔记">
 <meta name="twitter:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
@@ -581,8 +581,48 @@ def page_not_found(e):
 @app.errorhandler(500) 
 def internal_server_error(e):     
     return render_template(&apos;500.html&apos;), 500
-</code></pre><p>和视图函数一样，错误处理程序也会返回响应。它们还返回与该错误对应的数字状态码。<br>错误处理程序中引用的模板也需要编写。这些模板应该和常规页面使用相同的布局，因此 要有一个导航条和显示错误消息的页面头部。<br>编写这些模板最直观的方法是复制 templates/user.html，分别创建 templates/404.html 和<br>templates/500.html，然后把这两个文件中的页面头部元素改为相应的错误消息。但这种方 法会带来很多重复劳动。<br>Jinja2 的模板继承机制可以帮助我们解决这一问题。Flask-Bootstrap 提供了一个具有页面基 本布局的基模板，同样，程序可以定义一个具有更完整页面布局的基模板，其中包含导航 条，而页面内容则可留到衍生模板中定义。示例 3-7 展示了 templates/base.html 的内容，这 是一个继承自 bootstrap/base.html 的新模板，其中定义了导航条。这个模板本身也可作为其 他模板的基模板，例如 templates/user.html、templates/404.html 和 templates/500.html。      </p>
+</code></pre><p>和视图函数一样，错误处理程序也会返回响应。它们还返回与该错误对应的数字状态码。<br>错误处理程序中引用的模板也需要编写。这些模板应该和常规页面使用相同的布局，因此 要有一个导航条和显示错误消息的页面头部。<br>编写这些模板最直观的方法是复制 templates/user.html，分别创建 templates/404.html 和<br>templates/500.html，然后把这两个文件中的页面头部元素改为相应的错误消息。但这种方 法会带来很多重复劳动。<br>Jinja2 的模板继承机制可以帮助我们解决这一问题。Flask-Bootstrap 提供了一个具有页面基 本布局的基模板，同样，程序可以定义一个具有更完整页面布局的基模板，其中包含导航 条，而页面内容则可留到衍生模板中定义。示例 3-7 展示了 templates/base.html 的内容，这 是一个继承自 bootstrap/base.html 的新模板，其中定义了导航条。这个模板本身也可作为其 他模板的基模板，例如 templates/user.html、templates/404.html 和 templates/500.html。<br>示例 3-7　templates/base.html：包含导航条的程序基模板 </p>
+<pre><code>{% extends "bootstrap/base.html" %} 
 
+{% block title %}Flasky{% endblock %} 
+ 
+	{% block navbar %} 
+	<div class="navbar navbar-inverse" role="navigation">     
+		<div class="container">         
+			<div class="navbar-header">             
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                 	<span class="sr-only">Toggle navigation</span> 
+                	<span class="icon-bar"></span>                 
+					<span class="icon-bar"></span>                 
+					<span class="icon-bar"></span>             
+				</button>             
+				<a class="navbar-brand" href="/">Flasky</a>         
+			</div>         
+			<div class="navbar-collapse collapse">             
+				<ul class="nav navbar-nav">                 
+					<li><a href="/">Home</a></li>             
+				</ul>         
+			</div>    
+		</div> 
+	</div> 
+	{% endblock %} 
+
+{% block content %} 
+	<div class="container">     
+		{% block page_content %}{% endblock %} 
+&lt;/div&gt; 
+{% endblock %}
+</div></code></pre><p>这个模板的content块中只有一个<code>&lt;div&gt;</code>容器，其中包含了一个名为page_content的新的空块，块中的内容由衍生模板定义。<br>现在，程序使用的模板继承自这个模板，而不直接继承自Flask-Bootstrap的基模板。通过继承templates/base.html 模板编写自定义的 404 错误页面很简单<br>示例 3-8　templates/404.html：使用模板继承机制自定义 404 错误页面 </p>
+<pre><code>{% extends "base.html" %} 
+
+{% block title %}Flasky - Page Not Found{% endblock %} 
+ 
+	{% block page_content %} 
+		<div class="page-header">     
+			<h1>Not Found</h1> 
+		</div> 	
+	{% endblock %}
+</code></pre>
       
 
       
