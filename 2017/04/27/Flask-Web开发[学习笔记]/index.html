@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/Flask-Web%E5%BC%80%E5%8F%91/%E7%8B%97%E4%B9%A6%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:updated_time" content="2017-04-28T07:34:21.121Z">
+<meta property="og:updated_time" content="2017-04-28T09:13:45.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask-Web开发|学习笔记">
 <meta name="twitter:description" content="本文是《Flask-Web开发:基于Python的Web应用开发实战》的个人学习笔记">
@@ -634,6 +634,204 @@ def internal_server_error(e):
 	{% endblock %}
 </code></pre><p>##3.4　链接<br>任何具有多个路由的程序都需要可以连接不同页面的链接，例如导航条。<br>在模板中直接编写简单路由的 URL 链接不难，但对于包含可变部分的动态路由，在模板 中构建正确的 URL 就很困难。而且，直接编写 URL 会对代码中定义的路由产生不必要的 依赖关系。如果重新定义路由，模板中的链接可能会失效。<br>为了避免这些问题，Flask 提供了 url_for() 辅助函数，它可以使用程序 URL 映射中保存 的信息生成 URL。<br>url_for() 函数最简单的用法是以视图函数名（或者 app.add_url_route() 定义路由时使用 的端点名）作为参数，返回对应的 URL。例如，在当前版本的 hello.py 程序中调用 url_for(‘index’) 得到的结果是/。调用 url_for(‘index’, _external=True) 返回的则是绝对地址，在这个示例中是 <a href="http://localhost:5000/。" target="_blank" rel="external">http://localhost:5000/。</a></p>
 <p>##3.5　静态文件<br>Web 程序不是仅由 Python 代码和模板组成。大多数程序还会使用静态文件，例如 HTML 代码中引用的图片、JavaScript 源码文件和 CSS。<br>默认设置下，Flask 在程序根目录中名为 static 的子目录中寻找静态文件。如果需要，可在 static 文件夹中使用子文件夹存放文件。服务器收到前面那个 URL 后，会生成一个响应， 包含文件系统中 static/css/styles.css 文件的内容。</p>
+<p>示例 3-10 展示了如何在程序的基模板中放置 favicon.ico 图标。这个图标会显示在浏览器的 地址栏中。<br>示例 3-10　templates/base.html：定义收藏夹图标 </p>
+<pre><code>{% block head %} 
+		{{ super() }} 
+		<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon"> 
+		<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon"> 
+	{% endblock %}
+</code></pre><p>图标的声明会插入 head 块的末尾。注意如何使用 super() 保留基模板中定义的块的原始 内容。</p>
+<h1 id="Web表单"><a href="#Web表单" class="headerlink" title="Web表单"></a>Web表单</h1><p>请求对象包含客户端发出的所有请求信息。其中，request.form 能获取 POST 请求中提交的表单数据。<br>尽管 Flask 的请求对象提供的信息足够用于处理 Web 表单，但有些任务很单调，而且要重 复操作。比如，生成表单的 HTML 代码和验证提交的表单数据。<br>Flask-WTF（<a href="http://pythonhosted.org/Flask-WTF/）扩展可以把处理" target="_blank" rel="external">http://pythonhosted.org/Flask-WTF/）扩展可以把处理</a> Web 表单的过程变成一 种愉悦的体验。这个扩展对独立的 WTForms（<a href="http://wtforms.simplecodes.com）包进行了包" target="_blank" rel="external">http://wtforms.simplecodes.com）包进行了包</a> 装，方便集成到 Flask 程序中。<br>Flask-WTF 及其依赖可使用 pip 安装：</p>
+<pre><code>(venv) $ pip install flask-wtf
+</code></pre><p>##4.1　跨站请求伪造保护<br>默认情况下，Flask-WTF 能保护所有表单免受跨站请求伪造（Cross-Site Request Forgery， CSRF）的攻击。恶意网站把请求发送到被攻击者已登录的其他网站时就会引发 CSRF 攻击。<br>为了实现 CSRF 保护，Flask-WTF 需要程序设置一个密钥。Flask-WTF 使用这个密钥生成 加密令牌，再用令牌验证请求中表单数据的真伪。设置密钥的方法如示例 4-1 所示。         </p>
+<p>示例 4-1　hello.py：设置 Flask-WTF </p>
+<pre><code>app = Flask(__name__) 
+app.config[&apos;SECRET_KEY&apos;] = &apos;hard to guess string&apos;
+</code></pre><p>app.config 字典可用来存储框架、扩展和程序本身的配置变量。使用标准的字典句法就能 把配置值添加到 app.config 对象中。这个对象还提供了一些方法，可以从文件或环境中导 入配置值。<br>SECRET_KEY 配置变量是通用密钥，可在 Flask 和多个第三方扩展中使用。如其名所示，加 密的强度取决于变量值的机密程度。不同的程序要使用不同的密钥，而且要保证其他人不 知道你所用的字符串。</p>
+<p>##4.2　表单类<br>使用 Flask-WTF 时，每个 Web 表单都由一个继承自 Form 的类表示。这个类定义表单中的 一组字段，每个字段都用对象表示。字段对象可附属一个或多个验证函数。验证函数用来 验证用户提交的输入值是否符合要求。<br>示例 4-2 是一个简单的 Web 表单，包含一个文本字段和一个提交按钮。<br>示例 4-2　hello.py：定义表单类 </p>
+<pre><code>from flask.ext.wtf import Form 
+from wtforms import StringField, SubmitField 
+from wtforms.validators import Required 
+
+class NameForm(Form):     
+    name = StringField(&apos;What is your name?&apos;, validators=[Required()])     
+    submit = SubmitField(&apos;Submit&apos;)
+</code></pre><p>这个表单中的字段都定义为类变量，类变量的值是相应字段类型的对象。在这个示例中， NameForm 表单中有一个名为 name 的文本字段和一个名为 submit 的提交按钮。StringField 类表示属性为 type=”text” 的 <code>&lt;input&gt;</code> 元素。SubmitField 类表示属性为 type=”submit” 的 <code>&lt;input&gt;</code> 元素。字段构造函数的第一个参数是把表单渲染成 HTML 时使用的标号。<br>StringField 构造函数中的可选参数 validators 指定一个由验证函数组成的列表，在接受 用户提交的数据之前验证数据。验证函数 Required() 确保提交的字段不为空。</p>
+<p>WTForms 支持的 HTML 标准字段</p>
+<table>
+<thead>
+<tr>
+<th>字段类型</th>
+<th>说　　明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StringField</td>
+<td>文本字段 </td>
+</tr>
+<tr>
+<td>TextAreaField</td>
+<td>多行文本字段 </td>
+</tr>
+<tr>
+<td>PasswordField</td>
+<td>密码文本字段 </td>
+</tr>
+<tr>
+<td>HiddenField</td>
+<td>隐藏文本字段 </td>
+</tr>
+<tr>
+<td>DateField</td>
+<td>文本字段，值为 datetime.date 格式 </td>
+</tr>
+<tr>
+<td>DateTimeField</td>
+<td>文本字段，值为 datetime.datetime 格式 </td>
+</tr>
+<tr>
+<td>IntegerField</td>
+<td>文本字段，值为整数 </td>
+</tr>
+<tr>
+<td>DecimalField</td>
+<td>文本字段，值为 decimal.Decimal </td>
+</tr>
+<tr>
+<td>FloatField</td>
+<td>文本字段，值为浮点数 </td>
+</tr>
+<tr>
+<td>BooleanField</td>
+<td>复选框，值为 True 和 False </td>
+</tr>
+<tr>
+<td>RadioField</td>
+<td>一组单选框 </td>
+</tr>
+<tr>
+<td>SelectField</td>
+<td>下拉列表 </td>
+</tr>
+<tr>
+<td>SelectMultipleField</td>
+<td>下拉列表，可选择多个值 </td>
+</tr>
+<tr>
+<td>FileField</td>
+<td>文件上传字段 </td>
+</tr>
+<tr>
+<td>SubmitField</td>
+<td>表单提交按钮 </td>
+</tr>
+<tr>
+<td>FormField</td>
+<td>把表单作为字段嵌入另一个表单 </td>
+</tr>
+<tr>
+<td>FieldList</td>
+<td>一组指定类型的字段</td>
+</tr>
+</tbody>
+</table>
+<p>WTForms 内建的验证函数</p>
+<table>
+<thead>
+<tr>
+<th>验证函数</th>
+<th>说　　明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>验证电子邮件地址 </td>
+</tr>
+<tr>
+<td>EqualTo</td>
+<td>比较两个字段的值；常用于要求输入两次密码进行确认的情况 </td>
+</tr>
+<tr>
+<td>IPAddress</td>
+<td>验证 IPv4 网络地址 </td>
+</tr>
+<tr>
+<td>Length</td>
+<td>验证输入字符串的长度 </td>
+</tr>
+<tr>
+<td>NumberRange</td>
+<td>验证输入的值在数字范围内 </td>
+</tr>
+<tr>
+<td>Optional</td>
+<td>无输入值时跳过其他验证函数 </td>
+</tr>
+<tr>
+<td>Required</td>
+<td>确保字段中有数据 </td>
+</tr>
+<tr>
+<td>Regexp</td>
+<td>使用正则表达式验证输入值 </td>
+</tr>
+<tr>
+<td>URL</td>
+<td>验证 URL </td>
+</tr>
+<tr>
+<td>AnyOf</td>
+<td>确保输入值在可选值列表中 </td>
+</tr>
+<tr>
+<td>NoneOf</td>
+<td>确保输入值不在可选值列表中</td>
+</tr>
+</tbody>
+</table>
+<p>##4.3　把表单渲染成HTML<br>表单字段是可调用的，在模板中调用后会渲染成 HTML。假设视图函数把一个 NameForm 实例通过参数 form 传入模板，在模板中可以生成一个简单的表单，如下所示：        </p>
+<pre><code>&lt;form method=&quot;POST&quot;&gt;     
+    {{ form.hidden_tag() }}      
+    {{ form.name.label }} 
+    {{ form.name() }}     
+    {{ form.submit() }} 
+&lt;/form&gt;
+</code></pre><p>当然，这个表单还很简陋。要想改进表单的外观，可以把参数传入渲染字段的函数，传入 的参数会被转换成字段的 HTML 属性。例如，可以为字段指定 id 或 class 属性，然后定义CSS 样式：</p>
+<pre><code>&lt;form method=&quot;POST&quot;&gt;     
+    {{ form.hidden_tag() }}      
+    {{ form.name.label }} 
+    {{ form.name(id='my-text-field') }}     
+    {{ form.submit() }} 
+&lt;/form&gt;
+</code></pre><p>即便能指定 HTML 属性，但按照这种方式渲染表单的工作量还是很大，所以在条件允许的 情况下最好能使用 Bootstrap 中的表单样式。Flask-Bootstrap 提供了一个非常高端的辅助函 数，可以使用 Bootstrap 中预先定义好的表单样式渲染整个 Flask-WTF 表单，而这些操作 只需一次调用即可完成。使用 Flask-Bootstrap，上述表单可使用下面的方式渲染：</p>
+<pre><code>{% import "bootstrap/wtf.html" as wtf %} 
+{{ wtf.quick_form(form) }}
+</code></pre><p>import 指令的使用方法和普通 Python 代码一样，允许导入模板中的元素并用在多个模板 中。导入的 bootstrap/wtf.html 文件中定义了一个使用 Bootstrap 渲染 Falsk-WTF 表单对象 的辅助函数。wtf.quick_form() 函数的参数为 Flask-WTF 表单对象，使用 Bootstrap 的默认 样式渲染传入的表单。hello.py 的完整模板如示例 4-3 所示。<br>示例 4-3　templates/index.html：使用 Flask-WTF 和 Flask-Bootstrap 渲染表单 </p>
+<pre><code>{% extends "base.html" %} 
+
+{% import "bootstrap/wtf.html" as wtf %} 
+
+{% block title %}Flasky{% endblock %} 
+ 
+	{% block page_content %} 
+	<div class="page-header">     
+		<h1>Hello, {% if name %}{{ name }} {% else %}Stranger{% endif %}!</h1> 
+	</div> 
+	{{ wtf.quick_form(form) }} 
+	{% endblock %}
+</code></pre><p>模板的内容区现在有两部分。第一部分是页面头部，显示欢迎消息。这里用到了一个模板 条件语句。Jinja2 中的条件语句格式为 ...。 如果条件的计算结果为 True，那么渲染 if 和 else 指令之间的值。如果条件的计算结果为 False，则渲染 else 和 endif 指令之间的值。在这个例子中，如果没有定义模板变量 name，<br>则会渲染字符串“Hello, Stranger!”。内容区的第二部分使用 wtf.quick_form() 函数渲染 NameForm 对象。</p>
+<p>##4.4　在视图函数中处理表单<br>这一次视图函数 index() 不仅要渲染表单，还要接收表单中的数据。<br>示例 4-4 是更新后的 index() 视图函数。<br>示例 4-4　hello.py：路由方法 </p>
+<pre><code>@app.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;]) 
+def index():     
+    name = None     
+    form = NameForm()     
+    if form.validate_on_submit():             
+        name = form.name.data         
+        form.name.data = &apos;&apos;     
+    return render_template(&apos;index.html&apos;, form=form, name=name)
+</code></pre><p>app.route 修饰器中添加的 methods 参数告诉 Flask 在 URL 映射中把这个视图函数注册为 GET 和 POST 请求的处理程序。如果没指定 methods 参数，就只把视图函数注册为 GET 请求 的处理程序。<br>把 POST 加入方法列表很有必要，因为将提交表单作为 POST 请求进行处理更加便利。表单 也可作为 GET 请求提交，不过 GET 请求没有主体，提交的数据以查询字符串的形式附加到 URL 中，可在浏览器的地址栏中看到。基于这个以及其他多个原因，提交表单大都作为 POST 请求进行处理。<br>局部变量 name 用来存放表单中输入的有效名字，如果没有输入，其值为 None。如上述代 码所示，在视图函数中创建一个 NameForm 类实例用于表示表单。提交表单后，如果数据能 被所有验证函数接受，那么 validate_on_submit() 方法的返回值为 True，否则返回 False。 这个函数的返回值决定是重新渲染表单还是处理表单提交的数据。<br>用户第一次访问程序时，服务器会收到一个没有表单数据的 GET 请求，所以 validate<em>on</em> submit() 将返回 False。if 语句的内容将被跳过，通过渲染模板处理请求，并传入表单对 象和值为 None 的 name 变量作为参数。用户会看到浏览器中显示了一个表单。<br>用户提交表单后，服务器收到一个包含数据的 POST 请求。validate_on_submit() 会调用 name 字段上附属的 Required() 验证函数。如果名字不为空，就能通过验证，validate<em>on</em> submit() 返回 True。现在，用户输入的名字可通过字段的 data 属性获取。在 if 语句中， 把名字赋值给局部变量 name，然后再把 data 属性设为空字符串，从而清空表单字段。最 后一行调用 render_template() 函数渲染模板，但这一次参数 name 的值为表单中输入的名 字，因此会显示一个针对该用户的欢迎消息。</p>
 
       
 
@@ -757,7 +955,7 @@ def internal_server_error(e):
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 CodeJxer
+    		&copy; 2018 CodeJxer
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -869,6 +1067,14 @@ def internal_server_error(e):
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>

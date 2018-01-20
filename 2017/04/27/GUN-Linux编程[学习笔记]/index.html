@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="本文为《GUN/Linux编程》的个人读书笔记">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/GUN-Linux%E7%BC%96%E7%A8%8B/%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:updated_time" content="2017-04-27T05:40:49.096Z">
+<meta property="og:updated_time" content="2017-05-23T12:27:53.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GUN/Linux编程|学习笔记">
 <meta name="twitter:description" content="本文为《GUN/Linux编程》的个人读书笔记">
@@ -185,55 +185,423 @@
 <p>&lt;未完待续&gt;</p>
 <p>目录：</p>
 <ul>
-<li>历史</li>
-<li>Shell命令</li>
-<li>Linux系统的定制</li>
-<li>Shell程序设计</li>
-<li>GUN C开发环境</li>
-<li>Linux文件与目录</li>
-<li>Linux信号</li>
-<li>Linux进程</li>
-<li>Linux进程通信</li>
-<li>I/O操作模式</li>
+<li><a href="#1">1UNIX系统概述</a>      <ul>
+<li><a href="#1.1">1.1UNIX的发展历史</a>      <ul>
+<li><a href="#1.1.1">1.1.1UNIX的产生与发展</a>      </li>
+<li><a href="#1.1.2">1.1.2UNIX的相关标准</a>      </li>
 </ul>
-<p>正文：</p>
-<p>##历史<br>&lt;未完待续&gt;</p>
-<p>##Shell命令<br>2.1.1 目录的组织结构<br>系统目录树：</p>
-<pre><code>[root@VM_9_128_centos //]# tree -L 1
-.
-|-- bin -&gt; usr/bin            #所有用户可使用的可执行文件
-|-- boot                    #Linux内核映像文件和与引导加载有关的文件
-|-- data                    
-|-- dev                        #所有设备文件，包括字符设备和块设备
-|-- etc                        #系统配置文件
-|-- home
-|-- lib -&gt; usr/lib            #共享库文件，供/bin下的文件和/sbin下的文件使用
-|-- lib64 -&gt; usr/lib64
-|-- lost+found
-|-- media
-|-- mnt                        #挂载点，常用于挂载文件系统
-|-- opt
-|-- proc                    #基于内存的文件系统，用于显示内核消息
-|-- project
-|-- root
-|-- run
-|-- sbin -&gt; usr/sbin
-|-- srv
-|-- sys
-|-- tmp
-|-- usr
-    |--    /usr/bin            #用户命令文件
-    |-- /usr/include         #C头文件    
-    |-- /usr/lib             #函数库
-    |-- /usr/src             #源代码目录
-    |-- /usr/sbin             #系统命令工具
-|-- var
-`-- zxLiao
-</code></pre><p>“/“表示根目录。为了便于管理，每个目录中存放两个特殊目录，分别表示当前目录”.”和父目录”..”</p>
-<p><strong>2.1.2 文件的路径</strong><br>当”/“位于字符串首位时，表示根目录，位于两个目录之间时，表示分隔符。<br><strong>1.用户主目录：</strong><br>每个用户在登录进系统时，都位于某个目录，该目录称为用户主目录。root用户的用户主目录是/root,普通用户的用户主目录通常都是/home/username。<br><strong>2.绝对路径：</strong><br>从根目录开始到目标目录<br><strong>3.相对路径：</strong><br>从当前目录到目标目录</p>
-<p><strong>2.1.3 Linux的语法结构</strong><br>命令常用的语法结构定义如下：</p>
-<pre><code>$ 命令名 [选项] [参数列表]
-</code></pre><p>其中，$为提示符，提示符可以通过环境变量重新设置，命令名代表命令的名称，</p>
+</li>
+<li><a href="#1.2">1.2GNU的诞生与发展</a>      <ul>
+<li><a href="#1.2.1">1.2.1自由软件计划GNU</a>      </li>
+<li><a href="#1.2.2">1.2.2许可证协议</a>      </li>
+<li><a href="#1.2.3">1.2.3自由软件和开源软件</a>      </li>
+</ul>
+</li>
+<li><a href="#1.3">1.3Linux 内核</a>      <ul>
+<li><a href="#1.3.1">1.3.1Minix操作系统</a>      </li>
+<li><a href="#1.3.2">1.3.2Linux的产生与发展</a>      </li>
+<li><a href="#1.3.3">1.3.3Linux内核版本</a>      </li>
+<li><a href="#1.3.4">1.3.4Linux内核的分类</a>      </li>
+</ul>
+</li>
+<li><a href="#1.4">1.4Linux 系统</a>      <ul>
+<li><a href="#1.4.1">1.4.1Linux系统的概念</a>      </li>
+<li><a href="#1.4.2">1.4.2GNU/Linux</a>      </li>
+<li><a href="#1.4.3">1.4.3Linux 发行版</a>      </li>
+</ul>
+</li>
+<li><a href="#1.5">1.5Linux系统的商业运营模式</a>      </li>
+</ul>
+</li>
+<li><a href="#2">2Shell命令</a>      <ul>
+<li><a href="#2.1">2.1Shell命令概述</a>      <ul>
+<li><a href="#2.1.1">2.1.1目录的组织结构</a>      </li>
+<li><a href="#2.1.2">2.1.2文件的路径</a>      </li>
+<li><a href="#2.1.3">2.1.3Linux命令的语法结构</a>      </li>
+<li><a href="#2.1.4">2.1.4Shell命令的分类</a>      </li>
+<li><a href="#2.1.5">2.1.5联机帮助</a>      </li>
+</ul>
+</li>
+<li><a href="#2.2">2.2目录和文件操作</a>      <ul>
+<li><a href="#2.2.1">2.2.1目录操作</a>      </li>
+<li><a href="#2.2.2">2.2.2文件操作</a>      </li>
+<li><a href="#2.2.3">2.2.3显示文本文件内容</a>      </li>
+<li><a href="#2.2.4">2.2.4硬链接和软链接</a>      </li>
+</ul>
+</li>
+<li><a href="#2.3">2.3用户和用户组管理</a>      <ul>
+<li><a href="#2.3.1">2.3.1用户的分类</a>      </li>
+<li><a href="#2.3.2">2.3.2用户组管理</a>      </li>
+<li><a href="#2.3.3">2.3.3用户管理</a>      </li>
+<li><a href="#2.3.4">2.3.4用户属性的修改</a>      </li>
+<li><a href="#2.3.5">2.3.5用户管理相关配置文件</a>      </li>
+</ul>
+</li>
+<li><a href="#2.4">2.4文件的权限管理</a>      <ul>
+<li><a href="#2.4.1">2.4.1文件属性</a>      </li>
+<li><a href="#2.4.2">2.4.2权限的修改</a>      </li>
+<li><a href="#2.4.3">2.4.3权限验证</a>      </li>
+<li><a href="#2.4.4">2.4.4权限掩码umask</a>      </li>
+<li><a href="#2.4.5">2.4.5文件和目录权限的计算</a>      </li>
+</ul>
+</li>
+<li><a href="#2.5">2.5进程管理</a>      <ul>
+<li><a href="#2.5.1">2.5.1进程的管理信息</a>      </li>
+<li><a href="#2.5.2">2.5.2与进程相关的命令</a>      </li>
+</ul>
+</li>
+<li><a href="#2.6">2.6Linux的备份与恢复</a>      <ul>
+<li><a href="#2.6.1">2.6.1面向文件的备份与恢复</a>      </li>
+<li><a href="#2.6.2">2.6.2面向文件系统的备份</a>      </li>
+<li><a href="#2.6.3">2.6.3面向设备的备份与恢复</a>      </li>
+</ul>
+</li>
+<li><a href="#2.7">2.7Linux应用软件包管理</a>      <ul>
+<li><a href="#2.7.1">2.7.1应用软件包的分类</a>      </li>
+<li><a href="#2.7.2">2.7.2RPM软件包的管理</a>      </li>
+</ul>
+</li>
+<li><a href="#2.8">2.8输入输出重定向和管道</a>      <ul>
+<li><a href="#2.8.1">2.8.1标准输入输出文件的定义</a>      </li>
+<li><a href="#2.8.2">2.8.2输人输出重定向</a>      </li>
+<li><a href="#2.8.3">2.8.3管道</a>      </li>
+</ul>
+</li>
+<li><a href="#2.9">2.9元字符与正则表达式</a>      <ul>
+<li><a href="#2.9.1">2.9.1元字符</a>      </li>
+<li><a href="#2.9.2">2.9.2正则表达式</a>      </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3">3Linux系统的定制</a>      <ul>
+<li><a href="#3.1">3.1磁盘管理</a>      <ul>
+<li><a href="#3.1.1">3.1.1硬盘的物理结构</a>      </li>
+<li><a href="#3.1.2">3.1.2磁盘分区</a>      </li>
+<li><a href="#3.1.3">3.1.3分区格式化</a>      </li>
+<li><a href="#3.1.4">3.1.4 ext2文件系统</a>      </li>
+<li><a href="#3.1.5">3.1.5文件系统的挂载与卸载</a>      </li>
+</ul>
+</li>
+<li><a href="#3.2">3.2引导加载程序grub</a>      <ul>
+<li><a href="#3.2.1">3.2.1引导加载的概念</a>      </li>
+<li><a href="#3.2.2">3.2.2引导加载祝序grub</a>      </li>
+<li><a href="#3.2.3">3.2.3grub 交互命令</a>      </li>
+<li><a href="#3.2.4">3.2.4grub的启动过程</a>      </li>
+</ul>
+</li>
+<li><a href="#3.3">3.3Linux内核定制</a>      <ul>
+<li><a href="#3.3.1">3.3.1 Linux 内核</a>      </li>
+<li><a href="#3.3.2">3.3.2定制Linux内核</a>      </li>
+</ul>
+</li>
+<li><a href="#3.4">3.4Linux应用环境的初始化</a>      <ul>
+<li><a href="#3.4.1">3.4.1引导配置文件inittab</a>      </li>
+<li><a href="#3.4.2">3.4.2用户登录</a>      </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4">4Shell程序设计</a>      <ul>
+<li><a href="#4.1">4.1Shell 概述</a>      </li>
+<li><a href="#4.2">4.2Shell脚本的定义与执行</a>      </li>
+<li><a href="#4.3">4.3Shell 变量</a>      <ul>
+<li><a href="#4.3.1">4.3.1 Shell变量的分类</a>      </li>
+<li><a href="#4.3.2">4.3.2命令替换</a>      </li>
+</ul>
+</li>
+<li><a href="#4.4">4.4输入和输出</a>      </li>
+<li><a href="#4.5">4.5Shell中的引号</a>      </li>
+<li><a href="#4.6">4.6条件表达式</a>      <ul>
+<li><a href="#4.5.1">4.5.1条件表达式</a>      </li>
+<li><a href="#4.5.2">4.5.2命令分隔符</a>      </li>
+</ul>
+</li>
+<li><a href="#4.6">4.6判断语句</a>      <ul>
+<li><a href="#4.6.1">4.6.1条件语句</a>      </li>
+<li><a href="#4.6.2">4.6.2分支语句</a>      </li>
+</ul>
+</li>
+<li><a href="#4.7">4.7循环语句</a>      <ul>
+<li><a href="#4.7.1">4.7.1for循环语句</a>      </li>
+<li><a href="#4.7.2">4.7.2while 语句</a>      </li>
+<li><a href="#4.7.3">4.7.3until 语句</a>      </li>
+</ul>
+</li>
+<li><a href="#4.8">4.8 函数</a>      </li>
+</ul>
+</li>
+<li><a href="#5">5GNU C开发环境</a>      <ul>
+<li><a href="#5.1">5.1GNU C编译器</a>      <ul>
+<li><a href="#5.1.1">5.1.1目标代码的生成</a>      </li>
+<li><a href="#5.1.2">5.1.2GCC 概述</a>      </li>
+<li><a href="#5.1.3">5.1.3GNU C编译链接工具</a>      </li>
+</ul>
+</li>
+<li><a href="#5.2">5.2项目管理工具    GNU make</a>      <ul>
+<li><a href="#5.2.1">5.2.1项目管理概述</a>      </li>
+<li><a href="#5.2.2">5.2.2基于make工具的项目管理</a>      </li>
+<li><a href="#5.2.3">5.2.3Makefile 中的变量</a>      </li>
+<li><a href="#5.2.4">5.2.4Makefile文件中的潜规则</a>      </li>
+</ul>
+</li>
+<li><a href="#5.3">5.3创建和使用函数库</a>      <ul>
+<li><a href="#5.3.1">5.3.1静态库</a>      </li>
+<li><a href="#5.3.2">5.3.2共享库</a>      </li>
+<li><a href="#5.3.3">5.3.3动态链接库</a>      </li>
+</ul>
+</li>
+<li><a href="#5.4">5.4GNU C 函数库——glibc</a>      </li>
+</ul>
+</li>
+<li><a href="#6">6Linux文件与目录</a>      <ul>
+<li><a href="#6.1">6.1Linux文件系统概述</a>      <ul>
+<li><a href="#6.1.1">6.1.1文件系统的概念</a>      </li>
+<li><a href="#6.1.2">6.1.2虚拟文件系统</a>      </li>
+<li><a href="#6.1.3">6.1.3文件系统的结构</a>      </li>
+<li><a href="#6.1.4">6.1.4应用编程接口</a>      </li>
+</ul>
+</li>
+<li><a href="#6.2">6.2文件的基本输人输出</a>      <ul>
+<li><a href="#6.2.1">6.2.1    文件操作</a>      </li>
+<li><a href="#6.2.2">6.2.2标准输人输出文件的定义</a>      </li>
+<li><a href="#6.2.3">6.2.3编程实例</a>      </li>
+</ul>
+</li>
+<li><a href="#6.3">6.3文件属性操作</a>      <ul>
+<li><a href="#6.3.1">6.3.1获得文件属性</a>      </li>
+<li><a href="#6.3.2">6.3.2修改文件存取权限</a>      </li>
+<li><a href="#6.3.3">6.3.3改变文件的属主和属组</a>      </li>
+</ul>
+</li>
+<li><a href="#6.4">6.4目录操作</a>      <ul>
+<li><a href="#6.4.1">6.4.1目录操作</a>      </li>
+<li><a href="#6.4.2">6.4.2浏览目录中的文件</a>      </li>
+</ul>
+</li>
+<li><a href="#6.5">6.5标准I/O库</a>      <ul>
+<li><a href="#6.5.1">6.5.1标准I/O库概述</a>      </li>
+<li><a href="#6.5.2">6.5.2文件操作</a>      </li>
+<li><a href="#6.5.3">6.5.3格式化输入与输出</a>      </li>
+<li><a href="#6.5.4">6.5.4刷新缓冲区</a>      </li>
+</ul>
+</li>
+<li><a href="#6.6">6.6 I/O重定向</a>      <ul>
+<li><a href="#6.6.1">6.6.1文件描述符</a>      </li>
+<li><a href="#6.6.2">6.6.2I/O重定向</a>      </li>
+<li><a href="#6.6.3">6.6.3实现重定向的方法</a>      </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#7">7Linux信号</a>      <ul>
+<li><a href="#7.1">7.1信号概述</a>      <ul>
+<li><a href="#7.1.1">7.1.1信号的概念</a>      </li>
+<li><a href="#7.1.2">7.1.2应用编程接口</a>      </li>
+</ul>
+</li>
+<li><a href="#7.2">7.2Linux系统中的信号</a>      <ul>
+<li><a href="#7.2.1">7.2.1Linux系统中的信号</a>      </li>
+<li><a href="#7.2.2">7.2.2信号的分类</a>      </li>
+<li><a href="#7.2.3">7.2.3 Linux信号的产生</a>      </li>
+<li><a href="#7.2.4">7.2.4信号的处理方式</a>      </li>
+<li><a href="#7.2.5">7.2.5信号的处理流程</a>      </li>
+</ul>
+</li>
+<li><a href="#7.3">7.3信号的定义</a>      <ul>
+<li><a href="#7.3.1">7.3.1设置信号的行为</a>      </li>
+<li><a href="#7.3.2">7.3.2信号处理函数</a>      </li>
+<li><a href="#7.3.3">7.3.3定义多个信号</a>      </li>
+<li><a href="#7.3.4">7.3.4信号的阻塞</a>      </li>
+</ul>
+</li>
+<li><a href="#7.4">7.4发送信号</a>      </li>
+<li><a href="#7.5">7.5计时器</a>      <ul>
+<li><a href="#7.5.1">7.5.1睡眠延迟</a>      </li>
+<li><a href="#7.5.2">7.5.2间隔计时器</a>      </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#8">8Linux进程</a>      <ul>
+<li><a href="#8.1">8.1Linux进程概述</a>      <ul>
+<li><a href="#8.1.1">8.1.1Linux 进程</a>      </li>
+<li><a href="#8.1.2">8.1.2应用编程接口</a>      </li>
+</ul>
+</li>
+<li><a href="#8.2">8.2进程的地址空间</a>      <ul>
+<li><a href="#8.2.1">8.2.1进程的地址空间</a>      </li>
+<li><a href="#8.2.2">8.2.2环境变量相关操作</a>      </li>
+<li><a href="#8.2.3">8.2.3命令行参数的引用</a>      </li>
+<li><a href="#8.2.4">8.2.4动态内存管理</a>      </li>
+</ul>
+</li>
+<li><a href="#8.3">8.3进程的创建与终止</a>      <ul>
+<li><a href="#8.3.1">8.3.1创建进程</a>      </li>
+<li><a href="#8.3.2">8.3.2程序的启动与结束</a>      </li>
+</ul>
+</li>
+<li><a href="#8.4">8.4加载可执行映像</a>      <ul>
+<li><a href="#8.4.1">8.4.1ELF格式</a>      </li>
+<li><a href="#8.4.2">8.4.2可执行文件的加载</a>      </li>
+</ul>
+</li>
+<li><a href="#8.5">8.5进程同步控制</a>      <ul>
+<li><a href="#8.5.1">8.5.1等待子进程结束</a>      </li>
+<li><a href="#8.5.2">8.5.2等待指定子进程</a>      </li>
+</ul>
+</li>
+<li><a href="#8.6">8.6 Linux进程环境</a>      <ul>
+<li><a href="#8.6.1">8.6.1用户和用户组</a>      </li>
+<li><a href="#8.6.2">8.6.2进程和进程组</a>      </li>
+<li><a href="#8.6.3">8.6.3会话</a>      </li>
+<li><a href="#8.6.4">8.6.4守护进程</a>      </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#9">9Linux进程通信</a>      <ul>
+<li><a href="#9.1">9.1进程通信概述</a>      <ul>
+<li><a href="#9.1.1">9.1.1进程通信方式</a>      </li>
+<li><a href="#9.1.2">9.1.2应用编程接口</a>      </li>
+</ul>
+</li>
+<li><a href="#9.2">9.2管道</a>      <ul>
+<li><a href="#9.2.1">9.2.1无名管道</a>      </li>
+<li><a href="#9.2.2">9.2.2命名管道</a>      </li>
+</ul>
+</li>
+<li><a href="#9.3">9.3 IPC 概述</a>      </li>
+<li><a href="#9.4">9.4信号量</a>      <ul>
+<li><a href="#9.4.1">9.4.1创建信号量</a>      </li>
+<li><a href="#9.4.2">9.4.2获得与释放信号量</a>      </li>
+<li><a href="#9.4.3">9.4.3信号量的控制操作</a>      </li>
+</ul>
+</li>
+<li><a href="#9.5">9.5消息队列</a>      <ul>
+<li><a href="#9.5.1">9.5.1创建消息队列</a>      </li>
+<li><a href="#9.5.2">9.5.2发送消息</a>      </li>
+<li><a href="#9.5.3">9.5.3接收消息</a>      </li>
+<li><a href="#9.5.4">9.5.4设置消息队列属性</a>      </li>
+</ul>
+</li>
+<li><a href="#9.6">9.6 共享内存</a>      <ul>
+<li><a href="#9.6.1">9.6.1创建共享内存</a>      </li>
+<li><a href="#9.6.2">9.6.2共享内存映射的建立与释放</a>      </li>
+<li><a href="#9.6.3">9.6.3设置共享内存属性</a>      </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#1">10I/O操作模式</a>      <ul>
+<li><a href="#10.1">10.1 I/O操作模式概述</a>      <ul>
+<li><a href="#10.1.1">10.1.1 I/O操作模式</a>      </li>
+<li><a href="#10.1.2">10.1.2应用编程接口</a>      </li>
+</ul>
+</li>
+<li><a href="#10.2">10.2同步阻塞I/O模式</a>      <ul>
+<li><a href="#10.2.1">10.2.1基本概念</a>      </li>
+<li><a href="#10.2.2">10.2.2存在的问题</a>      </li>
+<li><a href="#10.2.3">10.2.3 解决方法</a>      </li>
+</ul>
+</li>
+<li><a href="#10.3">10.3同步非阻塞1/0棋式</a>      <ul>
+<li><a href="#10.3.1">10.3.1基本概念</a>      </li>
+<li><a href="#10.3.2">10.3.2实现方式</a>      </li>
+</ul>
+</li>
+<li><a href="#10.4">10.4多路复用I/O模式</a>      <ul>
+<li><a href="#10.4.1">10.4.1基本概念</a>      </li>
+<li><a href="#10.4.2">10.4.2实现方法</a>      </li>
+</ul>
+</li>
+<li><a href="#10.5">10.5信号驱动的I/O模式</a>      <ul>
+<li><a href="#10.5.1">10.5.1基本概念</a>      </li>
+<li><a href="#10.5.2">10.5.2实现方法</a>      </li>
+</ul>
+</li>
+<li><a href="#10.6">10.6异步I/O模式</a>      <ul>
+<li><a href="#10.6.1">10.6.1基本概念</a>      </li>
+<li><a href="#10.6.2">10.6.2 实现方法</a>      </li>
+</ul>
+</li>
+<li><a href="#10.7">10.7内存的I/O映射</a>      <ul>
+<li><a href="#10.7.1">10.7.1基本概念</a>      </li>
+<li><a href="#10.7.2">10.7.2:实现方法</a>      </li>
+</ul>
+</li>
+<li><a href="#10.8">10.8文件锁</a>      <ul>
+<li><a href="#10.8.1">10.8.1文件锁的类型</a>      </li>
+<li><a href="#10.8.2">10.8.2基于flock函数实现文件锁</a>      </li>
+<li><a href="#10.8.3">10.8.3利用fcntl函数实现文件加锁</a>      </li>
+</ul>
+</li>
+<li><a href="#10.9">10.9终端I/O</a>      <ul>
+<li><a href="#10.9.1">10.9.1终端的行为模式</a>      </li>
+<li><a href="#10.9.2">10.9.2终端模式的设置</a>      </li>
+<li><a href="#10.9.3">10.9.3终端I/O的编程接口</a>   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<font size="4," color="0x0000ff," id="1"> 1UNIX系统概述</font><br><font size="4," color="0x0000ff," id="1.1"> 1.1UNIX的发展历史</font><br><font size="4," color="0x0000ff," id="1.1.1"> 1.1.1UNIX的产生与发展</font><br><font size="4," color="0x0000ff," id="1.1.2"> 1.1.2UNIX的相关标准</font><br><font size="4," color="0x0000ff," id="1.2"> 1.2GNU的诞生与发展</font><br><font size="4," color="0x0000ff," id="1.2.1"> 1.2.1自由软件计划GNU</font><br><font size="4," color="0x0000ff," id="1.2.2"> 1.2.2许可证协议</font><br><font size="4," color="0x0000ff," id="1.2.3"> 1.2.3自由软件和开源软件</font><br><font size="4," color="0x0000ff," id="1.3"> 1.3Linux 内核</font><br><font size="4," color="0x0000ff," id="1.3.1"> 1.3.1Minix操作系统</font><br><font size="4," color="0x0000ff," id="1.3.2"> 1.3.2Linux的产生与发展</font><br><font size="4," color="0x0000ff," id="1.3.3"> 1.3.3Linux内核版本</font><br><font size="4," color="0x0000ff," id="1.3.4"> 1.3.4Linux内核的分类</font><br><font size="4," color="0x0000ff," id="1.4"> 1.4Linux 系统</font><br><font size="4," color="0x0000ff," id="1.4.1"> 1.4.1Linux系统的概念</font><br><font size="4," color="0x0000ff," id="1.4.2"> 1.4.2GNU/Linux</font><br><font size="4," color="0x0000ff," id="1.4.3"> 1.4.3Linux 发行版</font><br><font size="4," color="0x0000ff," id="1.5"> 1.5Linux系统的商业运营模式</font><br><font size="4," color="0x0000ff," id="2"> 2Shell命令</font><br><font size="4," color="0x0000ff," id="2.1"> 2.1Shell命令概述</font><br><font size="4," color="0x0000ff," id="2.1.1"> 2.1.1目录的组织结构</font><br>系统目录树：<br><br>    [root@VM_9_128_centos //]# tree -L 1<br>    .<br>    |– bin -&gt; usr/bin            #所有用户可使用的可执行文件<br>    |– boot                    #Linux内核映像文件和与引导加载有关的文件<br>    |– data<br>    |– dev                        #所有设备文件，包括字符设备和块设备<br>    |– etc                        #系统配置文件<br>    |– home<br>    |– lib -&gt; usr/lib            #共享库文件，供/bin下的文件和/sbin下的文件使用<br>    |– lib64 -&gt; usr/lib64<br>    |– lost+found<br>    |– media<br>    |– mnt                        #挂载点，常用于挂载文件系统<br>    |– opt<br>    |– proc                    #基于内存的文件系统，用于显示内核消息<br>    |– project<br>    |– root<br>    |– run<br>    |– sbin -&gt; usr/sbin<br>    |– srv<br>    |– sys<br>    |– tmp<br>    |– usr<br>        |–    /usr/bin            #用户命令文件<br>        |– /usr/include         #C头文件<br>        |– /usr/lib             #函数库<br>        |– /usr/src             #源代码目录<br>        |– /usr/sbin             #系统命令工具<br>    |– var<br>    `– zxLiao<br><font color="red">“/“表示根目录。为了便于管理，每个目录中存放两个特殊目录，分别表示当前目录”.”和父目录”..”</font>
+
+
+<font size="4," color="0x0000ff," id="2.1.2"> 2.1.2文件的路径</font><br>当”/“位于字符串首位时，表示根目录，位于两个目录之间时，表示分隔符。<br><strong>1.用户主目录：</strong><br>每个用户在登录进系统时，都位于某个目录，该目录称为用户主目录。root用户的用户主目录是/root,普通用户的用户主目录通常都是/home/username。<br><strong>2.绝对路径：</strong><br>从根目录开始到目标目录<br><strong>3.相对路径：</strong><br>从当前目录到目标目录<br><br><font size="4," color="0x0000ff," id="2.1.3"> 2.1.3Linux命令的语法结构</font><br>命令常用的语法结构定义如下：<br><br>    $ 命令名 [选项] [参数列表]<br><br>其中，$为提示符，提示符可以通过环境变量重新设置，命令名代表命令的名称，通常是可执行文件的文件名。<br><br><font size="4," color="0x0000ff," id="2.1.4"> 2.1.4Shell命令的分类</font><br>根据Shell命令实现方式的不同，shell命令可分为内部命令和外部命令。<br>1.内部命令<br>内部命令由Shell实现，具有较高额执行效率，运行于当前进程，可以通过命令type判断是否为外部命令<br><br>    type -t ls<br>2.外部命令<br>外部命令是指存储于文件系统中的可执行二进制映像文件。Shell创建子进程，在子进程中加载并执行外部命令。可以通过file查看外部命令的信息。<br><br>    file cp<br><br><font size="4," id="2.1.5," color="blue"> 2.1.5联机帮助</font>      
+
+<pre><code>man ls
+info cp
+ls --help
+</code></pre><font size="4," color="0x0000ff," id="2.1.5"> 2.1.5联机帮助</font><br><font size="4," color="0x0000ff," id="2.2"> 2.2目录和文件操作</font><br><font size="4," color="0x0000ff," id="2.2.1"> 2.2.1目录操作</font><br><font color="red">1. pwd命令<br><br>    pwd<br></font><br>当前目录的绝对路径<br><font color="red">2.cd命令<br><br>    cd 目录名<br></font><br>改变当前目录<br><br>    cd test                #切换到当前目录下的test子目录<br>    cd /                #切换到系统根目录<br>    cd ..                #却换到上机目录<br>    cd ~/demo            #切换到用户主目录下的demo目录<br><font color="red">3.mkdir命令<br><br>    mkdir [选项] 目录名<br></font><br>创建指定名称的目录<br><br>    mkdir test                #在当前路径下创建test<br>    mkdir ~/test            #在用户主目录下创建test<br>    mkdir -p /test1/test2    #创建一系列目录[-p]<br><font color="red">4、rmdir命令<br><br>    rmdir [选项] 目录名<br></font><br>删除指定名称的空目录<br><br>    rmdir mydir                #删除当前目录下的mydir<br>    rmdir -p dir1/dir2        #删除dir2，如果dir1也是空目录，一并删除<br><br><br><font size="4," color="0x0000ff," id="2.2.2"> 2.2.2文件操作</font><br><font color="red">1.ls命令<br><br>    ls [选项] 目录或文件<br></font><br>显示文件和目录信息<br><br>|选项|含义|<br>|——–|<br>|-a|查询所有文件，包含以.开头的隐藏文件|<br>|-l|以详细列表的方式显示文件属性|<br>|-i|显示文件的i节点编号|<br>|-R|连同子目录内容一起输出|<br><font color="red">2.cp命令<br><br>    cp [选项] 源文件 目标文件<br></font><br>将源文件复制到目标文件<br><br>|选项|含义|<br>|——–|<br>|-l|若目标文件已存在，指示要不要覆盖|<br>|-p|连同源文件的属性一并复制到目标文件|<br>|-r|递归复制，用于文件复制|<br>|-u|若目标文件比源文件旧，则更新目标文件|<br>    cp file1 file2                    #将文件file1复制为文件file2<br>    cp -r dir1 dir2                    #递归复制dir1下的所有文件到dir2<br>    cp -ur ~/dir1 ~/dir2            #更新dir1的备份文件dir2<br><br><font color="red">3.rm命令<br><br>    rm [选项] 文件列表<br></font><br>删除文件列表中的文件<br><br>|选项|含义|<br>|——–|<br>|-i|在删除文件前给出提示|<br>|-r|递归删除，用于删除目录|<br>|-f|强制删除，不给出提示|<br><br>    rm file1 file2                #删除文件file1和file2<br>    rm r dir1                    #递归删除目录dir1<br>    rm -ir ~/dir1                #递归删除目录用户主目录下的dir1并给出提示<br><font color="red">4.mv命令<br><br>    mv [选项] 文件和目录列表 目标文件<br></font><br>将列表的所有目录和文件移动到目标目录<br><br>|选项|含义|<br>|——–|<br>|-i|若目标文件已存在，提示是否要覆盖|<br>|-f|强制移动，若目标文件已存在，不进行提示|<br>|-u|若目标已存在且比较旧，则用源文件更新|<br><br>    mv file1 file2            #将文件file1更名为file2<br>    mv file1 dir1 dir2        #将文件file1和目录dir1移动到目录dir2<br><br><br><font color="red">5.find命令<br><br>    find [目录列表] [匹配方式]<br></font><br>在目标目录中按照匹配方式搜索符合添加的文件<br><br>|匹配方式|含义|<br>|———|<br>|-name 文件名|在目录列表中查询和文件名相匹配的文件|<br>|-type x|在目录列表中检索类型为x的文件，例如d表示目录|<br>|-newer 文件名|搜索所有修改时间比file文件更新的文件|<br>|-size n|匹配所有大小为n块的文件，c在n后表示字节数|<br>|-mtime n|匹配所有在前n天内修改过的文件|<br>|-atime n|匹配所有在前n天内访问过的文件|<br>|-print |显示整个文件路径和名称|<br>|-user 用户名|搜索所有属主为用户名的文件|<br>|-exec command|匹配的文件执行command命令，命令的形式为command{}|;<br><br><font size="4," color="0x0000ff," id="2.2.3"> 2.2.3显示文本文件内容</font><br>1.cat<br>2.more<br>3.less<br>4.head<br>5.tail<br><br><font size="4," color="0x0000ff," id="2.2.4"> 2.2.4硬链接和软链接</font><br><font size="4," color="0x0000ff," id="2.3"> 2.3用户和用户组管理</font><br><font size="4," color="0x0000ff," id="2.3.1"> 2.3.1用户的分类</font><br><font size="4," color="0x0000ff," id="2.3.2"> 2.3.2用户组管理</font><br>1.groupadd命令<br>2.groupdel命令<br><font size="4," color="0x0000ff," id="2.3.3"> 2.3.3用户管理</font><br>1.useradd<br>2.paddword<br><font size="4," color="0x0000ff," id="2.3.4"> 2.3.4用户属性的修改</font><br>1.usermod<br>2.chown<br><font size="4," color="0x0000ff," id="2.3.5"> 2.3.5用户管理相关配置文件</font><br><font size="4," color="0x0000ff," id="2.4"> 2.4文件的权限管理</font><br><font size="4," color="0x0000ff," id="2.4.1"> 2.4.1文件属性</font><br><font size="4," color="0x0000ff," id="2.4.2"> 2.4.2权限的修改</font><br><font size="4," color="0x0000ff," id="2.4.3"> 2.4.3权限验证</font><br><font size="4," color="0x0000ff," id="2.4.4"> 2.4.4权限掩码umask</font><br><font size="4," color="0x0000ff," id="2.4.5"> 2.4.5文件和目录权限的计算</font><br><font size="4," color="0x0000ff," id="2.5"> 2.5进程管理</font><br><font size="4," color="0x0000ff," id="2.5.1"> 2.5.1进程的管理信息</font><br><font size="4," color="0x0000ff," id="2.5.2"> 2.5.2与进程相关的命令</font><br>1.pstree<br>2.ps<br>3.kill<br>4.fg<br>5.bg<br>6.jobs<br><font size="4," color="0x0000ff," id="2.6"> 2.6Linux的备份与恢复</font><br><font size="4," color="0x0000ff," id="2.6.1"> 2.6.1面向文件的备份与恢复</font><br><font size="4," color="0x0000ff," id="2.6.2"> 2.6.2面向文件系统的备份</font><br><font size="4," color="0x0000ff," id="2.6.3"> 2.6.3面向设备的备份与恢复</font><br><font size="4," color="0x0000ff," id="2.7"> 2.7Linux应用软件包管理</font><br><font size="4," color="0x0000ff," id="2.7.1"> 2.7.1应用软件包的分类</font><br><font size="4," color="0x0000ff," id="2.7.2"> 2.7.2RPM软件包的管理</font><br><font size="4," color="0x0000ff," id="2.8"> 2.8输入输出重定向和管道</font><br><font size="4," color="0x0000ff," id="2.8.1"> 2.8.1标准输入输出文件的定义</font><br><font size="4," color="0x0000ff," id="2.8.2"> 2.8.2输人输出重定向</font><br><font size="4," color="0x0000ff," id="2.8.3"> 2.8.3管道</font><br><font size="4," color="0x0000ff," id="2.9"> 2.9元字符与正则表达式</font><br><font size="4," color="0x0000ff," id="2.9.1"> 2.9.1元字符</font><br><font size="4," color="0x0000ff," id="2.9.2"> 2.9.2正则表达式</font><br><font size="4," color="0x0000ff," id="3"> 3Linux系统的定制</font><br><font size="4," color="0x0000ff," id="3.1"> 3.1磁盘管理</font><br><font size="4," color="0x0000ff," id="3.1.1"> 3.1.1硬盘的物理结构</font><br><font size="4," color="0x0000ff," id="3.1.2"> 3.1.2磁盘分区</font><br><font size="4," color="0x0000ff," id="3.1.3"> 3.1.3分区格式化</font><br><font size="4," color="0x0000ff," id="3.1.4"> 3.1.4 ext2文件系统</font><br><font size="4," color="0x0000ff," id="3.1.5"> 3.1.5文件系统的挂载与卸载</font><br><font size="4," color="0x0000ff," id="3.2"> 3.2引导加载程序grub</font><br><font size="4," color="0x0000ff," id="3.2.1"> 3.2.1引导加载的概念</font><br><font size="4," color="0x0000ff," id="3.2.2"> 3.2.2引导加载祝序grub</font><br><font size="4," color="0x0000ff," id="3.2.3"> 3.2.3grub 交互命令</font><br><font size="4," color="0x0000ff," id="3.2.4"> 3.2.4grub的启动过程</font><br><font size="4," color="0x0000ff," id="3.3"> 3.3Linux内核定制</font><br><font size="4," color="0x0000ff," id="3.3.1"> 3.3.1 Linux 内核</font><br><font size="4," color="0x0000ff," id="3.3.2"> 3.3.2定制Linux内核</font><br><font size="4," color="0x0000ff," id="3.4"> 3.4Linux应用环境的初始化</font><br><font size="4," color="0x0000ff," id="3.4.1"> 3.4.1引导配置文件inittab</font><br><font size="4," color="0x0000ff," id="3.4.2"> 3.4.2用户登录</font><br><font size="4," color="0x0000ff," id="4"> 4Shell程序设计</font><br><font size="4," color="0x0000ff," id="4.1"> 4.1Shell 概述</font><br><font size="4," color="0x0000ff," id="4.2"> 4.2Shell脚本的定义与执行</font><br><font size="4," color="0x0000ff," id="4.3"> 4.3Shell 变量</font><br><font size="4," color="0x0000ff," id="4.4"> 4.4输入和输出</font><br><font size="4," color="0x0000ff," id="4.3.1"> 4.3.1 Shell变量的分类</font><br><font size="4," color="0x0000ff," id="4.3.2"> 4.3.2命令替换</font><br><font size="4," color="0x0000ff," id="4.5"> 4.5Shell中的引号</font><br><font size="4," color="0x0000ff," id="4.6"> 4.6条件表达式</font><br><font size="4," color="0x0000ff," id="4.5.1"> 4.5.1条件表达式</font><br><font size="4," color="0x0000ff," id="4.5.2"> 4.5.2命令分隔符</font><br><font size="4," color="0x0000ff," id="4.6"> 4.6判断语句</font><br><font size="4," color="0x0000ff," id="4.6.1"> 4.6.1条件语句</font><br><font size="4," color="0x0000ff," id="4.6.2"> 4.6.2分支语句</font><br><font size="4," color="0x0000ff," id="4.7"> 4.7循环语句</font><br><font size="4," color="0x0000ff," id="4.7.1"> 4.7.1for循环语句</font><br><font size="4," color="0x0000ff," id="4.7.2"> 4.7.2while 语句</font><br><font size="4," color="0x0000ff," id="4.7.3"> 4.7.3until 语句</font><br><font size="4," color="0x0000ff," id="4.8"> 4.8 函数</font><br><font size="4," color="0x0000ff," id="5"> 5GNU C开发环境</font><br><font size="4," color="0x0000ff," id="5.1"> 5.1GNU C编译器</font><br><font size="4," color="0x0000ff," id="5.1.1"> 5.1.1目标代码的生成</font><br><font size="4," color="0x0000ff," id="5.1.2"> 5.1.2GCC 概述</font><br><font size="4," color="0x0000ff," id="5.1.3"> 5.1.3GNU C编译链接工具</font><br><font size="4," color="0x0000ff," id="5.2"> 5.2项目管理工具    GNU make</font><br><font size="4," color="0x0000ff," id="5.2.1"> 5.2.1项目管理概述</font><br><font size="4," color="0x0000ff," id="5.2.2"> 5.2.2基于make工具的项目管理</font><br><font size="4," color="0x0000ff," id="5.2.3"> 5.2.3Makefile 中的变量</font><br><font size="4," color="0x0000ff," id="5.2.4"> 5.2.4Makefile文件中的潜规则</font><br><font size="4," color="0x0000ff," id="5.3"> 5.3创建和使用函数库</font><br><font size="4," color="0x0000ff," id="5.3.1"> 5.3.1静态库</font><br><font size="4," color="0x0000ff," id="5.3.2"> 5.3.2共享库</font><br><font size="4," color="0x0000ff," id="5.3.3"> 5.3.3动态链接库</font><br><font size="4," color="0x0000ff," id="5.4"> 5.4GNU C 函数库——glibc</font><br><font size="4," color="0x0000ff," id="6"> 6Linux文件与目录</font><br><font size="4," color="0x0000ff," id="6.1"> 6.1Linux文件系统概述</font><br><font size="4," color="0x0000ff," id="6.1.1"> 6.1.1文件系统的概念</font><br><font size="4," color="0x0000ff," id="6.1.2"> 6.1.2虚拟文件系统</font><br><font size="4," color="0x0000ff," id="6.1.3"> 6.1.3文件系统的结构</font><br><font size="4," color="0x0000ff," id="6.1.4"> 6.1.4应用编程接口</font><br><font size="4," color="0x0000ff," id="6.2"> 6.2文件的基本输人输出</font><br><font size="4," color="0x0000ff," id="6.2.1"> 6.2.1    文件操作</font><br><font size="4," color="0x0000ff," id="6.2.2"> 6.2.2标准输人输出文件的定义</font><br><font size="4," color="0x0000ff," id="6.2.3"> 6.2.3编程实例</font><br><font size="4," color="0x0000ff," id="6.3"> 6.3文件属性操作</font><br><font size="4," color="0x0000ff," id="6.3.1"> 6.3.1获得文件属性</font><br><font size="4," color="0x0000ff," id="6.3.2"> 6.3.2修改文件存取权限</font><br><font size="4," color="0x0000ff," id="6.3.3"> 6.3.3改变文件的属主和属组</font><br><font size="4," color="0x0000ff," id="6.4"> 6.4目录操作</font><br><font size="4," color="0x0000ff," id="6.4.1"> 6.4.1目录操作</font><br><font size="4," color="0x0000ff," id="6.4.2"> 6.4.2浏览目录中的文件</font><br><font size="4," color="0x0000ff," id="6.5"> 6.5标准I/O库</font><br><font size="4," color="0x0000ff," id="6.5.1"> 6.5.1标准I/O库概述</font><br><font size="4," color="0x0000ff," id="6.5.2"> 6.5.2文件操作</font><br><font size="4," color="0x0000ff," id="6.5.3"> 6.5.3格式化输入与输出</font><br><font size="4," color="0x0000ff," id="6.5.4"> 6.5.4刷新缓冲区</font><br><font size="4," color="0x0000ff," id="6.6"> 6.6 I/O重定向</font><br><font size="4," color="0x0000ff," id="6.6.1"> 6.6.1文件描述符</font><br><font size="4," color="0x0000ff," id="6.6.2"> 6.6.2I/O重定向</font><br><font size="4," color="0x0000ff," id="6.6.3"> 6.6.3实现重定向的方法</font><br><font size="4," color="0x0000ff," id="7"> 7Linux信号</font><br><font size="4," color="0x0000ff," id="7.1"> 7.1信号概述</font><br><font size="4," color="0x0000ff," id="7.1.1"> 7.1.1信号的概念</font><br><font size="4," color="0x0000ff," id="7.1.2"> 7.1.2应用编程接口</font><br><font size="4," color="0x0000ff," id="7.2"> 7.2Linux系统中的信号</font><br><font size="4," color="0x0000ff," id="7.2.1"> 7.2.1Linux系统中的信号</font><br><font size="4," color="0x0000ff," id="7.2.2"> 7.2.2信号的分类</font><br><font size="4," color="0x0000ff," id="7.2.3"> 7.2.3 Linux信号的产生</font><br><font size="4," color="0x0000ff," id="7.2.4"> 7.2.4信号的处理方式</font><br><font size="4," color="0x0000ff," id="7.2.5"> 7.2.5信号的处理流程</font><br><font size="4," color="0x0000ff," id="7.3"> 7.3信号的定义</font><br><font size="4," color="0x0000ff," id="7.3.1"> 7.3.1设置信号的行为</font><br><font size="4," color="0x0000ff," id="7.3.2"> 7.3.2信号处理函数</font><br><font size="4," color="0x0000ff," id="7.3.3"> 7.3.3定义多个信号</font><br><font size="4," color="0x0000ff," id="7.3.4"> 7.3.4信号的阻塞</font><br><font size="4," color="0x0000ff," id="7.4"> 7.4发送信号</font><br><font size="4," color="0x0000ff," id="7.5"> 7.5计时器</font><br><font size="4," color="0x0000ff," id="7.5.1"> 7.5.1睡眠延迟</font><br><font size="4," color="0x0000ff," id="7.5.2"> 7.5.2间隔计时器</font><br><font size="4," color="0x0000ff," id="8"> 8Linux进程</font><br><font size="4," color="0x0000ff," id="8.1"> 8.1Linux进程概述</font><br><font size="4," color="0x0000ff," id="8.1.1"> 8.1.1Linux 进程</font><br><font size="4," color="0x0000ff," id="8.1.2"> 8.1.2应用编程接口</font><br><font size="4," color="0x0000ff," id="8.2"> 8.2进程的地址空间</font><br><font size="4," color="0x0000ff," id="8.2.1"> 8.2.1进程的地址空间</font><br><font size="4," color="0x0000ff," id="8.2.2"> 8.2.2环境变量相关操作</font><br><font size="4," color="0x0000ff," id="8.2.3"> 8.2.3命令行参数的引用</font><br><font size="4," color="0x0000ff," id="8.2.4"> 8.2.4动态内存管理</font><br><font size="4," color="0x0000ff," id="8.3"> 8.3进程的创建与终止</font><br><font size="4," color="0x0000ff," id="8.3.1"> 8.3.1创建进程</font><br><font size="4," color="0x0000ff," id="8.3.2"> 8.3.2程序的启动与结束</font><br><font size="4," color="0x0000ff," id="8.4"> 8.4加载可执行映像</font><br><font size="4," color="0x0000ff," id="8.4.1"> 8.4.1ELF格式</font><br><font size="4," color="0x0000ff," id="8.4.2"> 8.4.2可执行文件的加载</font><br><font size="4," color="0x0000ff," id="8.5"> 8.5进程同步控制</font><br><font size="4," color="0x0000ff," id="8.5.1"> 8.5.1等待子进程结束</font><br><font size="4," color="0x0000ff," id="8.5.2"> 8.5.2等待指定子进程</font><br><font size="4," color="0x0000ff," id="8.6"> 8.6 Linux进程环境</font><br><font size="4," color="0x0000ff," id="8.6.1"> 8.6.1用户和用户组</font><br><font size="4," color="0x0000ff," id="8.6.2"> 8.6.2进程和进程组</font><br><font size="4," color="0x0000ff," id="8.6.3"> 8.6.3会话</font><br><font size="4," color="0x0000ff," id="8.6.4"> 8.6.4守护进程</font><br><font size="4," color="0x0000ff," id="9"> 9Linux进程通信</font><br><font size="4," color="0x0000ff," id="9.1"> 9.1进程通信概述</font><br><font size="4," color="0x0000ff," id="9.1.1"> 9.1.1进程通信方式</font><br><font size="4," color="0x0000ff," id="9.1.2"> 9.1.2应用编程接口</font><br><font size="4," color="0x0000ff," id="9.2"> 9.2管道</font><br><font size="4," color="0x0000ff," id="9.2.1"> 9.2.1无名管道</font><br><font size="4," color="0x0000ff," id="9.2.2"> 9.2.2命名管道</font><br><font size="4," color="0x0000ff," id="9.3"> 9.3 IPC 概述</font><br><font size="4," color="0x0000ff," id="9.4"> 9.4信号量</font><br><font size="4," color="0x0000ff," id="9.4.1"> 9.4.1创建信号量</font><br><font size="4," color="0x0000ff," id="9.4.2"> 9.4.2获得与释放信号量</font><br><font size="4," color="0x0000ff," id="9.4.3"> 9.4.3信号量的控制操作</font><br><font size="4," color="0x0000ff," id="9.5"> 9.5消息队列</font><br><font size="4," color="0x0000ff," id="9.5.1"> 9.5.1创建消息队列</font><br><font size="4," color="0x0000ff," id="9.5.2"> 9.5.2发送消息</font><br><font size="4," color="0x0000ff," id="9.5.3"> 9.5.3接收消息</font><br><font size="4," color="0x0000ff," id="9.5.4"> 9.5.4设置消息队列属性</font><br><font size="4," color="0x0000ff," id="9.6"> 9.6 共享内存</font><br><font size="4," color="0x0000ff," id="9.6.1"> 9.6.1创建共享内存</font><br><font size="4," color="0x0000ff," id="9.6.2"> 9.6.2共享内存映射的建立与释放</font><br><font size="4," color="0x0000ff," id="9.6.3"> 9.6.3设置共享内存属性</font><br><font size="4," color="0x0000ff," id="1"> 10I/O操作模式</font><br><font size="4," color="0x0000ff," id="10.1"> 10.1 I/O操作模式概述</font><br><font size="4," color="0x0000ff," id="10.1.1"> 10.1.1 I/O操作模式</font><br><font size="4," color="0x0000ff," id="10.1.2"> 10.1.2应用编程接口</font><br><font size="4," color="0x0000ff," id="10.2"> 10.2同步阻塞I/O模式</font><br><font size="4," color="0x0000ff," id="10.2.1"> 10.2.1基本概念</font><br><font size="4," color="0x0000ff," id="10.2.2"> 10.2.2存在的问题</font><br><font size="4," color="0x0000ff," id="10.2.3"> 10.2.3 解决方法</font><br><font size="4," color="0x0000ff," id="10.3"> 10.3同步非阻塞1/0棋式</font><br><font size="4," color="0x0000ff," id="10.3.1"> 10.3.1基本概念</font><br><font size="4," color="0x0000ff," id="10.3.2"> 10.3.2实现方式</font><br><font size="4," color="0x0000ff," id="10.4"> 10.4多路复用I/O模式</font><br><font size="4," color="0x0000ff," id="10.4.1"> 10.4.1基本概念</font><br><font size="4," color="0x0000ff," id="10.4.2"> 10.4.2实现方法</font><br><font size="4," color="0x0000ff," id="10.5"> 10.5信号驱动的I/O模式</font><br><font size="4," color="0x0000ff," id="10.5.1"> 10.5.1基本概念</font><br><font size="4," color="0x0000ff," id="10.5.2"> 10.5.2实现方法</font><br><font size="4," color="0x0000ff," id="10.6"> 10.6异步I/O模式</font><br><font size="4," color="0x0000ff," id="10.6.1"> 10.6.1基本概念</font><br><font size="4," color="0x0000ff," id="10.6.2"> 10.6.2 实现方法</font><br><font size="4," color="0x0000ff," id="10.7"> 10.7内存的I/O映射</font><br><font size="4," color="0x0000ff," id="10.7.1"> 10.7.1基本概念</font><br><font size="4," color="0x0000ff," id="10.7.2"> 10.7.2:实现方法</font><br><font size="4," color="0x0000ff," id="10.8"> 10.8文件锁</font><br><font size="4," color="0x0000ff," id="10.8.1"> 10.8.1文件锁的类型</font><br><font size="4," color="0x0000ff," id="10.8.2"> 10.8.2基于flock函数实现文件锁</font><br><font size="4," color="0x0000ff," id="10.8.3"> 10.8.3利用fcntl函数实现文件加锁</font><br><font size="4," color="0x0000ff," id="10.9"> 10.9终端I/O</font><br><font size="4," color="0x0000ff," id="10.9.1"> 10.9.1终端的行为模式</font><br><font size="4," color="0x0000ff," id="10.9.2"> 10.9.2终端模式的设置</font><br><font size="4," color="0x0000ff," id="10.9.3"> 10.9.3终端I/O的编程接口</font>      
+
+
+<h2 id="附录一"><a href="#附录一" class="headerlink" title="附录一"></a>附录一</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td></td>
+<td>列出指定目录下的所有文件[缺省是当前路径]</td>
+</tr>
+<tr>
+<td>tye</td>
+<td></td>
+<td>判断是什么类型的命令</td>
+</tr>
+<tr>
+<td>file</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>man</td>
+<td></td>
+<td>查询命令的操作文档</td>
+</tr>
+<tr>
+<td>info</td>
+<td></td>
+<td>获得命令的相关信息</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td></td>
+<td>当前目录的绝对路径</td>
+</tr>
+<tr>
+<td>*</td>
+<td>–help</td>
+<td>获得命令的相关信息</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -321,6 +689,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/05/22/华为模拟器-实验/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          华为模拟器-实验
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/04/27/Flask-Web开发[学习笔记]/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Flask-Web开发|学习笔记</div>
@@ -348,7 +725,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 CodeJxer
+    		&copy; 2018 CodeJxer
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -460,6 +837,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>

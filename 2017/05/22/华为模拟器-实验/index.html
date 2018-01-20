@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>华为模拟器-实验 | CodeJxer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##目录
+
+基本实验
+实验一 计算机和交换机基本设置
+实验二 配置端口聚合
+实验三 基本VLAN设置
+实验四 配置primary VLAN和secondary VLAN
+实验五 交换机的镜像与生成树
+实验六 路由器BootROM升级
+实验七 直联路由
+实验八 单臂路由
+实验九 静态路由实验
+实验十 动态路由实验
+实验十一 访问控制列表实验
+实验十二  地址转换配置
+
+
+扩展实验
+命令提示
+理论学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为模拟器-实验">
+<meta property="og:url" content="http://yoursite.com/2017/05/22/华为模拟器-实验/index.html">
+<meta property="og:site_name" content="CodeJxer">
+<meta property="og:description" content="##目录
+
+基本实验
+实验一 计算机和交换机基本设置
+实验二 配置端口聚合
+实验三 基本VLAN设置
+实验四 配置primary VLAN和secondary VLAN
+实验五 交换机的镜像与生成树
+实验六 路由器BootROM升级
+实验七 直联路由
+实验八 单臂路由
+实验九 静态路由实验
+实验十 动态路由实验
+实验十一 访问控制列表实验
+实验十二  地址转换配置
+
+
+扩展实验
+命令提示
+理论学习">
+<meta property="og:updated_time" content="2017-05-23T05:22:59.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="华为模拟器-实验">
+<meta name="twitter:description" content="##目录
+
+基本实验
+实验一 计算机和交换机基本设置
+实验二 配置端口聚合
+实验三 基本VLAN设置
+实验四 配置primary VLAN和secondary VLAN
+实验五 交换机的镜像与生成树
+实验六 路由器BootROM升级
+实验七 直联路由
+实验八 单臂路由
+实验九 静态路由实验
+实验十 动态路由实验
+实验十一 访问控制列表实验
+实验十二  地址转换配置
+
+
+扩展实验
+命令提示
+理论学习">
+  
+    <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.234bc0.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/face.png" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">CodeJxer</a></h1>
+		</hgroup>
+		
+		<p class="header-subtitle">zxLiao</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/CodeJxer" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liao-zhi-xin-64/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="bilibili" target="_blank" href="http://space.bilibili.com/12981889/#!/" title="bilibili"><i class="icon-bilibili"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:1055223464@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/face.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">CodeJxer</h1>
+			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>zxLiao<i class="icon icon-quo-right"></i></p>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/CodeJxer" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liao-zhi-xin-64/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="bilibili" target="_blank" href="http://space.bilibili.com/12981889/#!/" title="bilibili"><i class="icon-bilibili"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:1055223464@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-华为模拟器-实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      华为模拟器-实验
+    </h1>
+  
+
+        
+        <a href="/2017/05/22/华为模拟器-实验/" class="archive-article-date">
+  	<time datetime="2017-05-22T12:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##目录</p>
+<ul>
+<li>基本实验<ul>
+<li>实验一 计算机和交换机基本设置</li>
+<li>实验二 配置端口聚合</li>
+<li>实验三 基本VLAN设置</li>
+<li>实验四 配置primary VLAN和secondary VLAN</li>
+<li>实验五 交换机的镜像与生成树</li>
+<li>实验六 路由器BootROM升级</li>
+<li>实验七 直联路由</li>
+<li>实验八 单臂路由</li>
+<li>实验九 静态路由实验</li>
+<li>实验十 动态路由实验</li>
+<li>实验十一 访问控制列表实验</li>
+<li>实验十二  地址转换配置</li>
+</ul>
+</li>
+<li>扩展实验</li>
+<li>命令提示</li>
+<li>理论学习<ul>
+<li>网络的发展与应用</li>
+<li>网络互联基础</li>
+<li>交换机原理与应用</li>
+<li>路由器原理与应用</li>
+<li>常见广域网协议及特点</li>
+<li>PIX防火墙特点与应用</li>
+<li>PIX 防火墙应用举例<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>#基本实验</p>
+<p>##实验一 计算机和交换机基本设置<br>添加一个交换机，一个计算机，双击交换机，进入终端配置：</p>
+<pre><code>&lt;Quidway&gt;system                               ;进入管理员模式
+password:
+[Quidway]sysname S3026                           ;交换机命名
+[S3026]super password 111                     ;设置特权密码
+[S3026]user-interface vty 0 4                 ;进入虚拟终端视图
+[S3026-ui-vty0-4]authentication-mode password ;设置虚拟终端验证方式
+[S3026-ui-vty0-4]set authentication-mode password simple 222 ;设虚拟终端的密码
+[S3026-ui-vty0-4]user privilege level 3       ;设置虚拟终端的权限级别，3是最高级
+[S3026-ui-vty0-4]quit                           ;退出虚拟终端视图
+[S3026]quit                                    ;退出管理员视图
+&lt;S3026&gt;sys                                    ;进入管理员模式
+password:111                                   ;输入登录密码
+[S3026]display currect-config                   ;显示当前交换机配置
+[S3026]dis curr                                 ;上述命令的简写
+
+[S3026]vlan 2                                   ;添加vlan2
+[S3026-vlan2]port ethernet0/2                   ;将端口2添加到vlan2
+[S3026-vlan2]port e0/4 to et0/6                  ;将端口4-6添加到vlan2
+[S3026-vlan2]quit                              ;退出vlan2视图
+[S3026]dis vlan                               ;显示vlan信息
+[S3026]int e0/3                               ;进图端口3
+[S3026-Ethernet1]port access vlan 2           ;将端口3以access方式添加到vlan2
+[S3026-Ethernet1]quit                          ;退出端口3视图
+[S3026]dis vlan                                  ;显示vlan信息
+[S3026]dis curr                                  ;显示当前交换机信息
+
+[S3026]interface vlan 1                          ;进入vlan1视图
+[S3026-Vlan-interface1]ip address 10.65.1.8 255.255.0.0;试着vlan1的ip和子网掩码
+[S3026-Vlan-interface1]quit                      ;退出vlan1视图
+[S3026]ip route-static 0.0.0.0 0.0.0.0 10.65.1.2    ;设置交换机的静态路由
+[S3026]ip default-gateway 10.65.1.2              ;设置交换机的默认网关
+[S3026]dis curr                                  ;显示当前配置信息
+[S3026]save                                      ;保存
+
+
+双击小电脑：
+login:root                                      ;登录主机
+password:linux                                  ;输入登录密码
+[root@PCA root]#ifconfig eth0 10.65.1.1 netmask 255.255.0.0;设置ip和子网掩码
+[root@PCA root]#ifconfig                      ;显示ip设置
+[root@PCA root]#route add default gw 10.65.1.2;设置默认网关
+[root@PCA root]#route                          ;显示网关设置
+
+[root@PCA root]#ping 10.65.1.8                   ;向10.65.1.8发送ECHO包
+[root@PCA root]#telnet 10.65.1.8              ;远程登录10.65.1.8
+</code></pre><p>##实验二 配置端口聚合<br>要求聚合的端口工作在全双工，速度一致，在同一槽口且连续。<br>参数：ingress:源MAC, both:源和目的MAC</p>
+<pre><code>对于SwitchA:
+[Quidway]sysname SwitchA                        ;给交换机命令
+[SwitchA]interface ethernet0/1                    ;进入端口1视图
+[SwitchA-Ethernet0/1]duplex full                ;设置为全双工模式
+[SwitchA-Ethernet0/1]speed 100                    ;速度为100
+[SwitchA-Ethernet0/1]port link-type trunk        ;设置端口连接类型为trunk
+[SwitchA-Ethernet0/1]port trunk permit vlan all    ;设置允许所有vlan通过
+
+[SwitchA-Ethernet0/1]int e0/2                    ;进入端口2视图
+[SwitchA-Ethernet0/2]duplex full                ;设置为全双工模式
+[SwitchA-Ethernet0/2]speed 100                    ;速度为100
+[SwitchA-Ethernet0/2]port link-type trunk        ;设置端口类型为trunk
+[SwitchA-Ethernet0/2]port trunk permit vlan all    ;设置允许所有vlan通过
+
+对于SwitchB:
+[Quidway]sysname SwitchB                        ;为交换机命令
+[SwitchB]interface ethernet0/1                    ;进图端口1视图
+[SwitchB-Ethernet0/1]duplex full                ;设置为全双工模式
+[SwitchB-Ethernet0/1]speed 100                    ;速度为100
+[SwitchB-Ethernet0/1]port link-type trunk        ;设置端口连接为trunk
+[SwitchB-Ethernet0/1]port trunk permit vlan all    ;允许所有vlan通过
+
+[SwitchB-Ethernet0/1]int e0/2                    ;进入端口2视图
+[SwitchB-Ethernet0/2]duplex full                ;设置为全双工模式
+[SwitchB-Ethernet0/2]speed 100                    ;速度为100
+[SwitchB-Ethernet0/2]port link-type trunk        ;设置端口连接类型为trunk
+[SwitchB-Ethernet0/2]port trunk permit vlan all    ;允许所有类型的vlan通过
+
+聚合操作：
+
+[SwitchA]link-aggregation ethernet0/1 to ethernet0/2 both    ;将端口1到端口2聚合
+[SwitchB]link-aggregation ethernet0/1 to ethernet0/2 both    ;将端口1到端口2聚合
+
+[SwitchA]display link-aggregation ethernet0/1    ;显示聚合信息
+[SwitchA]undo link-aggregation all                ;取消所有聚合
+</code></pre><p>##实验三 基本VLAN设置</p>
+<pre><code>[SwitchA]vlan 2                                    ;添加vlan2
+[SwitchA-vlan2]port e0/3 to e0/4                ;将端口3-4添加到vlan2
+[SwitchA-vlan2]vlan 3                            ;添加vlan3
+[SwitchA-vlan3]port e0/5 to e0/6                ;将端口5-6添加到vlan3
+[SwitchA]dis vlan all                            ;显示所有vlan信息
+[SwitchA]dis current                            ;显示当前配置信息
+
+[SwitchB]vlan 2                                    ;添加vlan2
+[SwitchB-vlan2]port e0/3 to e0/4                ;将端口3-4添加到vlan2
+[SwitchB-vlan2]vlan 3                            ;添加vlan3
+[SwitchB-vlan3]port e0/5 to e0/6                ;将端口5-6添加到vlan3
+[SwitchB-vlan3]quit                                ;退出vlan视图
+[SwitchB]dis vlan all                            ;显示所有vlan信息
+[SwitchB]dis current                            ;显示所有配置信息
+
+设置计算机的IP为：
+PCA:10.65.1.1  PCB:10.66.1.1  PCC:10.65.1.3  PCD:10.66.1.3
+[root@PCA root]ifconfig eth0 10.65.1.1 netmask 255.255.0.0
+[root@PCB root]ifconfig eth0 10.66.1.1 netmask 255.255.0.0
+[root@PCC root]ifconfig eth0 10.65.1.3 netmask 255.255.0.0
+[root@PCD root]ifconfig eth0 10.66.1.3 netmask 255.255.0.0
+
+[root@PCA root]#ping 10.65.1.1  通   (本机IP)
+[root@PCA root]#ping 10.65.1.3  不通 (中间连接线是vlan 1)
+[root@PCA root]#ping 10.66.1.1  不通 (不同网络，不同vlan)
+[root@PCA root]#ping 10.66.1.3  不通 (不同网络，不同vlan)
+[root@PCB root]#ping 10.66.1.3  不通 (中间连接线是vlan 1)
+
+将PCA改接到SwitchA E0/2 (vlan 1)
+[root@PCA root]#ping 10.65.1.3  不通 (同网络，不同vlan)
+
+将PCC改接到SwitchB E0/2 (vlan 1)
+[root@PCA root]#ping 10.65.1.3  通  (同网络，同在vlan 1)
+
+再改回来，并设置trunk:
+[S3026A]interface ethernet0/8                    ;进入端口8视图
+[S3026A-Ethernet0/8]port link-type trunk        ;设置端口类型为trunk
+[S3026A-Ethernet0/8]port trunk permit vlan all    ;允许所有vlan通过
+
+[S3026B]interface ethernet0/1                    ;进图端口1
+[S3026B-Ethernet0/1]port link-type trunk        ;设置端口类型为trunk
+[S3026B-Ethernet0/1]port trunk permit vlan all    ;允许所有vlan通过
+[S3026B-Ethernet0/1]quit                        ;退出端口视图
+[S3026B]dis curr                                ;显示当前所有配置信息
+
+[root@PCA root]#ping 10.65.1.3  通                ;属于同一个vlan
+[root@PCA root]#ping 10.66.1.3  不通                ;不同网络，不同vlan
+[root@PCB root]#ping 10.66.1.3  通                ;属于同一个vlan
+
+即：PCA和PCC同在vlan 2 是通的，PCB和PCD同在vlan 3是通的。
+    PCA和PCB是不通的。同理PCC和PCD也是不通的。
+
+
+------------------------------------------------------------
+再加入一个交换机switchC，将它串入switchA和switchB之间，连接方式：
+    switchA:E0/8--&gt;switchC:E0/3; switchC:E0/6--&gt;switchB:E0/1
+
+(1) 新加入的SwitchC 默认状态时，测试连通性。
+    从PCA-&gt;PCC，从PCB-&gt;PCD 测试：
+[root@PCA root]# ping 10.65.1.3 (不通)
+[root@PCB root]# ping 10.66.1.3 (不通)
+
+    由于新加入的交换机没有设置trunk，端口默认vlan 1，交换机的trunk
+要成对出现，因为当dot1q不能和另一端交换信息时，会自动down掉。
+
+
+(2) 将交换机之间的连线都设置成trunk时，再测试连通性。
+
+[S3026C]interface ethernet0/3                    ;进入端口3视图        
+[S3026C-Ethernet0/1]port link-type trunk        ;设置端口类型为trunk
+[S3026C-Ethernet0/1]port trunk permit vlan all    ;允许所有vlan通过
+
+[S3026C]interface ethernet0/6                    ;进入端口6视图
+[S3026C-Ethernet0/8]port link-type trunk        ;设置端口类型为trunk
+[S3026C-Ethernet0/8]port trunk permit vlan all    ;允许所有vlan通过
+
+现在有两条正确的trunk,再看一下联通情况：
+
+[root@PCA root]# ping 10.65.1.3 （通）            ;属于同一个vlan
+[root@PCB root]# ping 10.66.1.3 （通）            ;属于用一个vlan
+
+(3) 设置vtp
+    VTP是vlan 传输协议，在VTP Server上配置的vlan 在条件允许条件下，可以
+从VTP Client 端看到VTP Server上的vlan，并将自己端口加入到vlan中。
+
+[S3026C]vtp domain abc                            ;设置vtp名称
+[S3026C]vtp mode server                            ;设置vtp模式为server
+[S3026C]vtp password ok                            ;设置密码为ok
+
+[S3026B]vtp domain abc                            ;设置vtp名称
+[S3026B]vtp mode client                            ;设置vtp模式为client
+[S3026B]vtp password ok                            ;设置密码为ok
+
+[S3026A]#disp vlan                                ;显示交换机A的所有vlan信息
+[S3026B]#disp vlan                                ;显示交换机B的所有vlan信息
+[S3026C]#disp vlan                                ;显示交换机C的所有vlan信息
+
+    当口令和域名一致时，client端可以学习到server端的vlan，在VTP Server端还
+可以有很多策略，这里只是说明最基本的问题。
+    VTP在企业、机关、学校的应用是很多的，在主交换机上设置好vlan以后，下级的
+交换机不用再设置vlan，可以将client的某些端口添加到VTP Server中定义的vlan中
+去，加强了管理。
+</code></pre><p>##实验四 配置primary VLAN和secondary VLAN<br>主附vlan一般用于一个网络段的情况，主vlan和子vlan间可以访问，<br>而子vlan之间是不能访问的。</p>
+<pre><code>设置计算机的IP为：
+PCA:10.65.1.1  PCB:10.65.1.2  PCC:10.65.1.3  PCD:10.65.1.4
+[root@PCA root]ifconfig eth0 10.65.1.1 netmask 255.255.0.0
+[root@PCB root]ifconfig eth0 10.65.1.2 netmask 255.255.0.0
+[root@PCC root]ifconfig eth0 10.65.1.3 netmask 255.255.0.0
+[root@PCD root]ifconfig eth0 10.65.1.4 netmask 255.255.0.0
+
+[SwitchA]vlan 2                                    ;添加vlan2
+[SwitchA-vlan2]port ethernet 0/5 to ethernet 0/6;将端口5-6添加到vlan2
+
+[SwitchA]vlan 3                                    ;添加vlan3
+[SwitchA-vlan3]port ethernet 0/7 to ethernet 0/8;将端口7-8添加到vlan3
+
+[SwitchA]vlan 5                                    ;添加vlan5
+[SwitchA-vlan5]port ethernet 0/1 to ethernet 0/4;将端口1-4添加到vlan5
+[SwitchA-vlan5]isolate-user-vlan enable         ;将vlan5设置为主vlan
+[SwitchA-vlan5]quit                                ;退出vlan5视图
+
+[SwitchA]isolate-user-vlan 5 secondary 2,3      ;将vlan2,3设置Wie子vlan
+
+[SwitchB]vlan 2                                    ;添加vlan2
+[SwitchB-vlan2]port ethernet 0/5 to ethernet 0/6;将端口5-6添加到vlan2
+
+[SwitchB]vlan 3                                    ;添加vlan3
+[SwitchB-vlan3]port ethernet 0/7 to ethernet 0/8;将端口7-8添加到vlan3
+
+[SwitchA]vlan 4                                    ;添加vlan4
+[SwitchB-vlan4]port ethernet 0/1 to ethernet 0/4;将端口1-4添加到vlan4
+[SwitchB-vlan4]isolate-user-vlan enable         ;将vlan4设置为主vlan
+[SwitchB-vlan4]quit                                ;退出vlan4视图
+
+[SwitchB]isolate-user-vlan 4 secondary 2,3      ;将vlan2,3设置为子vlan
+</code></pre><p>##实验五 交换机的镜像与生成树</p>
+<p>(一) 设置镜像</p>
+<p>镜像是一个端口的数据被映射到另一个端口，进行数据分析。</p>
+<pre><code>[Quidway]monitor-port e0/8                        ;设置观测端口
+[Quidway]port mirror e0/1                        ;设置被观测端口
+
+或：
+[Quidway]port mirror e0/1 to e0/2 observing-port e0/8;一次性设置观测与被观测端口
+</code></pre><p>(二) 生成树</p>
+<pre><code>[Quidway]stp {enable|disable}                    ;{启动|关闭}生成树
+[Quidway]stp priority 4096                       ;设置交换机的优先级
+[Quidway]stp root primary                        ;设置交换机为树根
+[Quidway-Ethernet0/1]stp cost 200                ;设置交换机端口的花费
+</code></pre><p>##实验六 路由器BootROM升级</p>
+<pre><code>&lt;Quidway&gt;system
+[Quidway]reload
+Press Ctrl+B to enter Boot Menu …
+
+Boot Menu:
+1:Download application program
+2:Download Bootrom program
+3:Modify Bootrom password
+4:Exit menu
+5:Reboot
+
+  Enter your choice(1-5):1
+
+Downloading application program
+from serial ... (rs232)
+please choose your download speed:
+1:9600bps
+2:19200bps
+3:38400bps
+4:Exit and reboot
+  Enter your choice(1-4):2
+
+Download speed is 38400bps. 
+Please change the terminal&apos;s speed to 38400bps. 
+And select XMODEM 
+protocol. Press ENTER key when ready.
+
+Downloading ...CC    (please select [File]-&gt;[Send])
+
+############################################################
+############################################################
+############################################################
+########### ok!
+
+Download completed.
+Write flash auccessfully!
+
+[Quidway]
+</code></pre><p>##实验七 直联路由</p>
+<pre><code>&lt;Quidwqy&gt;system                                            ;进入管理员模式
+password:
+[Quidway]interface ethernet0                            ;进入端口0视图
+[Quidway-Ethernet0]ip addr 10.65.1.2 255.255.255.0        ;设置端口0IP地址
+[Quidway-Ethernet0]undo shutdown                        ;启动端口0
+[Quidway-Ethernet0]int e1                                ;进入端口1
+[Quidway-Ethernet1]ip addr 10.66.1.2 255.255.255.0        ;设置端口1IP地址
+[Quidway-Ethernet1]undo shutdown                        ;启动端口1
+
+[root@PCA root]#ifconfig eth0 10.65.1.1 netmask 255.255.0.0    ;设置主机AIP
+[root@PCB root]#ifconfig eth0 10.66.1.1 netmask 255.255.0.0    ;设置主机BIP
+
+[root@PCA root]#ping 10.65.1.2  (不通，没有关只能ping直连的口)    
+[root@PCA root]#ping 10.66.1.2  (不通，PCA 没有设置网关)
+
+[root@PCA root]#route add default gw 10.65.1.2            ;设置主机A网关
+[root@PCA root]#ping 10.66.1.2  (通)    
+[root@PCA root]#ping 10.66.1.1  (不通，因PCB没有网关)
+
+[root@PCB root]#route add default gw 10.66.1.2            ;设置主机B网关
+[root@PCA root]#ping 10.66.1.1  (通)
+
+去掉计算机Host B与Router的连线，再ping：
+[root@PCA root]#ping 10.66.1.2 不通(没有接线端口会自动down掉)
+
+再连接Host B与Router的连线，再ping:
+[root@PCA root]#ping 10.66.1.2 (通)
+</code></pre><p>##实验八 单臂路由</p>
+<pre><code>设置PCA ip:10.65.1.1 gateway:10.65.1.2
+设置PCB ip:10.66.1.1 gateway:10.66.1.2
+
+[root@PCA root]#ifconfig eth0 10.65.1.1 netmask 255.255.0.0
+[root@PCA root]#route add default gw 10.65.1.2
+[root@PCB root]#ifconfig eth0 10.66.1.1 netmask 255.255.0.0
+[root@PCB root]#route add default gw 10.66.1.2
+
+1.一个接口两个IP的情况
+&lt;Quidwqy&gt;system                                        ;进入管理员模式
+password:
+[Quidway]interface ethernet0                        ;进入接口0视图
+[Quidway-Ethernet0]ip addr 10.65.1.2 255.255.255.0    ;设置IP
+[Quidway-Ethernet1]ip addr 10.66.1.2 255.255.255.0 secondary    ;设置IP
+[Quidway-Ethernet1]undo shutdown                    ;启动
+
+[root@PCA root]#ping 10.66.1.1 通
+
+2．划分两个子接口，对两个vlan的路由
+[SwitchA]vlan 2                                        ;添加vlan2
+[SwitchA-vlan2]port e0/3                            ;将端口3添加到vlan2
+[SwitchA]vlan 3                                        ;添加vlan3
+[SwitchA-vlan3]port e0/6                             ;将端口6添加到vlan3
+[SwitchA]int e0/1                                    ;进入端口1
+[SwitchA-Ethernet0/1]port link-type trunk            ;设置端口类型为trunk
+[SwitchA-Ethernet0/1]port trunk permit vlan all        ;允许所有vlan通过
+[SwitchA-Ethernet0/1]port trunk encap dot1q            ;设置trunk封装协议为dot1q
+[SwitchA]dis curr                
+
+[Quidway]int e0                                        ;进入端口0
+[SwitchA-Ethernet0]int e0.1                            ;进入端口0.1
+[SwitchA-Ethernet0.1]encapsulation dot1q 2            ;设置封装格式为dot1q
+[SwitchA-Ethernet0.1]ip addr 10.65.1.2 255.255.255.0;设置IP
+[SwitchA-Ethernet0.1]undo shut                        ;启动
+[SwitchA-Ethernet0.1]int e0.2                        ;进入端口0.2
+[SwitchA-Ethernet0.2]encapsulation dot1q 2            ;设置封装格式为dot1q
+[SwitchA-Ethernet0.2]ip addr 10.66.1.2 255.255.255.0;设置IP
+[SwitchA-Ethernet0.2]undo shut                        ;启动
+[SwitchA]dis curr
+
+[root@PCA root]#ping 10.66.1.1 通
+</code></pre><p>##实验九 静态路由实验</p>
+<pre><code>PCA:10.65.1.1  PCB:10.66.1.1  PCC:10.70.1.1  PCD:10.71.1.1
+
+[root@PCA root]#ifconfig eth0 10.65.1.1 netmask 255.255.0.0
+[root@PCB root]#ifconfig eth0 10.66.1.1 netmask 255.255.0.0
+[root@PCC root]#ifconfig eth0 10.70.1.1 netmask 255.255.0.0
+[root@PCD root]#ifconfig eth0 10.71.1.1 netmask 255.255.0.0
+
+[RouterA]interface ethernet0                        ;进入端口0
+[RouterA-Ethernet0]ip addrress 10.65.1.2 255.255.0.0
+[RouterA-Ethernet0]undo shutdown
+[RouterA-Ethernet0]int e1
+[RouterA-Ethernet1]ip addrress 10.66.1.2 255.255.0.0
+[RouterA-Ethernet1]undo shutdown
+[RouterA-Ethernet1]int s1
+[RouterA-Serial1]ip addrress 10.68.1.2 255.255.0.0
+[RouterA-Serial1]undo shutdown
+[RouterA-Serial1]clock rate 64000
+[RouterA-Serial1]quit
+[RouterA]ip routing
+[RouterA]dis curr
+
+[RouterB]interface ethernet0
+[RouterB-Ethernet0]ip addrress 10.70.1.2 255.255.0.0
+[RouterB-Ethernet0]undo shutdown
+[RouterB-Ethernet0]int e1
+[RouterB-Ethernet1]ip addrress 10.71.1.2 255.255.0.0
+[RouterB-Ethernet1]undo shutdown
+[RouterB-Ethernet1]int s0
+[RouterB-Serial0]ip addrress 10.68.1.1 255.255.0.0
+[RouterB-Serial0]undo shutdown
+[RouterB-Serial0]quit
+[RouterB]ip routing
+[RouterB]dis curr
+
+[root@PCA root]#ifconfig eth0 10.65.1.1 netmask 255.255.0.0
+[root@PCA root]#route add default gw 10.65.1.2
+
+[root@PCA root]#ping 10.65.1.2 通
+[root@PCA root]#ping 10.66.1.2 通
+[root@PCA root]#ping 10.67.1.2 通
+[root@PCA root]#ping 10.68.1.2 不通
+[root@PCA root]#ping 10.69.1.2 不通
+
+[RouterA]ip route-static 10.69.0.0 255.255.0.0 10.67.1.1
+[root@PCA root]#ping 10.69.1.1 通
+
+三个路由器的静态路由 (参考实验九图)
+
+    设置RouterA的IP:
+f0/0: 10.65.1.2  ---&gt;PCA:10.65.1.1
+f0/1: 10.66.1.2  ---&gt;PCB:10.66.1.1
+s0/0: 10.67.1.2
+s0/1: 10.68.1.2  ---&gt;接RouterC s0/0
+
+    设置RouterC的IP:
+s0/0: 10.68.1.1  &lt;---
+s0/1: 10.78.1.2  ---&gt;接RouterB s0/0
+
+    设置RouterB的IP:
+s0/0: 10.78.1.1  &lt;---
+s0/1: 10.67.1.1
+f0/0: 10.69.1.2  ---&gt;PCC:10.69.1.1
+f0/1: 10.70.1.2  ---&gt;PCD:10.70.1.1
+
+    设置从PCA到PCC的静态路由
+[ROA]ip routing
+[ROA]ip route-static 10.69.0.0 255.255.0.0 10.68.1.1
+[ROA]display ip route
+[ROB]ip route-static 10.69.0.0 255.255.0.0 10.78.1.1
+[ROB]display ip route
+
+[root@PCA root]#ping 10.69.1.1 (通)
+[root@PCA root]#ping 10.78.1.1 (不通)
+[root@PCA root]#ping 10.70.1.1 (不通)
+
+    为什么PCA 到10.78.1.1不通呢？它是去10.69.1.1要经过的地方啊，这是由于在
+RouterA上，没有去10.78.0.0网络的路由，所以到这个网络它不知道要向哪去送。
+
+    如何让PCA到10.70.1.1 (PCD)通呢，像10.69.0.0网络一样，在路径的路由器上
+，
+再各写一条到10.70.0.0网络的静态路由就可以了。
+    如果每一条路径都写一组静态路由显然不好，由于PCA在这个网络中实际只有一条
+主通路，所以使用默认路由较好。
+
+    我们再做一个使用默认路由的小实验，先去掉原有的静态路由。
+[ROA]undo ip route-static 10.69.0.0 255.255.0.0 10.68.1.1
+[ROA]display ip route
+
+[ROA]undo ip route-static 10.69.0.0 255.255.0.0 10.78.1.1
+[ROB]display ip route
+
+[root@PCA root]#ping 10.69.1.1 (不通)
+
+[ROA]ip route-static 0.0.0.0 0.0.0.0 10.68.1.1
+[ROB]display ip route
+
+[ROB]ip route-static  0.0.0.0 0.0.0.0 10.69.1.1
+[ROB]display ip route
+
+[root@PCA root]#ping 10.69.1.1 (通)
+[root@PCA root]#ping 10.70.1.1 (通)
+[root@PCA root]#ping 10.78.1.1 (通)
+
+    路由表是路由器实现路由的指导思想。到一个网络通不通，要看路由表中有没有去
+目的网络的路由表项，动态路由可以自动创建路由表，定时更新。
+
+
+
+
+[RouterB-Serial0]undo ip addrress 10.67.1.1 255.255.0.0
+[RouterB-Serial0]ip addrress 10.70.1.1 255.255.0.0
+
+[RouterC]interface serial0
+[RouterC-Serial0]ip addrress 10.67.1.1 255.255.0.0
+[RouterC-Serial0]undo shutdown
+[RouterC-Serial0]clock rate 64000
+[RouterC-Serial0]int s1
+[RouterC-Serial1]ip addrress 10.70.1.1 255.255.0.0
+[RouterC-Serial1]undo shutdown
+[RouterC-Serial1]quit
+[RouterC]ip route-static 10.69.0.0 255.255.0.0 10.70.1.1
+[RouterC]dis curr
+
+[root@PCA root]#ping 10.69.1.1 通
+[root@PCA root]#ping 10.68.1.1 不通
+</code></pre><p>##实验十 动态路由实验</p>
+<p>##实验十一 访问控制列表实验</p>
+<p>##实验十二  地址转换配置</p>
+<p>#扩展实验</p>
+<p>#命令提示</p>
+<pre><code>计算机命令
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">PCA login: root                                                 ；使用root用户</div><div class="line"> password: linux                                                ；口令是linux</div><div class="line"># shutdown -h now                                               ；关机</div><div class="line"># init 0                                                        ；关机</div><div class="line"># logout                                                        ；用户注销</div><div class="line"># login                                                         ；用户登录</div><div class="line"># ifconfig                                                      ；显示IP地址</div><div class="line"># ifconfig eth0 &lt;ip address&gt; netmask &lt;netmask&gt;                  ；设置IP地址</div><div class="line"># ifconfig eht0 &lt;ip address&gt; netmask &lt;netmask&gt; down             ；禁用IP地址</div><div class="line"># route add 0.0.0.0 gw &lt;ip&gt;                                     ；设置网关</div><div class="line"># route del 0.0.0.0 gw &lt;ip&gt;                                     ；删除网关</div><div class="line"># route add default gw &lt;ip&gt;                                     ；设置网关</div><div class="line"># route del default gw &lt;ip&gt;                                     ；删除网关</div><div class="line"># route                                                         ；显示网关</div><div class="line"># ping &lt;ip&gt;                                                     ；发ECHO包</div><div class="line"># telnet &lt;ip&gt;                                                   ；远程登录</div><div class="line"></div><div class="line">－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</div><div class="line">交换机命令</div></pre></td></tr></table></figure>
+
+[Quidway]dis cur                                  　　　　　　；显示当前配置
+[Quidway]display current-configuration            　　　　　　；显示当前配置
+[Quidway]display interfaces                       　　　　　　；显示接口信息
+[Quidway]display vlan all                         　　　　　　；显示路由信息
+[Quidway]display version                          　　　　　　；显示版本信息
+
+[Quidway]super password                                          ；修改特权用户密码
+[Quidway]sysname                                          ；交换机命名
+[Quidway]interface ethernet 0/1                                  ；进入接口视图
+[Quidway]interface vlan x                                  ；进入接口视图
+[Quidway-Vlan-interfacex]ip address 10.65.1.1 255.255.0.0     ；配置VLAN的IP地址
+
+[Quidway]ip route-static 0.0.0.0 0.0.0.0 10.65.1.2            ；静态路由＝网关
+[Quidway]rip                                                  ；三层交换支持
+[Quidway]local-user ftp
+
+[Quidway]user-interface vty 0 4                               ；进入虚拟终端
+[S3026-ui-vty0-4]authentication-mode password                 ；设置口令模式
+[S3026-ui-vty0-4]set authentication-mode password simple 222  ；设置口令
+[S3026-ui-vty0-4]user privilege level 3                       ；用户级别
+
+[Quidway]interface ethernet 0/1                                  ；进入端口模式
+[Quidway]int e0/1                                             ；进入端口模式
+[Quidway-Ethernet0/1]duplex {half|full|auto}                  ；配置端口工作状态
+[Quidway-Ethernet0/1]speed {10|100|auto}                     ；配置端口工作速率
+[Quidway-Ethernet0/1]flow-control                           ；配置端口流控
+[Quidway-Ethernet0/1]mdi {across|auto|normal}                 ；配置端口平接扭接
+[Quidway-Ethernet0/1]port link-type {trunk|access|hybrid}     ；设置端口工作模式
+[Quidway-Ethernet0/1]port access vlan 3                　　　　　；当前端口加入到VLAN
+[Quidway-Ethernet0/2]port trunk permit vlan {ID|All}      　　；设trunk允许的VLAN
+[Quidway-Ethernet0/3]port trunk pvid vlan 3        　　　　　；设置trunk端口的PVID
+[Quidway-Ethernet0/1]undo shutdown                          ；激活端口
+[Quidway-Ethernet0/1]shutdown                                  ；关闭端口
+[Quidway-Ethernet0/1]quit                                  ；返回
+
+[Quidway]vlan 3                                      　　　　　　；创建VLAN
+[Quidway-vlan3]port ethernet 0/1 　　　　　　　　   　　　　　；在VLAN中增加端口
+[Quidway-vlan3]port e0/1    　　　　　                        ；简写方式
+[Quidway-vlan3]port ethernet 0/1 to ethernet 0/4    　　　　　；在VLAN中增加端口
+[Quidway-vlan3]port e0/1 to e0/4    　　　　　                ；简写方式
+
+[Quidway]monitor-port &lt;interface_type interface_num&gt;        　；指定镜像端口
+[Quidway]port mirror &lt;interface_type interface_num&gt;       　　；指定被镜像端口
+[Quidway]port mirror int_list observing-port int_type int_num ；指定镜像和被镜像
+
+[Quidway]description string                         　　　　　；指定VLAN描述字符
+[Quidway]description                           　　　　　　 　；删除VLAN描述字符
+[Quidway]display vlan [vlan_id]                               ；查看VLAN设置
+
+[Quidway]stp {enable|disable}                                 ；设置生成树,默认关闭
+[Quidway]stp priority 4096                          　　　　　；设置交换机的优先级
+[Quidway]stp root {primary|secondary}               　　　　　；设置为根或根的备份
+[Quidway-Ethernet0/1]stp cost 200                   　　　　　；设置交换机端口的花费
+
+[Quidway]link-aggregation e0/1 to e0/4 ingress|both           ;　端口的聚合
+[Quidway]undo link-aggregation e0/1|all                       ;  始端口为通道号
+
+[SwitchA-vlanx]isolate-user-vlan enable             　　　　　；设置主vlan
+[SwitchA]isolate-user-vlan &lt;x&gt; secondary &lt;list&gt;     　　　　　；设置主vlan包括的子vlan
+[Quidway-Ethernet0/2]port hybrid pvid vlan &lt;id&gt;     　　　　　；设置vlan的pvid
+[Quidway-Ethernet0/2]port hybrid pvid               　　　　　；删除vlan的pvid
+[Quidway-Ethernet0/2]port hybrid vlan vlan_id_list untagged 　；设置无标识的vlan
+如果包的vlan id与PVId一致，则去掉vlan信息. 默认PVID=1。
+所以设置PVID为所属vlan id, 设置可以互通的vlan为untagged.
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+路由器命令
+~~~~~~~~~~
+[Quidway]display version                          　　　　　　；显示版本信息
+[Quidway]display current-configuration            　　　　　　；显示当前配置
+[Quidway]display interfaces                       　　　　　　；显示接口信息
+[Quidway]display ip route                         　　　　　　；显示路由信息
+
+[Quidway]sysname aabbcc                           　　　　　　；更改主机名
+[Quidway]super passwrod 123456                    　　　　　　；设置口令
+[Quidway]interface serial0                        　　　　　　；进入接口
+[Quidway-serial0]ip address &lt;ip&gt; &lt;mask|mask_len&gt;  　　　　　　；配置端口IP地址
+[Quidway-serial0]undo shutdown                    　　　　　　；激活端口
+[Quidway]link-protocol hdlc                       　　　　　　；绑定hdlc协议
+[Quidway]user-interface vty 0 4
+[Quidway-ui-vty0-4]authentication-mode password
+[Quidway-ui-vty0-4]set authentication-mode password simple 222
+[Quidway-ui-vty0-4]user privilege level 3
+[Quidway-ui-vty0-4]quit
+
+[Quidway]debugging hdlc all serial0               　　　　　　；显示所有信息
+[Quidway]debugging hdlc event serial0             　　　　　　；调试事件信息
+[Quidway]debugging hdlc packet serial0            　　　　　　；显示包的信息
+
+静态路由：
+[Quidway]ip route-static &lt;ip&gt;&lt;mask&gt;{interface number|nexthop}[value][reject|blackhole]
+例如：
+[Quidway]ip route-static 129.1.0.0 16 10.0.0.2
+[Quidway]ip route-static 129.1.0.0 255.255.0.0 10.0.0.2
+[Quidway]ip route-static 129.1.0.0 16 Serial 2
+[Quidway]ip route-static 0.0.0.0 0.0.0.0  10.0.0.2
+
+动态路由：
+[Quidway]rip                                                  ；设置动态路由
+[Quidway]rip work                                             ；设置工作允许
+[Quidway]rip input                                            ；设置入口允许
+[Quidway]rip output                                           ；设置出口允许
+[Quidway-rip]network 1.0.0.0                       　　　　　 ；设置交换路由网络
+[Quidway-rip]network all                                      ；设置与所有网络交换
+[Quidway-rip]peer ip-address                                  ；
+[Quidway-rip]summary                                          ；路由聚合
+[Quidway]rip version 1                                        ；设置工作在版本1
+[Quidway]rip version 2 multicast                              ；设版本2，多播方式
+[Quidway-Ethernet0]rip split-horizon                          ；水平分隔
+
+[Quidway]router id A.B.C.D                                    ；配置路由器的ID
+[Quidway]ospf enable                                          ；启动OSPF协议
+[Quidway-ospf]import-route direct                             ；引入直联路由
+[Quidway-Serial0]ospf enable area &lt;area_id&gt;                   ；配置OSPF区域
+
+标准访问列表命令格式如下：
+acl &lt;acl-number&gt; [match-order config|auto]                    ；默认前者顺序匹配。
+rule [normal|special]{permit|deny} [source source-addr source-wildcard|any]
+例：
+[Quidway]acl 10
+[Quidway-acl-10]rule normal permit source 10.0.0.0 0.0.0.255
+[Quidway-acl-10]rule normal deny source any
+
+扩展访问控制列表配置命令
+配置TCP/UDP协议的扩展访问列表：
+rule {normal|special}{permit|deny}{tcp|udp}source {&lt;ip wild&gt;|any}destination &lt;ip wild&gt;|any}
+[operate]
+
+配置ICMP协议的扩展访问列表：
+rule {normal|special}{permit|deny}icmp source {&lt;ip wild&gt;|any]destination {&lt;ip wild&gt;|any]
+[icmp-code] [logging]
+
+扩展访问控制列表操作符的含义
+equal portnumber                                           ；等于
+greater-than portnumber                                        ；大于
+less-than portnumber                                           ；小于
+not-equal portnumber                                           ；不等
+range portnumber1 portnumber2                                  ；区间
+
+扩展访问控制列表举例
+[Quidway]acl 101
+[Quidway-acl-101]rule deny souce any destination any
+[Quidway-acl-101]rule permit icmp source any destination any icmp-type echo
+[Quidway-acl-101]rule permit icmp source any destination any icmp-type echo-reply
+
+[Quidway]acl 102
+[Quidway-acl-102]rule permit ip source 10.0.0.1 0.0.0.0 destination 202.0.0.1 0.0.0.0
+[Quidway-acl-102]rule deny ip source any destination any
+
+[Quidway]acl 103
+[Quidway-acl-103]rule permit tcp source any destination 10.0.0.1 0.0.0.0 destination-port equal ftp
+[Quidway-acl-103]rule permit tcp source any destination 10.0.0.2 0.0.0.0 destination-port equal www
+
+
+[Quidway]firewall enable
+[Quidway]firewall default permit|deny
+[Quidway]int e0
+[Quidway-Ethernet0]firewall packet-filter 101 inbound|outbound
+
+
+地址转换配置举例
+[Quidway]firewall enable
+[Quidway]firewall default permit
+[Quidway]acl 101                             ;内部指定主机可以进入e0
+[Quidway-acl-101]rule deny ip source any destination any
+[Quidway-acl-101]rule permit ip source 129.38.1.1 0 destination any
+[Quidway-acl-101]rule permit ip source 129.38.1.2 0 destination any
+[Quidway-acl-101]rule permit ip source 129.38.1.3 0 destination any
+[Quidway-acl-101]rule permit ip source 129.38.1.4 0 destination any
+[Quidway-acl-101]quit
+[Quidway]int e0
+[Quidway-Ethernet0]firewall packet-filter 101 inbound
+
+[Quidway]acl 102                             ;外部特定主机和大于1024端口的数据包允许进入S0
+[Quidway-acl-102]rule deny ip source any destination any
+[Quidway-acl-102]rule permit tcp source 202.39.2.3 0 destination 202.38.160.1 0
+[Quidway-acl-102]rule permit tcp source any destination 202.38.160.1 0 destination-port great-than
+1024
+[Quidway-acl-102]quit
+[Quidway]int s0
+[Quidway-Serial0]firewall packet-filter 102 inbound      ；设202.38.160.1是路由器出口IP。
+
+[Quidway-Serial0]nat outbound 101 interface   ;是Easy ip，将acl 101允许的IP从本接口出时变换源地址。
+
+内部服务器地址转换配置命令(静态nat)：
+nat server global &lt;ip&gt; [port] inside &lt;ip&gt; port [protocol]       ;global_port不写时使用inside_port
+[Quidway-Serial0]nat server global 202.38.160.1 inside 129.38.1.1 ftp tcp
+[Quidway-Serial0]nat server global 202.38.160.1 inside 129.38.1.2 telnet tcp
+[Quidway-Serial0]nat server global 202.38.160.1 inside 129.38.1.3 www tcp
+
+
+设有公网IP：202.38.160.101~202.38.160.103 可以使用。             ;对外访问(原例题)
+[Quidway]nat address-group 202.38.160.101 202.38.160.103 pool1   ;建立地址池
+[Quidway]acl 1
+[Quidway-acl-1]rule permit source 10.110.10.0 0.0.0.255          ;指定允许的内部网络
+[Quidway-acl-1]rule deny source any
+[Quidway-acl-1]int serial 0
+[Quidway-Serial0]nat outbound 1 address-group pool1              ;在s0口从地址池取出IP对外访问
+
+[Quidway-Serial0]nat server global 202.38.160.101 inside 10.110.10.1 ftp tcp
+[Quidway-Serial0]nat server global 202.38.160.102 inside 10.110.10.2 www tcp
+[Quidway-Serial0]nat server global 202.38.160.102 8080 inside 10.110.10.3 www tcp
+[Quidway-Serial0]nat server global 202.38.160.103 inside 10.110.10.4 smtp udp
+
+PPP设置：
+[Quidway-s0]link-protocol ppp                                  ;默认的协议
+
+PPP验证：
+主验方：pap|chap
+[Quidway]local-user q2 password {simple|cipher} hello          ;路由器1
+[Quidway]interface serial 0
+[Quidway-serial0]ppp authentication-mode {pap|chap}
+[Quidway-serial0]ppp chap user q1                              ;pap时，没有此句
+
+pap被验方：
+[Quidway]interface serial 0                                    ;路由器2
+[Quidway-serial0]ppp pap local-user q2 password {simple|cipher} hello
+
+chap被验方：
+[Quidway]interface serial 0                                    ;路由器2
+[Quidway-serial0]ppp chap user q2                              ;自己路由器名
+[Quidway-serial0]local-user q1 password {simple|cipher} hello  ;对方路由器名
+
+帧中继frame-relay    (二分册6-61)
+[q1]fr switching
+[q1]int s1
+[q1-Serial1]ip address 192.168.34.51 255.255.255.0
+[q1-Serial1]link-protocol fr                                   ;封装帧中继协议
+[q1-Serial1]fr interface-type dce
+[q1-Serial1]fr dlci 100
+[q1-Serial1]fr inarp
+[q1-Serial1]fr map ip 192.168.34.52 dlci 100
+
+[q2]int s1
+[q2-Serial1]ip address 192.168.34.52 255.255.255.0
+[q2-Serial1]link-protocol fr
+[q2-Serial1]fr interface-type dte
+[q2-Serial1]fr dlci 100
+[q2-Serial1]fr inarp
+[q2-Serial1]fr map ip 192.168.34.51 dlci 100
+
+帧中继监测
+[q1]display fr lmi-info[]interface type number]
+[q1]display fr map
+[q1]display fr pvc-info[serial interface-number][dlci dlci-number]
+[q1]display fr dlci-switch
+[q1]display fr interface
+[q1]reset fr inarp-info
+[q1]debugging fr all[interface type number]
+[q1]debugging fr arp[interface type number]
+[q1]debugging fr event[interface type number]
+[q1]debugging fr lmi[interface type number]
+
+
+启动ftp服务：
+[Quidway]local-user ftp password {simple|cipher} aaa service-type ftp
+[Quidway]ftp server enable
+
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+</code></pre><p>#理论学习</p>
+<p>##网络的发展与应用</p>
+<p><strong>一、计算机网络发展的三个阶段</strong><br> 1、研究阶段 (68年~84年)<br>   主要特征：<br>   TCP/IP协议的研制成功。<br>   Client/Server工作方阿式的实现。<br>   实现了资源共享和分散控制等。</p>
+<p> 2、运行阶段 (85年~92年)<br>    主要特征：<br>    Internet骨干网络的延生<br>    网络私有化的形成<br>    网络商业化的开始</p>
+<p> 3、应用阶段 (92年~今)<br>    主要特征：<br>    网络发展的全球化<br>    网络运行的商业化<br>    网络应用的多样化</p>
+<p><strong>二、我国计算机网络的三个层次</strong><br> 1、国家经济信息化的基本通信网，<br>    CHINAPAC：1991建设，分组交换网。<br>    CHINADDN：1994建设，数字专用网<br>    金桥工程：1997建设，以光纤、卫星、微波、无线移动等多种方式，形成天地一体的网络结构。</p>
+<p> 2、依托此平台开发的各种专业网络和应用网络；<br>    金卡工程：全民信用卡系统——电子货币工程。<br>    金企工程：企业生产与流通信息系统，为国家宏观调控提供科学依据。<br>    金农工程：农业综合管理及信息服务系统，以县城为点的农业基本情况数据库。<br>    金关工程：国家对外经济贸易信息网。<br>    金税工程：增值税专用发票计算机稽核系统工程。<br>    企业网络：企业总部与分部组成的异地独立网络。<br>    教育科研网：CERNET连接全国各大高校。</p>
+<p> <strong>3、目前中小型企业网络的应用情况</strong><br>    企事业都建设了自己的局域网，而且越来越多的局域网和广域网相联。<br>    网络硬件水平不断提高，促进了网络技术的应用，网络管理人才的需求加大。<br>    网络管理员：以网络互联技术为主的网络人才。<br>    操作系统管理员：以管理操作系统为主的网络人才。<br>    线路维护人员：负责网络运行的维修人员。<br>    网络技术支持：负责公司网络产品的技术的咨询和售后服务。                    </p>
+<p>##网络互联基础</p>
+<p><strong>一、OSI七层协议</strong><br>    OSI(Open System interconnection)开放系统互连参考模型<br>    ISO(International Standards Organization)国际标准化组织              </p>
+<p> <strong>1、物理层</strong><br>    机械性能：接口的型状，尺寸的大小，引脚的数目和排列方式等。<br>    电气性能：接口规定信号的电压、电流、阻抗、波形、速率及平衡特性等。<br>    工程规范：接口引脚的意义、特性、标准。<br>    工作方式：确定数据位流的传输方式，如：单工、半双工或全双工。<br>    物理层协议有：<br>    美国电子工业协会(EIA)的RS232，RS422，RS423，RS485等；<br>    国际电报电话咨询委员会(CCITT)的X.25、X.21等；<br>    物理层的数据单位是位(BIT)，典型设备是集线器HUB。            </p>
+<p> <strong>2、链路层</strong><br>    链路层屏蔽传输介质的物理特征，使数据可靠传送。<br>    内容包括介质访问控制、连接控制、顺序控制、流量控制、差错控制和仲裁协议等。<br>    链路层协议有：<br>    协议有面向字符的通讯协议(PPP)和面向位的通讯协议(HDLC)。<br>    仲裁协议：802.3、802.4、802.5，即：<br>    CSMA/CD(Carrier Sense Multiple Access with Collision Detection)、TokenBus、Token Ring<br>    链路层数据单位是帧，实现对MAC地址的访问，典型设备是交换机Switch。         </p>
+<p> <strong>3、网络层</strong><br>    网络层管理连接方式和路由选择。<br>    连接方式：虚电路(Virtual Circuits)和数据报(Datagram)服务。<br>    虚电路是面向连接的(Connection-Oriented)，数据通讯一次路由，通过会话建立的一条通路。<br>    数据报是非连接的(Connectionless-Oriented)，每个数据报都有路由能力。<br>    网络层的数据单位是包，使用的是IP地址，典型设备是路由器Router。<br>    这一层可以进行流量控制，但流量控制更多的是使用第二层或第四层。     </p>
+<p> <strong>4、传输层</strong><br>    提供端到端的服务。可以实现流量控制、负载均衡。<br>    传输层信息包含端口、控制字和校验和。<br>    传输层协议主要是TCP和UDP。<br>    传输层位于OSI的第四层，这层使用的设备是主机本身。　             </p>
+<p> <strong>5、会话层</strong><br>    会话层主要内容是通过会话进行身份验证、会话管理和确定通讯方式。<br>    一旦建立连接，会话层的任务就是管理会话。                  </p>
+<p> <strong>6、表示层</strong><br>    表示层主要是解释通讯数据的意义，如代码转换、格式变换等，使不同的终端可以表示。<br>    还包括加密与解密、压缩与解压缩等。                 </p>
+<p> <strong>7、应用层</strong><br>    应用层应该是直接面向用户的程序或服务，包括系统程序和用户程序，<br>    例如www、FTP、DNS、POP3和SMTP等都是应用层服务。<br>    数据在发送时是数据从应用层至物理层的一个打包的过程，<br>    接收时是数据从物理层至应用层的一个解包的过程，<br>    从功能角度可分为三组，1、2层解决网络信道问题，3、4层解决传输问题，5、6、7层处理对应用进程的访问。<br>    从控制角度可分为二组，第1、2、3层是通信子网层，第4、5、6、7层是主机控制层。    </p>
+<p><strong>二、TCP/IP 协议簇</strong><br>    TCP/IP(Transmission Control Protocol/Internet Protocol)已成为一个事实上的工业标准。<br>    TCP/IP是一组协议的代名词，它还包括许多协议，组成了TCP/IP协议簇。<br>    TCP/IP协议簇分为四层，IP位于协议簇的第二层(对应OSI的第三层)，TCP位于协议簇的第三层(对应OSI的第四层)。<br>    TCP和IP是TCP/IP协议簇的中间两层，是整个协议簇的核心，起到了承上启下的作用。<br> <strong>1、接口层</strong><br>    TCP/IP的最低层是接口层，常见的接口层协议有：<br>    Ethernet 802.3、Token Ring 802.5、X.25、Framereley、HDLC、PPP等。         </p>
+<p> <strong>2、网络层</strong><br>    网络层包括：IP(Internet Protocol)协议、ICMP(Internet Control Message Protocol)控制报文协议、ARP(Address Resolution Protocol)地址转换协议、RARP(Reverse ARP)反向地址转换协议。<br>    IP是网络层的核心，通过路由选择将下一跳IP封装后交给接口层。IP数据报是无连接服务。<br>    ICMP是网络层的补充，可以回送报文。用来检测网络是否通畅。<br>    Ping命令就是发送ICMP的echo包，通过回送的echo relay进行网络测试。<br>    ARP是正向地址解析协议，通过已知的IP，寻找对应主机的MAC地址。<br>    RARP是反向地址解析协议，通过MAC地址确定IP地址。比如无盘工作站和DHCP服务。               </p>
+<p> <strong>3、传输层</strong><br>    传输层协议主要是：传输控制协议TCP(Transmission Control Protocol)和用户数据报协议UDP(User Datagram rotocol)。<br>    TCP是面向连接的通信协议，通过三次握手建立连接，通讯时完成时要拆除连接，由于TCP是面向连接的所以只能用于点对点的通讯。<br>    TCP提供的是一种可靠的数据流服务，采用“带重传的肯定确认”技术来实现传输的可靠性。TCP还采用一种称为“滑动窗口”的方式进行流量控制，所谓窗口实际表示接收能力，用以限制发送方的发送速度。<br>    UDP是面向无连接的通讯协议，UDP数据包括目的端口号和源端口号信息，由于通讯不需要连接，所以可以实现广播发送。<br>    UDP通讯时不需要接收方确认，属于不可靠的传输，可能会出丢包现象，实际应用中要求在程序员编程验证。</p>
+<p> <strong>4、应用层</strong><br>    应用层一般是面向用户的服务。如FTP、TELNET、DNS、SMTP、POP3。<br>    FTP(File Transmision Protocol)是文件传输协议，一般上传下载用FTP服务，数据端口是20H，控制端口是21H。<br>    Telnet服务是用户远程登录服务，使用23H端口，使用明码传送，保密性差、简单方便。<br>    DNS(Domain Name Service)是域名解析服务，提供域名到IP地址之间的转换。<br>    SMTP(Simple Mail Transfer Protocol)是简单邮件传输协议，用来控制信件的发送、中转。  　<br>    POP3(Post Office Protocol 3)是邮局协议第3版本，用于接收邮件。<br>    数据格式：<br>    数据帧：帧头＋IP数据包＋帧尾 (帧头包括源和目标主机MAC地址及类型,帧尾是校验字)<br>    IP数据包：IP头部＋TCP数据信息 (IP头包括源和目标主机IP地址、类型、生存期等)<br>    IP数据信息：TCP头部+实际数据  (TCP头包括源和目标主机端口号、顺序号、确认号、校验字等)    </p>
+<p><strong>三、TCP连接的建立</strong><br> <strong>1、TCP连接通过三次握手完成。</strong><br>    client首先请求连接，发一个SYN包；Server收到后回应SYN_ACK包；Client收到后再发ACK包。即：</p>
+<pre><code>Client     Server
+ SYN  ---&gt;   收
+      &lt;--- SYN+ACK
+ ACK  ---&gt;   收
+</code></pre><p>   established表示建立状态，当某端发出数据包后收到了回应则进入established状态。<br>   在TCP/IP连接时，如果两端都是established状态，则握手成功，否则是无连接或半联接状态。</p>
+<p> <strong>2、套接字Socket</strong><br>    套接字Socket由协议、IP地址和端口号组成，套接字表示一路通讯，一般是一个服务，如www服务是TCP的80端口，Telnet是TCP的23端口。</p>
+<p><strong>四、IP地址划分</strong><br> <strong>1、IP地址分类</strong><br>    IP地址有四个段，包括网络标识和主机标识两部分：netid+hostid。<br>    IP地址应用分为A、B、C三类，D、E类是保留和专用的。</p>
+<pre><code>Class A  0******* xxxxxxxx xxxxxxxx xxxxxxxx
+Class B  10****** ******** xxxxxxxx xxxxxxxx
+Class C  110***** ******** ******** xxxxxxxx
+Class D  1110**** ******** ******** ********
+Class E  1111**** ******** ******** ********
+</code></pre><p> <strong>2、地址区间</strong></p>
+<pre><code>址址类    地址区间                     网络数          主机数
+A 类 1.0.0.1～126.255.255.254        27-2=126        224-2=16777214
+B 类 128.0.0.1～191.255.255.254    214-2=16382      216-2=65534
+C 类 192.0.0.1～223.255.255.254    221-2=2097150    28-2=254
+D 类 224.0.0.1～239.255.255.255    228=268435456    0
+E 类 240.0.0.1～255.255.255.255    228=268435456    0
+</code></pre><p> <strong>3、特殊地址</strong><br>    主机地址全0表示为一个网络地址。<br>    主机地址全1表示为对应网络的广播地址。<br>    全0的IP地址：0.0.0.0，表示本机地址，只在启动过程时有效。<br>    全1的IP地址255.255.255.255，表示本地广播(有的软件不支持)。</p>
+<pre><code>私有地址：
+10.0.0.0 - 10.255.255.255
+172.16.0.0 - 172.31.255.255
+192.168.0.0 - 192.168.255.255
+</code></pre><p>127.0.0.0网络是回环网络loopback，用于本机测试。例如：<br>    ping 127.0.0.1 是测试本机网卡是否工作正常。</p>
+<p> <strong>4、子网掩码</strong>      </p>
+<pre><code>子网掩码用来区分网络地址和主机地址，标准的子网掩码为：
+A 类： 1.0.0.1～126.255.255.254   netmask：255.0.0.0
+B 类：128.0.0.1～191.255.255.254  netmask：255.255.0.0
+C 类：192.0.0.1～223.255.255.254  netmask：255.255.255.0
+</code></pre><p>子网掩码和IP地址的“与”运算得出对应的网络地址。<br>    如果将子网掩码“1”的位数增加则网络地址数增加，形成子网。相当于网络的分隔。<br>    如果将子网掩码“1”的位数减小则网络地址数减少，形成超网。相当于网络的聚合。</p>
+<p>##交换机原理与应用<br>一、基本以太网<br> 1、以太网标准：<br>    以太网是Ethernet的意思，过去使用的是十兆标准，现在是百兆到桌面，千兆做干线。<br>    常见的标准有：<br>    10BASE-2  细缆以太网<br>    10BASE-5  粗缆以太网<br>    10BASE-T  星型以太网<br>    100BASE-T 快速以太网<br>    1000BASE-T 千兆以太网</p>
+<p> 2、接线标准<br>    星型以太网采用双绞线连接，双绞线是8芯，分四组，两芯一组绞在一起，故称双绞线。<br>    8芯双绞线只用其中4芯：1、2、3、6。</p>
+<pre><code>常见接线方式有两种：
+568B接线规范： 白橙  橙  白绿  蓝  白蓝  绿  白棕  棕 
+                1    2    3    4    5    6    7    8
+568A接线规范： 白绿  绿  白橙  蓝  白蓝  橙  白棕  棕
+                1    2    3    4    5    6    7    8
+
+将568B的1和3对调，2和6对调，就得到568A。
+</code></pre><p> 3、接线方法<br>    两边采用相同的接线方式叫做平接，两边采用不同的接线方式叫扭接。<br>    不同的设备之间连接，使用平接线；相同的设备连接使用扭接线。<br>    电脑、路由器与集线器、交换机连接时使用平接线。<br>    这是因为网线中的4条线，一对是输入，一对是输出，输入应该与输出对应。<br>    如果将1和3连接，2和4连接，相当于自己的输出送给自己的输入。<br>    这样可以使网卡进入工作状态，阻止空接口关闭，而影响有些程序的运行。</p>
+<p>二、交换机原理与应用<br> 1、冲突域和广播域<br>    交换机是根据网桥的原理发展起来的，学习交换机先认识两个概念：<br>    (1)冲突域：<br>    冲突域是数据必然发送到的区域。<br>    HUB是无智能的信号驱动器，有入必出，整个由HUB组成的网络是一个冲突域。<br>    交换机的一个接口下的网络是一个冲突域，所以交换机可以隔离冲突域。</p>
+<pre><code>(2)广播域：
+广播数据时可以发送到的区域是一个广播域。
+交换机和集线器对广播帧是透明的，所以用交换机和HUB组成的网络是一个广播域。
+路由器的一个接口下的网络是一个广播域。所以路由器可以隔离广播域。
+</code></pre><p> 2、交换机原理<br>    (1)端口地址表<br>    端口地址表记录了端口下包含主机的MAC地址。端口地址表是交换机上电后自动建立的，<br>    保存在RAM中，并且自动维护。<br>    交换机隔离广播域的原理是根据其端口地址表和转发决策决定的。<br>    (2)转发决策<br>    交换机的转发决策有三种操作：丢弃、转发和扩散。<br>    丢弃：当本端口下的主机访问已知本端口下的主机时丢弃。<br>    转发：当某端口下的主机访问已知某端口下的主机时转发。<br>    扩散：当某端口下的主机访问未知端口下的主机时要扩散。<br>    每个操作都要记录下发包端的MAC地址，以备其它主机的访问。<br>    (3)成存期：<br>    生成期是端口地址列表中表项的寿命。每个表项在建立后开始进行倒记时，每次发送<br>    数据都要刷新记时。对于长期不发送数据主机，其MAC地址的表项在生成其结束时删除。<br>    所以端口地地表记录的总是最活动的主机的MAC地址。</p>
+<p> 3、交换网络中的环</p>
+<pre><code>以太网是总线或星型结构，不能构成环路，否则会产两个严重后果：
+(1)产生广播风暴，造成网络堵塞。
+(2)克隆帧会在各个口出现，造成地址学习(记录帧源地址)混乱。
+
+解决环路问题方案:
+(1)网络在设计时，人为的避免产生环路。
+(2)使用生成树STP(Spanning Tree Protocol)功能，将有环的网络剪成无环网络。
+   STP被IEEE802规范为802.1d标准。
+
+生成树协议术语
+(1)网桥协议数据单元：BPDU(Bridge Protocol Data Unit)
+   BPDU是生成树协议交换机间通讯的数据单元，用于确定角色。
+(2)网桥号：Bridge ID
+   交换机的标识号，它由优先级和MAC地址组成，优先级16位，MAC地址48位。
+(3)根网桥：Root bridge
+   根网桥定义为网桥号最小的交换机，根网桥所有的端口都不会阻塞。
+(4)根端口：Root port
+   非根网桥到根网桥累计路径花费最小的端口，负责本网桥与根网桥通讯的接口。
+(5)指定网桥：Designated bridge
+   网络中到根网桥累计路径花费最小交换机，负责收发本网段数据。
+(6)指定端口：Designated port
+   网络中到根网桥累计路径花费最小的交换机端口，根网桥每个端口都是指定端口。
+(7)非指定端口：NonDesignated port
+   余下的端口是非指定端口，它们不参与数据的转发，也就是被阻塞的端口。
+(根端口是从非根网桥选出，指定端口是网段中选出)。
+
+生成树协议的状态：
+生成树协议工作时，所有端口都要经过一个端口状态的建立过程。
+生成树协议通过BPDU广播，确定各交换机及其端口的工作状态和角色，
+交换机上的端口状态分别为：关闭、阻塞、侦听、学习和转发状态。
+(1)关闭状态：Disabled 不收发任何报文，当接口空连接或人为关闭时处于关闭状态。
+(2)阻塞状态：Blocking 在机器刚启动时，端口是阻塞状态(20秒)，但接收BPDU信息。
+(3)侦听状态：listening 不接收用户数据(15秒)，收发BPDU，确定网桥及接口角色。
+(4)学习状态：learning  不接收用户数据(15秒)，收发BPDU，进行地址学习。
+(5)转发状态：Forwarding 开始收发用户数据，继续收发BPDU和地址学习,维护STP。
+</code></pre><p> 4、关于VLAN<br>    VLAN(Virtual Lan)是虚拟逻辑网络，交换机通过VLAN设置，可以划分为多个逻辑网络，<br>    从而隔离广播域。具有三层模块的交换机可以实现VLAN间的路由。<br>    (1)端口模式<br>       交换机端口有两种模式，access和trunk。access口用于与计算机相连，而交换机之间<br>    的连接，应该是trunk。<br>       交换机端口默认VLAN是VLAN1，工作在access模式。<br>    Access口收发数据时，不含VLAN标识。具有相同VLAN号的端口在同一个广播域中。<br>    Trunk口收发数据时，包含VLAN标识。Trunk又称为干线，可以设置允许多个VLAN通过。</p>
+<pre><code>(2)VLAN中继协议：
+   VLAN中继协议有两种：
+ISL(Inter-Switch Link)： ISL是Cisco专用的VLAN中继协议。
+802.1q(dot1q)：802.1q是标准化的，应用较为普遍。
+
+(3)VTP
+   VTP(Vlan Trunking Protocol)是VLAN传输协议，在含有多个交换机的网络中，可以
+将中心交换机的VLAN信息发送到下级的交换机中。
+  中心交换机设置为VTP Server，下级交换机设置为VTP Client。
+  VTP Client要能学习到VTP Server的VLAN信息，要求在同一个VTP域，并要口令相同。
+
+(4)VLAN共享
+   如果要求某个VLAN与其他VLAN访问，可以设置VLAN共享或主附VLAN。
+   共享模式的VLAN端口，可以成为多个VLAN的成员或同时属于多个VLAN。
+   在主附VLAN结构中，子VLAN与主VLAN可以相互访问，子VLAN间的端口不能互相访问。
+   一般的VLAN间使用不同网络地址；主附VLAN中主VLAN和子VLAN使用同一个网络地址。
+</code></pre><p> 5、交换机和路由器的口令恢复:<br>    (1)交换机的口令恢复:<br>       交换机的口令恢复的操作是先启动超级终端，在交换机上电时按住的mode键.<br>       几秒后松手，进入ROM状态，将nvram中的配置文件config.txt改名或删除，再重启。<br>       参考命令为：<br>    switch:rename flash:config.text flash:config.bak<br>    switch:erase flash:config.text</p>
+<pre><code>(2)路由器的口令恢复:
+   路由器的口令恢复操作先启动超级终端，在路由器上电时按计算机的Ctrl+Break键，
+进入ROM监控状态rommon&gt;，用配置寄存器命令confreg设置参数值0x2142，跳过配置文件
+设置口令后再还原为0x2102。
+   参考命令为：
+rommon&gt;confreg 0x2142
+router(config)#config-register 0x2102
+   没有特权口令无法进入特权状态，只能进入ROM监控状态，使用confreg 0x2142命令。
+   当口令修改完后，可以在特权模式下恢复为使用配置文件状态。
+</code></pre><p>三、三层交换的概念<br> 1、交换机是链路层设备，使用MAC地址，完成对帧的操作。<br>    交换机的IP地址做管理用，交换机的IP地址实际是VALN的IP。<br>    一个VLAN一个广播域，不同VLAN的主机间访问，相当于网络间的访问，要通过路由实现。<br>    不同VLAN间主机的访问有以下几种情况：<br>    (1)两个VLAN分别接入路由器的两个物理接口。这是路由器的基本应用。<br>    (2)两个VLAN通过trunk接入路由器的一个物理接口，这是应用于子接口的单臂路由。<br>    (3)使用具有三层交换模块的交换机。Cisco的3550和华为的3526都是基本的三层交换机。<br>     1)通过VLAN的IP地址做网关，实现三层交换，要求设置VLAN的IP地址。<br>     2)将端口设置在三层工作，要求端口设置no switchport，再设置端口的IP地址。</p>
+<p> 2、交换机的通道技术<br>    交换机通道技术是将交换机的几个端口捆绑使用，即端口的聚合。<br>    使用通道技术一个方面提高了带宽，同时提高了线路的可靠性。<br>    但是如果设置不当，有可能产生环路，造成广播风暴堵塞网络。<br>    要聚合的端口要划分到指定的VLAN或trunk。<br>    配置三层通道时，先要进入通道，再用no switchport命令关闭二层，设置通道IP地址。<br>    一个通道一般小于8个接口，接口参数应该一致，如工作模式、封装的协议、端口类型。</p>
+<p> 3、端口协商方式<br>    端口的聚合有两种方式，一种是手动的方式，一个是自动协商的方式。<br>    手动的方式很简单，设置端口成员链路两端的模式为“on”。命令格式为：<br>    channel-group <number> mode on</number></p>
+<pre><code>自动方式有两种类型：
+PAgP(Port Aggregation Protocol)和LACP(Link aggregation Control Protocol)。
+PAgP：Cisco设备的端口聚合协议，有auto和desirable两种模式。
+      auto模式在协商中只收不发，desirable模式的端口收发协商的数据包。
+LACP：标准的端口聚合协议802.3ad，有active和passive两种模式。
+      active相当于PAgP的auto，而passive相当于PAgP的desirable。
+</code></pre><p> 4、通道端口间的负载平衡<br>    通道端口间的负载平衡有两种方式，基于源MAC的转发和基于目的MAC的转发。<br>    scr-mac：源MAC地址相同的数据帧使用同一个端口转发。<br>    dst-mac：目的MAC地址相同的数据帧使用同一个端口转发。</p>
+<p>##路由器原理与应用<br>一、路由的基本概念<br>    路由器的网络层的设备，负责IP数据包的路由选择和转发。<br> 1、路由类型<br>    路由的类型有：直连路由、静态路由、默认路由和动态路由。<br>    直连路由是与路由器直接相联网络的路由，路由器有对直连网络有转发能力。<br>    静态路由是管理员人为设置的路由，网络开支小，可以有效的改善网络状况。<br>    默认路由是静态路由的一个特例，将路由表不能匹配的数据包送默认路由。一般在最后。<br>    动态路由是路由协议自动建立和管理的路由，常见动态路由协议有：<br>      RIP(Routing Information Protocol) 、<br>      IGRP(Interior Gateway Routing Protocol)、<br>      EIGRP(Enhance Interior Gateway Routing Protocol)、<br>      OSPF(Open Shortest Path First)、<br>      BGP(Backbone Getway Protocol)<br>    上述路由协议称为routing protocol，而IP、IPX称为可路由的协议routed protocol。<br>    也有一些协议是不可路由的，如NetBEUI协议。<br> 2、路由算法<br>    路由算法常见的有三种类型：<br>    距离矢量D-V(Distance-Vector) 算法，如：RIP、IGRP、BGP；<br>    链路状态L-S(Link State)算法，如：OSPF、IS-IS；<br>    混合算法，如：Cisco的EIGRP。</p>
+<p> 3、路由交换范围<br>    路由器通过交换信息建立路由表，当网络结构变化时，路由表能自动维护。<br>    路由表跟随网络结构变化过程称为收俭。为了减少收俭过程引起的网络动荡，要考滤<br>    路由交换范围。<br>    RIP协议通过network命令指定，例如：设置10.0.0.0网络的接口参与路由信息交换<br>    router(config-router)network 10.0.0.0</p>
+<pre><code>ospf协议通过network命令指定，例如：设置10.65.1.1 接口参与路由交换
+router(config-router)network 10.65.1.1 0.0.0.0 area 0
+area是网络管理员在自治系统(国际机构分配)AS(Autonomous System)内部划分的区域。
+0.0.0.0是匹配码，0表示要求匹配，1表示不关心。
+</code></pre><p> 4、路由表<br>    路由表(Routing Table)是路由器中路由项的集合，是路由器进行路径选择的依据，<br>    每条路由项包括：目的网络和下一跳，还有优先级，花费等。</p>
+<pre><code>路由优先匹配原则：
+(1)直接路由：直连的网络优先级最高。
+(2)静态路由：优先级可设，一般高于动态路由。
+(3)动态路由：相同花费时，长掩码的子网优先。
+(4)默认路由：最后有一条默认路由，否则数据包丢弃。
+</code></pre><p>二、RIP路由协议<br> 1、RIP协议的认识<br>    RIP(Routing Information Protocol)协议是采用D-V(Distance-Vector)算法的距离矢量<br>协议；<br>    根据跳数(Hop Count)来决定最佳路径。最大跳数为16，限制了网络的范围。<br>    单独以跳数作为距离或花费，在有些情况下是不合理的，因为跳数少不一定是最佳路径；<br>    实际上带宽和可靠性也是重要的因素。有时需要管理员修改花费值。</p>
+<pre><code>RIP有两个版本，RIP-1 和RIP-2。
+RIP-1：采用广播方式发送报文。不支持子网路由。
+RIP-2：支持多播方式、子网路由和路由的聚合。
+</code></pre><p> 2、路由表的维护<br>    通过UDP协议每隔30秒发送路由交换信息，从而确定邻居的存在。<br>    若180秒还没有收到某相邻结点路由信息，标记为此路不可达。<br>    若再120秒后还没有收到路由信息，则删除该条路由。<br>    当网络结构变化时，要更新路由表，这个过程称为收敛(Convergence)。<br>    RIP标记一条路由不可达要经过3分钟，收敛过程较慢。</p>
+<pre><code>路由表是在内存当中的，路由器上电时初始化路由表，对每个直接网络生成一条路由。
+同时复制相邻路由器的路由表，复制过程中跳数加1，且下一跳指向该路由器。
+若去往某网络的下一跳是RouteA，若RouteA去该网络的路由没有了，则删除这一路由。
+跳数是到达目的网络所经过的路由器数目，直接网络的跳数是0，且有最高的优先级。
+</code></pre><p> 3、路由环路：<br>    矢量路由的一个弱点就是可能产生路由环路，产生路由环路的原因有两种，<br>    一是静态路由设置的不合理，再一是动态路由定时广播产生的误会。<br>    先看静态路由设置不合理的情况：<br>    设两个路由器RouterA和RouterB，其路由表中各有一条去往相同目的网络的静态路由，<br>    但下一跳彼此指向对方，形成环路。</p>
+<pre><code>再看动态路由造成的情况：
+假设某路由器RouterA通过RouterB至网络neta，
+但RouteB到neta不可达了，且RouterB的广播路由比RouterA先来到，
+RouterB去neta不可达，但RouterA中有去往neta路由，且下一跳是RouterB，
+这时RouteB就会从RouterA那里学习该路由，将去往neta的指向RouterA，跳数加1。
+去neta的路由原本是RouterB传给RouterA的，现RouterB却从RouterA学习该路由，
+显然是不对的，但这一现象还会继续，
+RouterA去neta网络的下一路是RouterB，当RouterB的跳数加1的时候，RouterA将再加1。
+周而复反形成环路，直至路由达到最大值16。
+</code></pre><p> 4、解决路由环路的办法<br>    (1) 规定最大跳数<br>    RIP规定了最大跳数为16，跳数等于16时视为不可达，从而阻止环跳进行。<br>    (2) 水平分割<br>    水平分割是过滤掉发送给原发者的路由信息。具体路由信息单向传送。<br>    (3) 毒性逆转<br>    水平分割的改进，收到原是自己发出的路由信息时，将这条信息跳数置成16，即毒化。<br>    (4) 触发方式<br>    一旦发现网络变化，不等呼叫，立即发送更新信息，迅速通知相邻路由器，防止误传。<br>    (5) 抑制时间<br>  　在收到路由变化信息后，启动抑制时间，此时间内变化项被冻结，防止被错误地覆盖。</p>
+<p>三、OSPF路由协议<br> 1、OSPF的特点<br>    OSPF(Open Shortest Path First)开放式最短路径优先协议，<br>    使用L-S(Link State)算法的链路状态路由协议，路由算法复杂，适合大型网络，<br>    网络拓扑结构变化时，采用触发方式，组播更新，收敛快，要求更高的内存和CPU资源。<br>    LSA(Link State Advertisement)链路状态通告是以本路由器为根的最小路径优先树。<br>    LSDB(Link State DataBase)链路状态数据库，这是各个路由器的LSA的集合。<br>    每个路由器的LSA是不同的，但他们的集合LSDB是相同的。<br>    D-V算法只考虑下一跳，没有全局的概念，交给下一跳就完成任务，所以容易产生环路。<br>    L-S算法每个路由器可以根据网络整体结构决定路径，所以不会产生环。</p>
+<p> 2、指定路由器与路由器标识<br>    指定路由器DR(Dezignated Router)是ospf路由交换的中心，数据通过DR进行交换。<br>    在路由器群组中优先级(Router Priority)值最高的为DR，次高的为备份指定路由器BDR。<br>    管理员可以通过设置优先级指定DB和BDR。优先级相同时，比较 router id。<br>    如果没有设置Router id，则以回环接口loopback ip值高的为DR，<br>    如果loopback ip 没有设置，取接口的IP地址中最高的为DR。</p>
+<p> 3、建立路由表<br>    (1)Hello报文<br>       Hello报文用于发现新邻居问候老邻居，选举指定路由器DR和BDR。<br>    (2)DD报文(Database Description Packet)<br>       DD报文用LSA头head信息表示LSA的变化情况，将其发送给DR，DR再发给其它路由器。<br>    (3)LSR报文(Link State Request Packet)<br>       LSR是请求更新包，当LSDB需要更新时，将其发送给DR，点对点连接时直接同步LSDB。<br>    (4)LSU报文(Link State Update Packet)<br>       DR用多播Multicast地址224.0.0.6收，224.0.0.5发，同步整个区域的LSDB。<br>    (5)确认后计算路由：<br>       LSDB同步后，计算cost花费，考虑跳数、带宽、可靠性等综合因素求解最佳路径。</p>
+<p> 4、单区域OSPF配置<br>    单区域OSPF配置是指运行OSPF协议的路由器在同一个区域area n，<br>    对于只有一个区域的网络，区域号是任意的，一般设置为0。<br>    单区域OSPF有三种连接情况：<br>    点对点的连接(Point to point)、<br>    广播方式的连接(Broadcast Multi Access Network)、<br>    非广播方式多点连接(Non Multi Access Network)。<br>    点对点连接结构最简单，可靠性高，工作稳定；<br>    以太网连接是典型的广播方式的连接；<br>    帧中继连接是属于的非广播方式多点连接类型。</p>
+<p> 5、多区域OSPF的设置<br>    多区域中要求有一个是骨干区域area 0，边界路由器跨接两个区域。<br>    多区域的区域内部按单区域设置，多区域间通过边界路由器的连接。</p>
+<pre><code>stub是末节区域，末节区域不接收ospf以外的路由信息，
+如果路由器想去往区域以外网络，要使用默认路由。
+只有多区域中才存在末节区域。末节区域要设置在边界路由器上。
+作为企业可以将分支区域设置为末节区域，
+分支区域不需要知道总部网络的细节，却能够通过缺省路由到达那里。
+</code></pre><p>四、访问控制列表<br> 1、访问控制列表类型与作用<br>    访问控制列表是对通过路由器的数据包进行过滤。<br>    过滤是根据IP数据包的5个要素：<br>    源IP地址、目的IP地址、协议号、源端口、目的进行的。</p>
+<pre><code>访问控制列表有两类，标准访问控制例表和扩展的访问控制列表。
+标准访问列表：
+标准访问列表的列表号为1~99，只对源IP地址进行访问控制。
+扩展访问列表：
+扩展访问列表的列表号为100~199，可以对源和目的地址、协议、端口号进行访问控制。
+</code></pre><p> 2、访问控制列表的结构<br>    分三步：<br>    定义一个ACL：access-list <number> <permit|deny> <sourceip wild|any=""><br>    进入指定接口：interface <interface><br>    绑定指定ACL：ip access-group <number> [in|out]</number></interface></sourceip></permit|deny></number></p>
+<p> 3、访问控制列表匹配原则<br>    访问控制列表默认的是deny any。<br>    一般是逐行匹配，也可以设置深度匹配。<br>    所以写访问控制列表一般是从小的范围向大的范围，成为梯形结构。<br>    一般在访问控制表的最后一行要写permit any。</p>
+<p> 4、命名方式的访问控制列表<br>    命名方式是用名称代替列表号，便于记忆，扩展了条目数量，可以是基本型或扩展型。<br>    命令方式ACL语法有些变化，支持删除一个列表中的某个语句。<br>    命名语法格式：<br>    router(config)#ip access-list {standard|extended} name<br>    router(config std nacl)#{deny|permit}]<s_ip><s_wild><br>    router(config ext nacl)#<br>{deny|permit}[protocol]<s_ip><s_wild><d_ip><d_wild>[op]<br>    第一行是定义命名方式访问控制列表类型：标准或扩展。<br>    第二行是标准命名方式的访问控制列表的语法格式。<br>    第三行是扩展命令方式的访问控制列表的语法格式。</d_wild></d_ip></s_wild></s_ip></s_wild></s_ip></p>
+<p>五、地址转换NAT<br> 1、NAT的认识<br>    NAT(Network Address Translate)是地址转换操作。<br>    NAT可以将局网中的私有IP转换成公有IP，解决了内部网络访问internet的问题。<br>    NAT可以做负载均衡，将内部多个服务器对外映射成一台服务器。<br>    定义：<br>    Inside local address: 内部网的私有IP。<br>    Inside global address: 内部网的公有IP。<br>    Outside global address: 互联网中的公有IP。<br>    Outside local address: 互联网中的公有IP对应的私有IP。</p>
+<pre><code>NAT可分为原地址变换SNAT和目的地址变换DNAT。
+按工作方式划分，可分为静态NAT和动态NAT。
+SNAT命令中使用source参数，DNAT命令中使用destination参数。
+(对已连接的返回包可自动对应)
+</code></pre><p> 2、静态NAT<br>    静态NAT是在指定接口上，对数据包的原IP或目的IP进行一对一的转换。<br>    常用于将某个私有IP固定的映射成为一个公有IP。<br>    语法：<br>    Router(config)#ip nat inside source static <ipa> <ipb><br>    在指定接口inside中对数据包的原地址进行变换，一般ipa是私网IP，ipb是公网IP。</ipb></ipa></p>
+<p> 3、动态NAT<br>    动态NAT一般用于将局域网中的多个私有IP从公有IP地址池中提取公有IP对外访问。<br>    设内部局域网是：10.66.0.0，公网IP地址池为：60.1.1.1~60.1.1.8<br>    当内部网络要访问internet时，从公网IP地址池中提取公网IP对外访问。<br>    语法：<br>    定义地址池p1：<br>    Router(config)#ip nat pool p1 60.1.1.1 60.1.1.8 netmask 255.255.255.0<br>    定义访问控制列表1：<br>    Router(config)#access-list 1 permit 10.66.0.0 0.0.255.255<br>    将访问控制列表1的源地址，动态的从公网IP地址池p1的提取公网IP:<br>    Router(config)#ip nat inside source list 1 pool p1</p>
+<p> 4、PAT<br>    PAT(Port Address Translate)是端口地址转换，将私有IP转换到公网IP的不同端口上。<br>    PAT是原将动态nat地址池pool改为用接口，并使用参数overload。属于动态NAT。<br>    语法：<br>    Router(config)#access-list 2 permit 10.66.0.0 0.0.255.255<br>    Router(config)#ip nat inside source list 2 interface s0/0 overload</p>
+<p> 5、基于NAT的负载均衡<br>    NAT可以实现负载均衡。<br>    一般的NAT都是将内部私有IP转换为公网IP，连接方向从内部向外。<br>    而对于负载均衡是将一个公网IP翻译成多个内部私有IP，连接访问从外向内。<br>    例如：<br>    内部的www服务负载过重，可将多台同样的服务器，但对外映射成一个IP地址，<br>    内部的多台服务器成为捆绑在一起构成虚拟服务器，外部访问这个虚拟服务器时，<br>    路由器轮流指向各台服务器，从而达到负载均衡。<br>    语法：<br>    定义地址池p2，使用rotary参数轮循。<br>    ra(config)#ip nat pool p2 10.1.1.2 10.1.1.4 netmask 255.255.255.0 type rotary<br>    ra(config)#access-list 1 permit 60.1.1.1<br>    ra(config)#ip nat inside destination list 1 pool p2<br>    在指定接口inside中建立list 2与pool p2的对应关系。Destination表示转换目的地址。</p>
+<p> 6、基于服务的NAT<br>    基于服务的NAT配置，细化了NAT的应用，转换可以具体到协议和端口，即指定的服务上。<br>    例如:<br>    对内网的虚拟服务器(使用一个公网IP)的访问：<br>    当访问TCP 20端口时就将它转到内部ftp服务上。<br>    当访问TCP 21端口时也将它转到内部ftp服务上。<br>    当访问TCP 80端口时就将它转换到内部的www服务器上。<br>    语法：<br>    Router(config)#ip nat inside source static tcp 10.65.1.2 20 60.1.1.1 20<br>    Router(config)#ip nat inside source static tcp 10.65.1.2 21 60.1.1.1 21<br>    Router(config)#ip nat inside source static tcp 10.65.1.3 80 60.1.1.1 80</p>
+<p>##常见广域网协议及特点<br>一、常用的广域网协议<br>    PPP(Point to Point Protocol)、HDLC(High level Data Link Control)、fram-relay。</p>
+<pre><code>PPP：点对点的协议，华为路由器默认封装，是面向字符的控制协议。
+HDLC：高级数据链路控制协议，Cisco路由器默认的封装，是面向位的控制协议。
+fram-relay：表示帧中继交换网，它是x.25分组交换网的改进，以虚电路的方式工作。
+</code></pre><p>二、PPP协议<br> 1、PPP协议的组成和特点<br>    PPP协议是在SLIP基础上开发的，解决了动态IP和差错检验问题。<br>    PPP协议包含数据链路控制协议LCP和网络控制协议NCP。<br>    LCP协议提供了通信双方进行参数协商的手段。<br>    NCP协议使PPP可以支持IP、IPX等多种网络层协议及IP地址的自动分配。<br>    PPP协议支持两种验证方式：PAP和CHAP。</p>
+<p> 2、PAP(Password Authentication Protocol)验证<br>    PAP验证是简单认证方式，采用明文传输，验证只在开始联接时进行。<br>    验证方式：<br>    (1)被验方先发起联接，将username和Password一起发给主验方。<br>    (2)主验方收到被验方username和Password后，在数据库中进行匹配，并回送ACK或NAK。</p>
+<p> 3、CHAP(Challenge-Handshake Authentication Protocol)验证<br>    CHAP是要求握手验证方式，安全性较高，采用密文传送用户名。<br>    主验方和被验方两边都有数据库。<br>    要求双方的用户名互为对方的主机名，即本端的用户名等于对端的主机名，且口令相同。<br>    验证方式：<br>    (1) 主验方向被验证方发送随机报文，将自己的主机名一起发送。<br>    (2) 被验方根据主验方的主机名在本端的用户表中查找口令字，<br>        将口令加密运算后加上自己的主机名及用户名回送主验方。<br>    (3) 主验方根据收到的被验方的用户名在本端查找口令字，根据验证结果返回验证结果。</p>
+<p>三、HDLC协议<br>    HDLC(High level Data Link Control)高级数据链路层控制协议。是Cisco的路由器<br>    默认的封装协议。<br>    HDLC是面向位协议，用”数据位”定义字段类型，而不用控制字符，通过帧中用”位”的组<br>    合进行管理和控制。<br>    帧格式为：<br>       字段：开始标志  地址字段  控制字段  信息字段  校验序列  结束标志<br>       位长：  8         8*n        8        任意       16        8<br>       字段：F=01111110   A         C         I         FCS    F=01111110</p>
+<p>四、帧中继<br>    企业网申请帧中继时，局端提供DLCI号和接入的LMI类型，局端是DCE，客户端是DTE。<br>    设局端提供的虚电路号DLCI是16和17，本地管理类型接口LMI是Cisco。<br>    设置内容：连接端口的IP地址，指定lmi类型，设置虚电路号。<br>    例如：<br>    Router(config)#int s0/0<br>    Router(config-if)#ip address 172.l6.20.1 255.255.255.0<br>    Router(config-if)#encap frame-relay<br>    Router(config-if)#frame-relay lmi-type cisco<br>    Router(config-if)#frame-relay dlci 16</p>
+<pre><code>如果在实验室条件下配置帧中继，要求用一个路由器做继交换机switching。
+Router(config)#frame-relay switching
+
+当要求一点对多点时，可以使用子接口的帧中继设置。
+</code></pre><p>##PIX防火墙特点与应用<br>一、PIX防火墙的认识<br>    PIX是Cisco的硬件防火墙，硬件防火墙有工作速度快，使用方便等特点。<br>    PIX有很多型号，并发连接数是PIX防火墙的重要参数。PIX25是典型的设备。<br>    PIX防火墙常见接口有：console、Failover、Ethernet、USB。<br>    网络区域：<br>    内部网络：inside<br>    外部网络：outside<br>    中间区域：称DMZ (停火区)。放置对外开放的服务器。</p>
+<p>二、防火墙的配置规则<br>    没有连接的状态(没有握手或握手不成功或非法的数据包)，任何数据包无法穿过防火墙。<br>    (内部发起的连接可以回包。通过ACL开放的服务器允许外部发起连接)<br>    inside可以访问任何outside和dmz区域。<br>    dmz可以访问outside区域。<br>    inside访问dmz需要配合static(静态地址转换)。<br>    outside访问dmz需要配合acl(访问控制列表)。</p>
+<p>三、PIX防火墙的配置模式：<br>    PIX防火墙的配置模式与路由器类似，有4种管理模式：<br>    PIXfirewall&gt;：用户模式<br>    PIXfirewall#：特权模式<br>    PIXfirewall(config)#：配置模式<br>    monitor&gt;：ROM监视模式，开机按住[Esc]键或发送一个“Break”字符，进入监视模式。</p>
+<p>四、PIX基本配置命令<br>    常用命令有：nameif、interface、ip address、nat、global、route、static等。<br> 1、nameif<br>    设置接口名称，并指定安全级别，安全级别取值范围为1～100，数字越大安全级别越高。<br>    例如要求设置：<br>    ethernet0命名为外部接口outside，安全级别是0。<br>    ethernet1命名为内部接口inside，安全级别是100。<br>    ethernet2命名为中间接口dmz, 安装级别为50。<br>    使用命令：<br>    PIX525(config)#nameif ethernet0 outside security0<br>    PIX525(config)#nameif ethernet1 inside security100<br>    PIX525(config)#nameif ethernet2 dmz security50</p>
+<p> 2、interface<br>    配置以太口工作状态，常见状态有：auto、100full、shutdown。<br>    auto：设置网卡工作在自适应状态。<br>    100full：设置网卡工作在100Mbit/s，全双工状态。<br>    shutdown：设置网卡接口关闭，否则为激活。<br>    命令：<br>    PIX525(config)#interface ethernet0 auto<br>    PIX525(config)#interface ethernet1 100full<br>    PIX525(config)#interface ethernet1 100full shutdown</p>
+<p> 3、ip address<br>    配置网络接口的IP地址，例如：<br>    PIX525(config)#ip address outside 133.0.0.1 255.255.255.252<br>    PIX525(config)#ip address inside 192.168.0.1 255.255.255.0<br>    内网inside接口使用私有地址192.168.0.1，外网outside接口使用公网地址133.0.0.1。</p>
+<p> 4、global<br>    指定公网地址范围：定义地址池。<br>    Global命令的配置语法：<br>    global (if_name) nat_id ip_address-ip_address [netmark global_mask]<br>    其中：<br>    (if_name)：表示外网接口名称，一般为outside。<br>    nat_id：建立的地址池标识(nat要引用)。<br>    ip_address-ip_address：表示一段ip地址范围。<br>    [netmark global_mask]：表示全局ip地址的网络掩码。</p>
+<pre><code>例如：
+PIX525(config)#global (outside) 1 133.0.0.1-133.0.0.15 
+地址池1对应的IP是：133.0.0.1-133.0.0.15
+PIX525(config)#global (outside) 1 133.0.0.1
+地址池1只有一个IP地址 133.0.0.1。 
+PIX525(config)#no global (outside) 1 133.0.0.1 
+表示删除这个全局表项。
+</code></pre><p> 5、nat<br>    地址转换命令，将内网的私有ip转换为外网公网ip。<br>    nat命令配置语法：nat (if_name) nat_id local_ip [netmark]<br>    其中：<br>    (if_name)：表示接口名称，一般为inside.<br>    nat_id：   表示地址池，由global命令定义。<br>    local_ip： 表示内网的ip地址。对于0.0.0.0表示内网所有主机。<br>    [netmark]：表示内网ip地址的子网掩码。 </p>
+<pre><code>在实际配置中nat命令总是与global命令配合使用。
+一个指定外部网络，一个指定内部网络，通过net_id联系在一起。
+例如：
+PIX525(config)#nat (inside) 1 0 0 
+表示内网的所有主机(0 0)都可以访问由global指定的外网。
+
+PIX525(config)#nat (inside) 1 172.16.5.0 255.255.0.0 
+表示只有172.16.5.0/16网段的主机可以访问global指定的外网。 
+</code></pre><p> 6、route<br>    route命令定义静态路由。<br>    语法：<br>    route (if_name) 0 0 gateway_ip [metric]<br>    其中：<br>    (if_name)：表示接口名称。<br>    0 0 ：表示所有主机<br>    Gateway_ip：表示网关路由器的ip地址或下一跳。<br>    [metric]：路由花费。缺省值是1。 </p>
+<pre><code>例如：
+PIX525(config)#route outside 0 0 133.0.0.1 1 
+设置缺省路由从outside口送出，下一跳是133.0.0.1。
+0 0 代表 0.0.0.0 0.0.0.0，表示任意网络。
+
+PIX525(config)#route inside 10.1.0.0 255.255.0.0 10.8.0.1 1
+设置到10.1.0.0网络下一跳是10.8.0.1。最后的“1”是花费。
+</code></pre><p> 7、static<br>    配置静态IP地址翻译，使内部地址与外部地址一一对应。<br>    语法：<br>    static(internal_if_name,external_if_name) outside_ip<em>addr inside</em> ip_address<br>    其中：<br>    internal_if_name表示内部网络接口，安全级别较高，如inside。<br>    external_if_name表示外部网络接口，安全级别较低，如outside。<br>    outside_ip<em>address表示外部网络的公有ip地址。<br>    inside</em> ip_address表示内部网络的本地ip地址。<br>    (括号内序顺是先内后外，外边的顺序是先外后内)<br>    例如：<br>    PIX525(config)#static (inside，outside) 133.0.0.1 192.168.0.8<br>    表示内部ip地址192.168.0.8，访问外部时被翻译成133.0.0.1全局地址。</p>
+<pre><code>PIX525(config)#static (dmz，outside) 133.0.0.1 172.16.0.2
+中间区域ip地址172.16.0.2，访问外部时被翻译成133.0.0.1全局地址。
+</code></pre><p> 8、conduit<br>    管道conduit命令用来设置允许数据从低安全级别的接口流向具有较高安全级别的接口。<br>    例如允许从outside到DMZ或inside方向的会话(作用同访问控制列表)。<br>    语法：<br>    conduit permit|deny protocol global_ip port[-port] foreign_ip [netmask]<br>    其中：<br>    global_ip是一台主机时前面加host参数，所有主机时用any表示。<br>    foreign_ip 表示外部ip。<br>    [netmask] 表示可以是一台主机或一个网络。<br>    例如：<br>    PIX525(config)#static (inside，outside) 133.0.0.1 192.168.0.3<br>    PIX525(config)#conduit permit tcp host 133.0.0.1 eq www any</p>
+<pre><code>这个例子说明static和conduit的关系。192.168.0.3是内网一台web服务器，
+现在希望外网的用户能够通过PIX防火墙访问web服务。
+所以先做static静态映射：192.168.0.3－&gt;133.0.0.1
+然后利用conduit命令允许任何外部主机对全局地址133.0.0.1进行http访问。
+</code></pre><p> 9、访问控制列表ACL<br>    访问控制列表的命令与couduit命令类似，<br>    例：<br>    PIX525(config)#access-list 100 permit ip any host 133.0.0.1 eq www<br>    PIX525(config)#access-list 100 deny ip any any<br>    PIX525(config)#access-group 100 in interface outside</p>
+<p> 10、侦听命令fixup<br>    作用是启用或禁止一个服务或协议，<br>    通过指定端口设置PIX防火墙要侦听listen服务的端口。<br>    例：<br>    PIX525(config)#fixup protocol ftp 21<br>    启用ftp协议，并指定ftp的端口号为21</p>
+<pre><code>PIX525(config)#fixup protocol http 8080
+PIX525(config)#no fixup protocol http 80
+启用http协议8080端口，禁止80端口。
+</code></pre><p> 11、telnet<br>    当从外部接口要telnet到PIX防火墙时，telnet数据流需要用vpn隧道ipsec提供保护或<br>    在PIX上配置SSH，然后用SSH client从外部到PIX防火墙。<br>    例：<br>    telnet local_ip [netmask]<br>    local_ip 表示被授权可以通过telnet访问到PIX的ip地址。<br>    如果不设此项，PIX的配置方式只能用console口接超级终端进行。</p>
+<p> 12、显示命令：<br>    show interface　         ；查看端口状态。<br>    show static　　          ；查看静态地址映射。<br>    show ip　　　　          ；查看接口ip地址。<br>    show config　　          ；查看配置信息。<br>    show run                 ；显示当前配置信息。<br>    write terminal　     　  ；将当前配置信息写到终端。<br>    show cpu usage           ；显示CPU利用率，排查故障时常用。<br>    show traffic             ；查看流量。<br>    show connect count       ；查看连接数。<br>    show blocks              ；显示拦截的数据包。<br>    show mem                 ；显示内存</p>
+<p> 13、DHCP 服务<br>    PIX具有DHCP服务功能。<br>    例：<br>    PIX525(config)#ip address dhcp<br>    PIX525(config)#dhcpd address 192.168.1.100-192.168.1.200 inside<br>    PIX525(config)#dhcp dns 202.96.128.68 202.96.144.47<br>    PIX525(config)#dhcp domain abc.com.cn</p>
+<p>五、PIX防火墙举例<br>    设：<br>    ethernet0命名为外部接口outside，安全级别是0。<br>    ethernet1被命名为内部接口inside，安全级别100。<br>    ethernet2被命名为中间接口dmz，安全级别50。</p>
+<p>PIX525#conf t<br>PIX525(config)#nameif ethernet0 outside security0<br>PIX525(config)#nameif ethernet1 inside security100<br>PIX525(config)#nameif ethernet2 dmz security50<br>PIX525(config)#interface ethernet0 auto<br>PIX525(config)#interface ethernet1 100full<br>PIX525(config)#interface ethernet2 100full<br>PIX525(config)#ip address outside 133.0.0.1 255.255.255.252       ;设置接口IP<br>PIX525(config)#ip address inside 10.66.1.200 255.255.0.0          ;设置接口IP<br>PIX525(config)#ip address dmz 10.65.1.200 255.255.0.0             ;设置接口IP<br>PIX525(config)#global (outside) 1 133.1.0.1-133.1.0.14            ;定义的地址池<br>PIX525(config)#nat (inside) 1 0 0                                 ;0 0表示所有</p>
+<p>PIX525(config)#route outside 0 0 133.0.0.2                        ;设置默认路由<br>PIX525(config)#static (dmz，outside) 133.1.0.1 10.65.1.101        ;静态NAT<br>PIX525(config)#static (dmz，outside) 133.1.0.2 10.65.1.102        ;静态NAT<br>PIX525(config)#static (inside，dmz) 10.66.1.200 10.66.1.200       ;静态NAT<br>PIX525(config)#access-list 101 permit ip any host 133.1.0.1 eq www;设置ACL<br>PIX525(config)#access-list 101 permit ip any host 133.1.0.2 eq ftp;设置ACL<br>PIX525(config)#access-list 101 deny ip any any                    ;设置ACL<br>PIX525(config)#access-group 101 in interface outside     ;将ACL应用在outside端口</p>
+<pre><code>当内部主机访问外部主机时，通过nat转换成公网IP，访问internet。
+当内部主机访问中间区域dmz时，将自己映射成自己访问服务器，否则内部主机将会
+</code></pre><p>映射成地址池的IP，到外部去找。<br>    当外部主机访问中间区域dmz时，对133.0.0.1映射成10.65.1.101， static是双向的。<br>    PIX的所有端口默认是关闭的，进入PIX要经过acl入口过滤。<br>    静态路由指示内部的主机和dmz的数据包从outside口出去。</p>
+<p>##PIX 防火墙应用举例<br>设：<br>  ethernet0命名为外部接口outside，安全级别是0。<br>  ethernet1被命名为内部接口inside，安全级别100。<br>  ethernet2被命名为中间接口dmz，安全级别50。</p>
+<p>参考配置：<br>PIX525#conf t                                                     ;进入配置模式<br>PIX525(config)#nameif ethernet0 outside security0                 ;设置定全级0<br>PIX525(config)#nameif ethernet1 inside security100                ;设置定全级100<br>PIX525(config)#nameif ethernet2 dmz security50                    ;设置定全级50<br>PIX525(config)#interface ethernet0 auto                           ;设置自动方式<br>PIX525(config)#interface ethernet1 100full                        ;设置全双工方式<br>PIX525(config)#interface ethernet2 100full                        ;设置全双工方式<br>PIX525(config)#ip address outside 133.0.0.1 255.255.255.252       ;设置接口IP<br>PIX525(config)#ip address inside 10.66.1.200 255.255.0.0          ;设置接口IP<br>PIX525(config)#ip address dmz 10.65.1.200 255.255.0.0             ;设置接口IP<br>PIX525(config)#global (outside) 1 133.1.0.1-133.1.0.14            ;定义的地址池<br>PIX525(config)#nat (inside) 1 0 0                                 ;0 0表示所有</p>
+<p>PIX525(config)#route outside 0 0 133.0.0.2                        ;设置默认路由<br>PIX525(config)#static (dmz，outside) 133.1.0.1 10.65.1.101        ;静态NAT<br>PIX525(config)#static (dmz，outside) 133.1.0.2 10.65.1.102        ;静态NAT<br>PIX525(config)#static (inside，dmz) 10.66.1.200 10.66.1.200       ;静态NAT<br>PIX525(config)#access-list 101 permit ip any host 133.1.0.1 eq www;设置ACL<br>PIX525(config)#access-list 101 permit ip any host 133.1.0.2 eq ftp;设置ACL<br>PIX525(config)#access-list 101 deny ip any any                    ;设置ACL<br>PIX525(config)#access-group 101 in interface outside     ;将ACL应用在outside端口</p>
+<pre><code>当内部主机访问外部主机时，通过nat转换成公网IP，访问internet。
+当内部主机访问中间区域dmz时，将自己映射成自己访问服务器，否则内部主机将会
+</code></pre><p>映射成地址池的IP，到外部去找。<br>    当外部主机访问中间区域dmz时，对133.0.0.1映射成10.65.1.101， static是双向的。<br>    PIX的所有端口默认是关闭的，进入PIX要经过acl入口过滤。<br>    静态路由指示内部的主机和dmz的数据包从outside口出去。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/22/华为模拟器-实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/05/24/Vim学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Vim学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/27/GUN-Linux编程[学习笔记]/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">GUN/Linux编程|学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 CodeJxer
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true,
+		showTags: true
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.234bc0.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Flask-Web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">just write it down</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
