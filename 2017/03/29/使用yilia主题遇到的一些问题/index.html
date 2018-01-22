@@ -8,21 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用yilia主题遇到的一些问题 | CodeJxer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;lt;未完待续&amp;gt;
-###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+  <meta name="description" content="###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用yilia主题遇到的一些问题">
 <meta property="og:url" content="http://yoursite.com/2017/03/29/使用yilia主题遇到的一些问题/index.html">
 <meta property="og:site_name" content="CodeJxer">
-<meta property="og:description" content="&amp;lt;未完待续&amp;gt;
-###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+<meta property="og:description" content="###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/tags.png">
-<meta property="og:updated_time" content="2018-01-22T11:58:06.335Z">
+<meta property="og:updated_time" content="2018-01-22T13:12:21.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用yilia主题遇到的一些问题">
-<meta name="twitter:description" content="&amp;lt;未完待续&amp;gt;
-###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
+<meta name="twitter:description" content="###1.主页文章如何只显示部分预览，而不是整篇文章yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/essaycut.png">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
@@ -183,8 +180,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&lt;未完待续&gt;</p>
-<p>###1.主页文章如何只显示部分预览，而不是整篇文章<br>yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式<br><a id="more"></a><br>所以就去翻yilia的配置文件啦<br>在blog根目录下执行：    </p>
+        <p>###1.主页文章如何只显示部分预览，而不是整篇文章<br>yilia主题下发布一篇文章在主页上默认是显示整篇文章的，这个时候如果有几篇文章比较长看起来很难受还不美观。所以我自然而然地想要把它改成预览模式<br><a id="more"></a><br>所以就去翻yilia的配置文件啦<br>在blog根目录下执行：    </p>
 <pre><code>vim ./themes/yilia/_config.yml
 </code></pre><p>打开yilia的配置文件<br>经过一番(神TM)推断-.-<br>觉得文章显示全文与否的关键地方应该是这里：   </p>
 <pre><code># 文章太长，截断按钮文字         
@@ -201,12 +197,19 @@ tags:
 
 ---
 </code></pre><p>效果如下：<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/%E4%BD%BF%E7%94%A8yilia%E4%B8%BB%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/tags.png" alt=""></p>
-<p>3.如何更改主页的头像<br>到blog根目录下执行命令：    </p>
+<p>###3.如何更改主页的头像<br>到blog根目录下执行命令：    </p>
 <pre><code>vim ./themes/yilia/_config.yml
 </code></pre><p>进入yilia主题的配置文件<br>找到这个：</p>
 <pre><code>#你的头像url
 avatar:
 </code></pre><p>添加avatar的值，头像的url<br>这个可以把头像存到github上，然后把github上给出的这个图像的url填上去就可以    </p>
+<p>###4.如何置顶文章<br>由于我担心博客多了之后由于内容不统一会显得十分杂乱，所以就写了一篇博客作为其余博客的目录，问题是hexo更新的时候默认是按照博客的创建时间进行排序的，这就会导致作为目录的博客随着时间的推移被挤到后面去，就起不到索引的作用了，所以查了一下文章置顶的方法</p>
+<blockquote>
+<p>title: 博客目录(索引)<br>date: 2018-01-22 18:19:50<br>tags: 关于此博客                     </p>
+<font color="red">top: true</font>
+
+</blockquote>
+<p>只要在博客的markdowm文档首部添上<code>top:true</code>即可</p>
 
       
 
@@ -409,39 +412,11 @@ avatar:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Flask-Web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
+                <a href="javascript:void(0)" class="js-tag color5">后台开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,19 +428,19 @@ avatar:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">后台开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
               </li>
             
             <div class="clearfix"></div>

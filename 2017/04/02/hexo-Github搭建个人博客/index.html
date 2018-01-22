@@ -9,32 +9,42 @@
   <title>hexo+Github搭建个人博客 | CodeJxer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="&amp;lt;未完待续&amp;gt;    
-这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    
-如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可">
+这篇博文记录一下利用gtihub的github page和hexo搭建个人博客的方法顺便作为一个教程。    
+     
+这篇教程会从零开始，何为从零开始，就是假设你没有github账号，没有配置git，不会用markdown写文档。在这篇教程的引导下你依然可以畅通无阻！      
+那么，开始吧~
+目录：      
+
+Node.js
+Github
+Githu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo+Github搭建个人博客">
 <meta property="og:url" content="http://yoursite.com/2017/04/02/hexo-Github搭建个人博客/index.html">
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="&amp;lt;未完待续&amp;gt;    
-这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    
-如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/installnodejs.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/nodejs2.1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-6.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-7.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/check-node.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/node-Path.jpg">
-<meta property="og:updated_time" content="2018-01-22T11:56:42.744Z">
+这篇博文记录一下利用gtihub的github page和hexo搭建个人博客的方法顺便作为一个教程。    
+     
+这篇教程会从零开始，何为从零开始，就是假设你没有github账号，没有配置git，不会用markdown写文档。在这篇教程的引导下你依然可以畅通无阻！      
+那么，开始吧~
+目录：      
+
+Node.js
+Github
+Githu">
+<meta property="og:updated_time" content="2018-01-22T12:29:20.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+Github搭建个人博客">
 <meta name="twitter:description" content="&amp;lt;未完待续&amp;gt;    
-这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    
-如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/installnodejs.jpg">
+这篇博文记录一下利用gtihub的github page和hexo搭建个人博客的方法顺便作为一个教程。    
+     
+这篇教程会从零开始，何为从零开始，就是假设你没有github账号，没有配置git，不会用markdown写文档。在这篇教程的引导下你依然可以畅通无阻！      
+那么，开始吧~
+目录：      
+
+Node.js
+Github
+Githu">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -195,19 +205,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>&lt;未完待续&gt;    </p>
-<p>这篇博文记录一下利用gtihub 的github page的hexo搭建个人博客的方法顺便作为一个教程。    </p>
-<p>如果你说你不会html，不会DIV+CSS，不会JavaScript，不知道Bootstrap，也不想维护数据库，不知道怎么搭网页的服务器，甚至都不想去租服务器来搭载你的个人博客，那也没关系，那么这个教程很适合你。这篇教程保证你可以在不用写一行代码就可搭建出一个漂亮的个人博客。           </p>
+<p>这篇博文记录一下利用gtihub的github page和hexo搭建个人博客的方法顺便作为一个教程。    </p>
 <!-- moer -->     
 <p>这篇教程会从零开始，何为从零开始，就是假设你没有github账号，没有配置git，不会用markdown写文档。在这篇教程的引导下你依然可以畅通无阻！      </p>
 <p>那么，开始吧~</p>
 <p>目录：      </p>
 <ul>
-<li><a href="#nodejs">Node.js</a><ul>
-<li><a href="#download-nodejs">下载</a></li>
-<li><a href="#install-nodejs">安装</a></li>
-<li><a href="#check-nodejs">检查</a></li>
-</ul>
-</li>
+<li><a href="#nodejs">Node.js</a></li>
 <li><a href="#Github">Github</a><ul>
 <li><a href="#Github-introduce">Github介绍</a></li>
 <li><a href="#Github-registe">注册</a></li>
@@ -244,33 +248,8 @@
 </li>
 </ul>
 <hr>
-<p>##<code id="nodejs">Node.js</code></p>
-<p>###<code id="download-nodejs">1.进入官网，选择对应版本下载<br>点此处打开node.js官网 → <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a>     </code></p>
-<p>进入官网之后点击DOWNLOADS页面<br>选择相应的版本下载即可：  .msi文件有安装引导程序，会更方便一些<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/installnodejs.jpg" alt="">      </p>
-<p>###<code id="install-nodejs">2.安装<br>下载完成后双击运行下载完成的.msi文件，弹出安装引导程序：<br>2.1安装引导程序-Next</code></p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/nodejs2.1.jpg" alt=""></p>
-<p>2.2许可协议界面-同意之后Next   </p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-2.png" alt=""></p>
-<p>2.3选择安装路径-Next</p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-3.png" alt=""><br>这里你可以更改node.js的存储路径</p>
-<p>2.4自定义安装-Next</p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-4.png" alt=""></p>
-<p>2.5准备就绪-Install</p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-5.png" alt=""></p>
-<p>2.6安装中-等待安装完毕</p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-6.png" alt=""></p>
-<p>2.7安装完成-Finish</p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/install-nodejs-2-7.png" alt=""></p>
-<p>###<code id="check-nodejs">3.检查是否正确配置<br>Home + R 然后 cmd 呼出控制台, 执行：</code></p>
-<pre><code>node -v   
-</code></pre><p>如果返回node的版本就说明node已经加到系统的PATH中，可以在任何地方运行node相关命令<br><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/check-node.jpg" alt=""></p>
-<p>如果提示</p>
-<pre><code>&apos;node&apos; 不是内部或外部命令，也不是可运行的程序
-或批处理文件。
-</code></pre><p>需要把你刚才安装node的路径添加到系统path变量中。</p>
-<p><img src="https://raw.githubusercontent.com/CodeJxer/markdown_image/master/hexo/github%2Bhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/node-Path.jpg" alt=""></p>
-<p>##<code id="Github">Github   </code></p>
-<p>###<code id="Github-introduce">Github介绍<br>GitHub 是一个面向开源及私有软件项目的托管平台，可以实现软件的版本控制<br>你也可以把它当做你的代码的云备份</code></p>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p><a href="">nodejs具体安装步骤看这个链接</a></p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>###<code id="Github-introduce">Github介绍<br>GitHub 是一个面向开源及私有软件项目的托管平台，可以实现软件的版本控制<br>你也可以把它当做你的代码的云备份</code></p>
 <p>###<code id="Github-registe">注册Github账号<br>点击此处跳转到Github注册界面 → <a href="https://github.com/" target="_blank" rel="external">Github注册</a></code></p>
 <p>###</p>
 <p>2.验证邮箱                      √<br>3.添加ssh验证                  √   </p>
@@ -488,39 +467,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Flask-Web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
+                <a href="javascript:void(0)" class="js-tag color5">后台开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,19 +483,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">后台开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">信息安全</a>
               </li>
             
             <div class="clearfix"></div>
