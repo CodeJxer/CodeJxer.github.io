@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/23/python内建模块tempfile/index.html">
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="简单介绍应用程序经常要保存一些临时的信息，这些信息不是特别重要，没有必要写在配置文件里，但又不能没有，这时候就可以把这些信息写到临时文件里。其实很多程序在运行的时候，都会产生一大堆临时文件，有些用于保存日志，有些用于保存一些临时数据，还有保存一些无关紧要的设置。在windows操作系统中，临时文件一般被保存在这个文件夹下：C:/Documents and Settings/User/Local S">
-<meta property="og:updated_time" content="2018-01-23T13:02:04.728Z">
+<meta property="og:updated_time" content="2018-01-23T15:40:51.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内建模块tempfile">
 <meta name="twitter:description" content="简单介绍应用程序经常要保存一些临时的信息，这些信息不是特别重要，没有必要写在配置文件里，但又不能没有，这时候就可以把这些信息写到临时文件里。其实很多程序在运行的时候，都会产生一大堆临时文件，有些用于保存日志，有些用于保存一些临时数据，还有保存一些无关紧要的设置。在windows操作系统中，临时文件一般被保存在这个文件夹下：C:/Documents and Settings/User/Local S">
@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>应用程序经常要保存一些临时的信息，这些信息不是特别重要，没有必要写在配置文件里，但又不能没有，这时候就可以把这些信息写到临时文件里。其实很多程序在运行的时候，都会产生一大堆临时文件，有些用于保存日志，有些用于保存一些临时数据，还有保存一些无关紧要的设置。在windows操作系统中，临时文件一般被保存在这个文件夹下：C:/Documents and Settings/User/Local Settings/Temp。其实我们最常用的IE浏览器在浏览网页的时候，会产生大量的临时文件，这些临时文件一般是我们浏览过的网页的本地副本。Python提供了一个tempfile模块，用来对临时数据进行操作。查阅Python手册，里面介绍了如下常用的方法：          </p>
+        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>应用程序经常要保存一些临时的信息，这些信息不是特别重要，没有必要写在配置文件里，但又不能没有，这时候就可以把这些信息写到临时文件里。其实很多程序在运行的时候，都会产生一大堆临时文件，有些用于保存日志，有些用于保存一些临时数据，还有保存一些无关紧要的设置。在windows操作系统中，临时文件一般被保存在这个文件夹下：C:/Documents and Settings/User/Local Settings/Temp。其实我们最常用的IE浏览器在浏览网页的时候，会产生大量的临时文件，这些临时文件一般是我们浏览过的网页的本地副本。Python提供了一个tempfile模块，用来对临时数据进行操作。查阅Python手册，里面介绍了如下常用的方法：<br><a id="more"></a></p>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p><strong><code>tempfile.mkstemp([suffix=”[, prefix=’tmp&#39;[, dir=None[, text=False]]]])</code></strong></p>
 <p>mkstemp方法用于创建一个临时文件。该方法仅仅用于创建临时文件，调用<code>tempfile.mkstemp</code>函数后，返回包含两个元素的元组，第一个元素指示操作该临时文件的安全级别，第二个元素指示该临时文件的路径。参数suffix和prefix分别表示临时文件名称的后缀和前缀；dir指定了临时文件所在的目录，如果没有指定目录，将根据系统环境变量TMPDIR, TEMP或者TMP的设置来保存临时文件；参数text指定了是否以文本的形式来操作文件，默认为False，表示以二进制的形式来操作文件。</p>
 <p><strong><code>tempfile.mkdtemp([suffix=”[, prefix=’tmp&#39;[, dir=None]]])</code></strong></p>

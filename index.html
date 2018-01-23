@@ -165,13 +165,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2028/01/23/博客目录-索引/">博客目录(索引)</a>
+      <a class="article-title" href="/2048/10/24/博客目录-索引/">博客目录(索引)</a>
     </h1>
   
 
         
-        <a href="/2028/01/23/博客目录-索引/" class="archive-article-date">
-  	<time datetime="2028-01-23T15:24:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2028-01-23</time>
+        <a href="/2048/10/24/博客目录-索引/" class="archive-article-date">
+  	<time datetime="2048-10-24T15:33:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2048-10-24</time>
 </a>
         
       </header>
@@ -180,7 +180,7 @@
       
         <h1 id="博客文章目录"><a href="#博客文章目录" class="headerlink" title="博客文章目录"></a>博客文章目录</h1>
         
-          <a class="article-more-a" href="/2028/01/23/博客目录-索引/#more">more >></a>
+          <a class="article-more-a" href="/2048/10/24/博客目录-索引/#more">more >></a>
         
       
 
@@ -209,7 +209,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2028/01/23/博客目录-索引/">展开全文 >></a>
+          <a class="article-more-a" href="/2048/10/24/博客目录-索引/">展开全文 >></a>
         </p>
       
 
@@ -458,24 +458,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>应用程序经常要保存一些临时的信息，这些信息不是特别重要，没有必要写在配置文件里，但又不能没有，这时候就可以把这些信息写到临时文件里。其实很多程序在运行的时候，都会产生一大堆临时文件，有些用于保存日志，有些用于保存一些临时数据，还有保存一些无关紧要的设置。在windows操作系统中，临时文件一般被保存在这个文件夹下：C:/Documents and Settings/User/Local Settings/Temp。其实我们最常用的IE浏览器在浏览网页的时候，会产生大量的临时文件，这些临时文件一般是我们浏览过的网页的本地副本。Python提供了一个tempfile模块，用来对临时数据进行操作。查阅Python手册，里面介绍了如下常用的方法：          </p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p><strong><code>tempfile.mkstemp([suffix=”[, prefix=’tmp&#39;[, dir=None[, text=False]]]])</code></strong></p>
-<p>mkstemp方法用于创建一个临时文件。该方法仅仅用于创建临时文件，调用<code>tempfile.mkstemp</code>函数后，返回包含两个元素的元组，第一个元素指示操作该临时文件的安全级别，第二个元素指示该临时文件的路径。参数suffix和prefix分别表示临时文件名称的后缀和前缀；dir指定了临时文件所在的目录，如果没有指定目录，将根据系统环境变量TMPDIR, TEMP或者TMP的设置来保存临时文件；参数text指定了是否以文本的形式来操作文件，默认为False，表示以二进制的形式来操作文件。</p>
-<p><strong><code>tempfile.mkdtemp([suffix=”[, prefix=’tmp&#39;[, dir=None]]])</code></strong></p>
-<p>该函数用于创建一个临时文件夹。参数的意思与tempfile.mkdtemp一样。它返回临时文件夹的绝对路径。</p>
-<p><strong><code>tempfile.mktemp([suffix=”[, prefix=’tmp&#39;[, dir=None]]])</code></strong></p>
-<p>mktemp用于返回一个临时文件的路径，但并不创建该临时文件。</p>
-<p><strong><code>tempfile.tempdir</code></strong></p>
-<p>该属性用于指定创建的临时文件（夹）所在的默认文件夹。如果没有设置该属性或者将其设为None，Python将返回以下环境变量TMPDIR, TEMP, TEMP指定的目录，如果没有定义这些环境变量，临时文件将被创建在当前工作目录。</p>
-<p><strong><code>tempfile.gettempdir()</code></strong></p>
-<p><code>gettempdir()</code>则用于返回保存临时文件的文件夹路径。</p>
-<p><strong><code>tempfile.TemporaryFile([mode=’w+b&#39;[, bufsize=-1[, suffix=”[, prefix=’tmp&#39;[, dir=None]]]]])</code></strong></p>
-<p>该函数返回一个 类文件 对象(file-like)用于临时数据保存（实际上对应磁盘上的一个临时文件）。当文件对象被close或者被del的时候，临时文件将从磁盘上删除。mode、bufsize参数的单方与open()函数一样；suffix和prefix指定了临时文件名的后缀和前缀；dir用于设置临时文件默认的保存路径。返回的类文件对象有一个file属性，它指向真正操作的底层的file对象。</p>
-<p><strong><code>tempfile.NamedTemporaryFile([mode=’w+b&#39;[, bufsize=-1[, suffix=”[, prefix=’tmp&#39;[, dir=None[, delete=True]]]]]])</code></strong></p>
-<p><code>tempfile.NamedTemporaryFile</code>函数的行为与<code>tempfile.TemporaryFile</code>类似，只不过它多了一个delete参数，用于指定类文件对象close或者被del之后，是否也一同删除磁盘上的临时文件（当delete = True的时候，行为与TemporaryFile一样）。</p>
-<p><strong><code>tempfile.SpooledTemporaryFile([max_size=0[, mode=’w+b&#39;[, bufsize=-1[, suffix=”[, prefix=’tmp&#39;[, dir=None]]]]]])</code></strong></p>
-<p><code>tempfile.SpooledTemporaryFile</code>函数的行为与<code>tempfile.TemporaryFile</code>类似。不同的是向类文件对象写数据的时候，数据长度只有到达参数max_size指定大小时，或者调用类文件对象的fileno()方法，数据才会真正写入到磁盘的临时文件中。</p>
-
+        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>应用程序经常要保存一些临时的信息，这些信息不是特别重要，没有必要写在配置文件里，但又不能没有，这时候就可以把这些信息写到临时文件里。其实很多程序在运行的时候，都会产生一大堆临时文件，有些用于保存日志，有些用于保存一些临时数据，还有保存一些无关紧要的设置。在windows操作系统中，临时文件一般被保存在这个文件夹下：C:/Documents and Settings/User/Local Settings/Temp。其实我们最常用的IE浏览器在浏览网页的时候，会产生大量的临时文件，这些临时文件一般是我们浏览过的网页的本地副本。Python提供了一个tempfile模块，用来对临时数据进行操作。查阅Python手册，里面介绍了如下常用的方法：<br>
+        
+          <a class="article-more-a" href="/2018/01/23/python内建模块tempfile/#more">more >></a>
+        
       
 
       
@@ -536,25 +522,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="源代码分析"><a href="#源代码分析" class="headerlink" title="源代码分析"></a><font color="blue">源代码分析</font></h1><h2 id="代码目录结构"><a href="#代码目录结构" class="headerlink" title="代码目录结构"></a><strong>代码目录结构</strong></h2><pre><code>- pydub
-    - __init__.py            #引入AudioSegment
-    - audio_segment.py
-    - effects.py
-    - exceptions.py
-    - generators.py
-    - logging_utils.py        #日志
-    - playback.py
-    - pyaudioop.py
-    - scipy_effects.py
-    - silence.py
-    - utils.py
-</code></pre><ul>
-<li>audio_segment.py详解</li>
-</ul>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a><strong>使用方法</strong></h2><h3 id="打开一个音频文件"><a href="#打开一个音频文件" class="headerlink" title="打开一个音频文件"></a>打开一个音频文件</h3><pre><code>from pydub import AudioSegment
-song = AudioSegment.from_mp3(&apos;D4.mp3&apos;)
-</code></pre><h2 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a><strong>补充知识</strong></h2><h3 id="关于数字音频的采样精度"><a href="#关于数字音频的采样精度" class="headerlink" title="关于数字音频的采样精度"></a>关于数字音频的采样精度</h3><p>音频的一个采样用几个bit来表示，叫采样精度，又叫位深（bit-depth）。我们常用的位深是16bit，也就是16bit表达一个采样，这样，最高信噪比可以表示为20log（2^16）=96db，而用24bit位深的话，最高信噪比可以到达20log(2^24)=144db。<br>专业的数字音频处理软件内部其实都是用float型来表示一个采样，也就是32bit，那么最高信噪比可以达到193db，这个信噪比已经非常高了。<br>我们需要达到的目标，比如达到业界vivo的codec cs4398信噪比120db，这个只需要24bit就能在理论上提供了可行性。<br>对于MP3等有损格式，无论压缩前的pcm数据是24bit还是16bit的，压缩过程中都会尽量使用最小bit-depth来存储数据，因此解码时的bit-depth理论上时没有意义的。但是工程上讲，使用24bit解码器的mp3，解码时进行加减乘除运算的精度变大，从而能提高一些信噪比。<br>为了方便处理，通常会把24bit放入一个32bit int，怎么放呢？跟容器类型和机器大小端有关系。<br>比如WAV容器，它存储是小端的，这样，存储0xAABBCC这个24bit的采样就需要存成：<br>CC BB AA （—地址从低到高—&gt;）<br>为了转化为 int32_t 进行处理，需要把它的高位填充到一个 int32_t 型数中的高位，而最低 8位补零，最终得到 0xAABBCC00 。由于arm 也是小端的，内存中应该是这样的布局：<br>00 CC BB AA （—地址从低到高—&gt;）</p>
-
+        <h1 id="源代码分析"><a href="#源代码分析" class="headerlink" title="源代码分析"></a><font color = blue>源代码分析</font></h1><h2 id="代码目录结构"><a href="#代码目录结构" class="headerlink" title="代码目录结构"></a><strong>代码目录结构</strong></h2>
+        
+          <a class="article-more-a" href="/2018/01/23/python音频处理库pydub/#more">more >></a>
+        
       
 
       
