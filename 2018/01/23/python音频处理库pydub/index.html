@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/23/python音频处理库pydub/index.html">
 <meta property="og:site_name" content="CodeJxer">
 <meta property="og:description" content="源代码分析代码目录结构">
-<meta property="og:updated_time" content="2018-01-23T15:40:30.207Z">
+<meta property="og:updated_time" content="2018-01-24T11:49:58.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python音频处理库pydub">
 <meta name="twitter:description" content="源代码分析代码目录结构">
@@ -189,13 +189,46 @@
     - pyaudioop.py
     - scipy_effects.py
     - silence.py
-    - utils.py
+    - utils.py                #工具
 </code></pre><ul>
 <li>audio_segment.py详解</li>
 </ul>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a><strong>使用方法</strong></h2><h3 id="打开一个音频文件"><a href="#打开一个音频文件" class="headerlink" title="打开一个音频文件"></a>打开一个音频文件</h3><pre><code>from pydub import AudioSegment
-song = AudioSegment.from_mp3(&apos;D4.mp3&apos;)
-</code></pre><h2 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a><strong>补充知识</strong></h2><h3 id="关于数字音频的采样精度"><a href="#关于数字音频的采样精度" class="headerlink" title="关于数字音频的采样精度"></a>关于数字音频的采样精度</h3><p>音频的一个采样用几个bit来表示，叫采样精度，又叫位深（bit-depth）。我们常用的位深是16bit，也就是16bit表达一个采样，这样，最高信噪比可以表示为20log（2^16）=96db，而用24bit位深的话，最高信噪比可以到达20log(2^24)=144db。<br>专业的数字音频处理软件内部其实都是用float型来表示一个采样，也就是32bit，那么最高信噪比可以达到193db，这个信噪比已经非常高了。<br>我们需要达到的目标，比如达到业界vivo的codec cs4398信噪比120db，这个只需要24bit就能在理论上提供了可行性。<br>对于MP3等有损格式，无论压缩前的pcm数据是24bit还是16bit的，压缩过程中都会尽量使用最小bit-depth来存储数据，因此解码时的bit-depth理论上时没有意义的。但是工程上讲，使用24bit解码器的mp3，解码时进行加减乘除运算的精度变大，从而能提高一些信噪比。<br>为了方便处理，通常会把24bit放入一个32bit int，怎么放呢？跟容器类型和机器大小端有关系。<br>比如WAV容器，它存储是小端的，这样，存储0xAABBCC这个24bit的采样就需要存成：<br>CC BB AA （—地址从低到高—&gt;）<br>为了转化为 int32_t 进行处理，需要把它的高位填充到一个 int32_t 型数中的高位，而最低 8位补零，最终得到 0xAABBCC00 。由于arm 也是小端的，内存中应该是这样的布局：<br>00 CC BB AA （—地址从低到高—&gt;）</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a><strong>使用方法</strong></h2><h3 id="打开一个音频文件"><a href="#打开一个音频文件" class="headerlink" title="打开一个音频文件"></a><font color="gree">打开一个音频文件</font></h3><ul>
+<li><p>打开WAV文件         </p>
+<pre><code>from pydub import AudioSegment
+song = AudioSegment.from_wav(&quot;never_gonna_give_you_up.wav&quot;)
+</code></pre></li>
+<li><p>或mp3        </p>
+<pre><code>song = AudioSegment.from_mp3(&quot;never_gonna_give_you_up.mp3&quot;)
+</code></pre></li>
+<li><p>或ogg，flv或ffmpeg支持的任何其他东西</p>
+<pre><code>ogg_version = AudioSegment.from_ogg(&quot;never_gonna_give_you_up.ogg&quot;)
+flv_version = AudioSegment.from_flv(&quot;never_gonna_give_you_up.flv&quot;)
+
+mp4_version = AudioSegment.from_file(&quot;never_gonna_give_you_up.mp4&quot;, &quot;mp4&quot;)
+wma_version = AudioSegment.from_file(&quot;never_gonna_give_you_up.wma&quot;, &quot;wma&quot;)
+aac_version = AudioSegment.from_file(&quot;never_gonna_give_you_up.aiff&quot;, &quot;aac&quot;)
+</code></pre></li>
+</ul>
+<h3 id="音频切片"><a href="#音频切片" class="headerlink" title="音频切片"></a><font color="gree">音频切片</font></h3><pre><code># pydub以毫秒为单位工作
+ten_seconds = 10 * 1000
+
+first_10_seconds = song[:ten_seconds]
+
+last_5_seconds = song[-5000:]        
+</code></pre><h3 id="放大开头音量，减小结尾音量"><a href="#放大开头音量，减小结尾音量" class="headerlink" title="放大开头音量，减小结尾音量"></a><font color="gree">放大开头音量，减小结尾音量</font></h3><pre><code># 放大6dB音量
+beginning = first_10_seconds + 6
+
+# 衰减3dB音量
+end = last_5_seconds - 3
+</code></pre><h3 id="连接音频（将一个文件添加到另一个文件的末尾）"><a href="#连接音频（将一个文件添加到另一个文件的末尾）" class="headerlink" title="连接音频（将一个文件添加到另一个文件的末尾）"></a><font color="gree">连接音频（将一个文件添加到另一个文件的末尾）</font></h3><pre><code>without_the_middle = beginning + end
+</code></pre><h3 id="交叉淡化（开头和结束不修改）"><a href="#交叉淡化（开头和结束不修改）" class="headerlink" title="交叉淡化（开头和结束不修改）"></a><font color="gree">交叉淡化（开头和结束不修改）</font></h3><pre><code>with_style = beginning.append（end， crossfade = 1500）
+</code></pre><h3 id="重复"><a href="#重复" class="headerlink" title="重复"></a><font color="gree">重复</font></h3><pre><code>＃重复剪辑两次 
+do_it_over = with_style *  2
+</code></pre><h3 id="淡出（注意，你可以链接操作，因为一切返回一个AudioSegment）"><a href="#淡出（注意，你可以链接操作，因为一切返回一个AudioSegment）" class="headerlink" title="淡出（注意，你可以链接操作，因为一切返回一个AudioSegment）"></a><font color="gree">淡出（注意，你可以链接操作，因为一切返回一个AudioSegment）</font></h3><pre><code>＃ 2秒的淡入，3秒的淡出 
+awesome = do_it_over.fade_in（ 2000）.fade_out（ 3000）
+</code></pre><h3 id="保存结果（可能需要ffmpeg）"><a href="#保存结果（可能需要ffmpeg）" class="headerlink" title="保存结果（可能需要ffmpeg）"></a><font color="gree">保存结果（可能需要ffmpeg）</font></h3><pre><code>awesome.export（“ mashup.mp3 ”，format = “ mp3 ”）    
+</code></pre><h2 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a><strong>补充知识</strong></h2><h3 id="关于数字音频的采样精度-bit-depth"><a href="#关于数字音频的采样精度-bit-depth" class="headerlink" title="关于数字音频的采样精度(bit-depth)"></a>关于数字音频的采样精度(bit-depth)</h3><p>音频的一个采样用几个bit来表示，叫采样精度，又叫位深（bit-depth）。我们常用的位深是16bit，也就是16bit表达一个采样，这样，最高信噪比可以表示为20log（2^16）=96db，而用24bit位深的话，最高信噪比可以到达20log(2^24)=144db。<br>专业的数字音频处理软件内部其实都是用float型来表示一个采样，也就是32bit，那么最高信噪比可以达到193db，这个信噪比已经非常高了。<br>我们需要达到的目标，比如达到业界vivo的codec cs4398信噪比120db，这个只需要24bit就能在理论上提供了可行性。<br>对于MP3等有损格式，无论压缩前的pcm数据是24bit还是16bit的，压缩过程中都会尽量使用最小bit-depth来存储数据，因此解码时的bit-depth理论上时没有意义的。但是工程上讲，使用24bit解码器的mp3，解码时进行加减乘除运算的精度变大，从而能提高一些信噪比。<br>为了方便处理，通常会把24bit放入一个32bit int，怎么放呢？跟容器类型和机器大小端有关系。<br>比如WAV容器，它存储是小端的，这样，存储0xAABBCC这个24bit的采样就需要存成：<br>CC BB AA （—地址从低到高—&gt;）<br>为了转化为 int32_t 进行处理，需要把它的高位填充到一个 int32_t 型数中的高位，而最低 8位补零，最终得到 0xAABBCC00 。由于arm 也是小端的，内存中应该是这样的布局：<br>00 CC BB AA （—地址从低到高—&gt;）</p>
 
       
 
@@ -398,6 +431,10 @@ song = AudioSegment.from_mp3(&apos;D4.mp3&apos;)
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">程序员</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
@@ -406,7 +443,11 @@ song = AudioSegment.from_mp3(&apos;D4.mp3&apos;)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">python内建模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -414,11 +455,11 @@ song = AudioSegment.from_mp3(&apos;D4.mp3&apos;)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">程序员</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python内建模块</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,14 +468,6 @@ song = AudioSegment.from_mp3(&apos;D4.mp3&apos;)
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音频处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
