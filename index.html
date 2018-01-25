@@ -234,7 +234,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/25/linux定时执行shell-Script/">linux定时执行shell Script</a>
+      <a class="article-title" href="/2018/01/25/linux定时执行shell-Script/">linux使用crontab命令定时执行任务</a>
     </h1>
   
 
@@ -247,22 +247,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>step1:write a test.sh
-    just like:
-
-    test.sh  :
-    #!bin/sh
-    echo &apos;just test&apos; &gt;&gt; /home/mininet/test/test.txt
-
-step2:write a .conf Script
-    just like:
-
-    mininetcron.conf  :
-    0,30 * * * * /home/mininet/test/test.sh
-
-step3:add the mininetcron.conf to the crontab
-    $ crontab mininetcron.conf
-</code></pre>
+        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>cron是linux提供的一种服务器，用于定期执行shell命令。主要由两部分组成</p>
+<ul>
+<li>crond：cron服务的守护进程，用于定期调度</li>
+<li><p>crontab：cron提供的UI，用于编辑调度计划</p>
+        
+          <a class="article-more-a" href="/2018/01/25/linux定时执行shell-Script/#more">more >></a>
+        
       
 
       

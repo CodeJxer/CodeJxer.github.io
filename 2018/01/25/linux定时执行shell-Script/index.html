@@ -6,48 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>linux定时执行shell Script | CodeJxer</title>
+  <title>linux使用crontab命令定时执行任务 | CodeJxer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="step1:write a test.sh
-    just like:
+  <meta name="description" content="简单介绍cron是linux提供的一种服务器，用于定期执行shell命令。主要由两部分组成
 
-    test.sh  :
-    #!bin/sh
-    echo &amp;apos;just test&amp;apos; &amp;gt;&amp;gt; /home/mininet/test/test.txt
-
-step2:write a .conf Script
-    just like:
-
-    mininetcron.conf">
+crond：cron服务的守护进程，用于定期调度
+crontab：cron提供的UI，用于编辑调度计划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux定时执行shell Script">
+<meta property="og:title" content="linux使用crontab命令定时执行任务">
 <meta property="og:url" content="http://yoursite.com/2018/01/25/linux定时执行shell-Script/index.html">
 <meta property="og:site_name" content="CodeJxer">
-<meta property="og:description" content="step1:write a test.sh
-    just like:
+<meta property="og:description" content="简单介绍cron是linux提供的一种服务器，用于定期执行shell命令。主要由两部分组成
 
-    test.sh  :
-    #!bin/sh
-    echo &amp;apos;just test&amp;apos; &amp;gt;&amp;gt; /home/mininet/test/test.txt
-
-step2:write a .conf Script
-    just like:
-
-    mininetcron.conf">
-<meta property="og:updated_time" content="2018-01-24T16:19:20.988Z">
+crond：cron服务的守护进程，用于定期调度
+crontab：cron提供的UI，用于编辑调度计划">
+<meta property="og:updated_time" content="2018-01-25T06:07:39.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux定时执行shell Script">
-<meta name="twitter:description" content="step1:write a test.sh
-    just like:
+<meta name="twitter:title" content="linux使用crontab命令定时执行任务">
+<meta name="twitter:description" content="简单介绍cron是linux提供的一种服务器，用于定期执行shell命令。主要由两部分组成
 
-    test.sh  :
-    #!bin/sh
-    echo &amp;apos;just test&amp;apos; &amp;gt;&amp;gt; /home/mininet/test/test.txt
-
-step2:write a .conf Script
-    just like:
-
-    mininetcron.conf">
+crond：cron服务的守护进程，用于定期调度
+crontab：cron提供的UI，用于编辑调度计划">
   
     <link rel="alternative" href="/atom.xml" title="CodeJxer" type="application/atom+xml">
   
@@ -194,7 +173,7 @@ step2:write a .conf Script
         
   
     <h1 class="article-title" itemprop="name">
-      linux定时执行shell Script
+      linux使用crontab命令定时执行任务
     </h1>
   
 
@@ -207,14 +186,81 @@ step2:write a .conf Script
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>step1:write a test.sh
+        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>cron是linux提供的一种服务器，用于定期执行shell命令。主要由两部分组成</p>
+<ul>
+<li>crond：cron服务的守护进程，用于定期调度</li>
+<li><p>crontab：cron提供的UI，用于编辑调度计划</p>
+<a id="more"></a>
+<p>参数选项：</p>
+</li>
+<li><p>“-e”编辑：与vim类似，但是在保存退出时，会检查任务语法；</p>
+</li>
+<li>“-l”列举所有任务；</li>
+<li>“-r”删除所有任务；</li>
+</ul>
+<p>##基本语法</p>
+<pre><code>#min hour day month week command
+30    10   *    *    *   /home/test/test.sh
+</code></pre><p>上面这段的意思是：每天的10点30分执行/home/test目录下的test.sh程序        </p>
+<p>以上命令中每一块的具体意义如下：</p>
+<table>
+<thead>
+<tr>
+<th>意义</th>
+<th>分钟</th>
+<th>小时</th>
+<th>天</th>
+<th>月份</th>
+<th>周</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>范围</td>
+<td>0-59</td>
+<td>0-23</td>
+<td>1-31</td>
+<td>1-12</td>
+<td>0-7</td>
+<td>shell程序的绝对路径</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>当前所指向的参数的所有可能取值</td>
+</tr>
+<tr>
+<td>,</td>
+<td>并列的若干个时间</td>
+</tr>
+<tr>
+<td>-</td>
+<td>联系区间</td>
+</tr>
+<tr>
+<td>/n</td>
+<td>每隔n个单位</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h2><pre><code>step1:write a test.sh
     just like:
 
     test.sh  :
     #!bin/sh
     echo &apos;just test&apos; &gt;&gt; /home/mininet/test/test.txt
 
-step2:write a .conf Script
+step2:write a .conf file
     just like:
 
     mininetcron.conf  :
@@ -222,7 +268,10 @@ step2:write a .conf Script
 
 step3:add the mininetcron.conf to the crontab
     $ crontab mininetcron.conf
-</code></pre>
+</code></pre><h2 id="一些其他的例子"><a href="#一些其他的例子" class="headerlink" title="一些其他的例子"></a>一些其他的例子</h2><ul>
+<li>0 17 <em> </em> 5 mail all_members &lt; weekily_report_notify // 每周五17点整，提醒所有组员发周报</li>
+</ul>
+
       
 
       
