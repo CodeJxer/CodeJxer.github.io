@@ -227,6 +227,82 @@
 
 
   
+    <article id="post-linux定时执行shell-Script" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/25/linux定时执行shell-Script/">linux定时执行shell Script</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/25/linux定时执行shell-Script/" class="archive-article-date">
+  	<time datetime="2018-01-24T16:07:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>step1:write a test.sh
+    just like:
+
+    test.sh  :
+    #!bin/sh
+    echo &apos;just test&apos; &gt;&gt; /home/mininet/test/test.txt
+
+step2:write a .conf Script
+    just like:
+
+    mininetcron.conf  :
+    0,30 * * * * /home/mininet/test/test.sh
+
+step3:add the mininetcron.conf to the crontab
+    $ crontab mininetcron.conf
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/25/linux定时执行shell-Script/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-mininet的安装以及简单使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -727,74 +803,6 @@
 
 
   
-    <article id="post-Vim学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/24/Vim学习/">Vim学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/24/Vim学习/" class="archive-article-date">
-  	<time datetime="2017-05-24T08:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>打开/创建文件：<br>vi filename</p>
-<p>Vim的分屏功能<br>1、分屏启动Vim</p>
-<p>使用小写的o参数来上下分屏（横向分屏）。</p>
-<p>vim -on file1 file2 …</p>
-<p>使用大写的O参数来左右分屏（纵向分屏）。</p>
-<p>vim -On file1 file2 …</p>
-<p>注释: n是数字，表示分成几个屏。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/24/Vim学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -888,10 +896,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">程序员</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
@@ -900,11 +904,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python内建模块</a>
+                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -912,11 +912,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color4">程序员</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">python内建模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -925,6 +933,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音频处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
