@@ -227,6 +227,384 @@
 
 
   
+    <article id="post-HTTP的session和cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/13/HTTP的session和cookie/">HTTP的session和cookie</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/13/HTTP的session和cookie/" class="archive-article-date">
+  	<time datetime="2018-02-13T13:44:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、什么是http-session-有什么用"><a href="#一、什么是http-session-有什么用" class="headerlink" title="一、什么是http session,有什么用"></a>一、什么是http session,有什么用</h2><p>HTTP协议本身是无状态的,本身并不能支持服务端保存客户端的状态信息，于是，Web Server中引入了session的概念，用来保存客户端的状态信息。 </p>
+<p>这 里用一个形象的比喻来解释session的工作方式。假设Web Server是一个商场的存包处，HTTP Request是一个顾客，第一次来到存包处，管理员把顾客的物品存放在某一个柜子里面（这个柜子就相当于Session），然后把一个号码牌交给这个顾 客，作为取包凭证（这个号码牌就是Session ID）。顾客（HTTP Request）下一次来的时候，就要把号码牌（Session ID）交给存包处（Web Server）的管理员。管理员根据号码牌（Session ID）找到相应的柜子（Session），根据顾客（HTTP Request）的请求，Web Server可以取出、更换、添加柜子（Session）中的物品，Web Server也可以让顾客（HTTP Request）的号码牌和号码牌对应的柜子（Session）失效。顾客（HTTP Request）的忘性很大，管理员在顾客回去的时候（HTTP Response）都要重新提醒顾客记住自己的号码牌（Session ID）。这样，顾客（HTTP Request）下次来的时候，就又带着号码牌回来了。<br>我们可以看到，Session ID实际上是在客户端和服务端之间通过HTTP Request和HTTP Response传来传去的。</p>
+<h2 id="二、一般用来实现Session的方法有两种·"><a href="#二、一般用来实现Session的方法有两种·" class="headerlink" title="二、一般用来实现Session的方法有两种·"></a>二、一般用来实现Session的方法有两种·</h2><p>1）URL重写。<br>Web Server在返回Response的时候，检查页面中所有的URL，包括所有的连接，和HTML Form的Action属性，在这些URL后面加上“;jsessionid=XXX”。<br>下一次，用户访问这个页面中的URL。jsessionid就会传回到Web Server。       </p>
+<p>2）Cookie。                   </p>
+<p>如果客户端支持Cookie，Web Server在返回Response的时候，在Response的Header部分，加入一个“set-cookie: jsessionid=XXXX”header属性，把jsessionid放在Cookie里传到客户端。 </p>
+<p>客户端会把Cookie存放在本地文件里，下一次访问Web Server的时候，再把Cookie的信息放到HTTP Request的“Cookie”header属性里面，这样jsessionid就随着HTTP Request返回给Web Server。</p>
+<h2 id="三、session的工作原理"><a href="#三、session的工作原理" class="headerlink" title="三、session的工作原理"></a>三、session的工作原理</h2><p>1）当一个用户向服务器发送第一个请求时，服务器为其建立一个session，并为此session创建一个标识号；     </p>
+<p>2 ) 这个用户随后的所有请求都应包括这个标识号。服务器会校对这个标识号以判断请求属于哪个session。 </p>
+<p>这种机制不使用IP作为标识，是因为很多机器是通过代理服务器方式上网，没法区分每一台机器。</p>
+<p>对于session标识号（sessionID），有两种方式实现：cookies和URL重写。</p>
+<h2 id="四、HttpSession总结"><a href="#四、HttpSession总结" class="headerlink" title="四、HttpSession总结"></a>四、HttpSession总结</h2><p>1、HTTP协议本身是“连接-请求-应答-关闭连接”模式的，是一种无状态协议（HTTP只是一个传输协议）；<br>2、Cookie规范是为了给HTTP增加状态跟踪用的（如果要精确把握，建议仔细阅读一下相关的RFC），但不是唯一的手段；<br>3、所谓Session，指的是客户端和服务端之间的一段交互过程的状态信息（数据）；这个状态如何界定，生命期有多长，这是应用本身的事情；<br>4、 由于B/S计算模型中计算是在服务器端完成的，客户端只有简单的显示逻辑，所以，Session数据对客户端应该是透明的不可理解的并且应该受控于服 务端；Session数据要么保存到服务端（HttpSession），要么在客户端和服务端之间传递（Cookie或url rewritting或Hidden input）；<br>5、由于HTTP本身的无状态性，服务端无法知道客户端相继发来的请求是来自一个客户的，所以，当使用服务端HttpSession存储会话数据的时候客户端的每个请求都应该包含一个session的标识(sid, jsessionid 等等)来告诉服务端；<br>6、会话数据保存在服务端（如HttpSession）的好处是减少了HTTP请求的长度，提高了网络传输效率；客户端session信息存储则相反；<br>7、 客户端Session存储只有一个办法：cookie(url rewritting和hidden input因为无法做到持久化，不算，只能作为交换session id的方式，即a method of session tracking)，而服务端做法大致也是一个道理：容器有个session管理器（如tomcat的 org.apache.catalina.session包里面的类），提供session的生命周期和持久化管理并提供访问session数据的 api；<br>8、使用服务端还是客户端session存储要看应用的实际情况的。一般来说不要求用户注册登录的公共服务系统（如google）采用 cookie做客户 端session存储（如google的用户偏好设置），而有用户管理的系统则使用服务端存储。原因很显然：无需用户登录的系统唯一能够标识用户的就是用 户的电脑，换一台机器就不知道谁是谁了，服务端session存储根本不管用；而有用户管理的系统则可以通过用户id来管理用户个人数据，从而提供任意复 杂的个性化服务；<br>9、客户端和服务端的session存储在性能、安全性、跨站能力、编程方便性等方面都有一定的区别，而且优劣并非绝对（譬如 TheServerSide 号称不使用HttpSession，所以性能好，这很显然：一个具有上亿的访问用户的系统，要在服务端数据库中检索出用户的偏好信息显然是低效 的，Session管理器不管用什么数据结构和算法都要耗费大量内存和CPU时间；而用cookie，则根本不用检索和维护session数据，服务器可 以做成无状态的，当然高效）；<br>10、 所谓的“会话cookie”简单的说就是没有明确指明有效期的cookie，仅在浏览器当前进程生命期内有效，可以被后继的Set-Cookie操作清除掉。<br>当 程序需要为某个客户端的请求创建一个session的时候，服务器首先检查这个客户端的请求里是否已包含了一个session标识 - 称为 session id，如果已包含一个session id则说明以前已经为此客户端创建过session，服务器就按照session id把这个 session检索出来使用（如果检索不到，可能会新建一个），如果客户端请求不包含session id，则为此客户端创建一个session并且生成一个与此session相关联的session id，session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串，这个 session id将被在本次响应中返回给客户端保存。<br>保存这个session id的方式可以采用cookie，这样在交互过程中浏览器可以自动的按照规则把这个标识发挥给服务器。一般这个cookie的名字都是类似于SEEESIONID.          </p>
+<h2 id="五、Session何时被创建、何时被删除"><a href="#五、Session何时被创建、何时被删除" class="headerlink" title="五、Session何时被创建、何时被删除"></a>五、Session何时被创建、何时被删除</h2><p>何时创建：一 个常见的误解是以为session在有客户端访问时就被创建，然而事实是直到某server端程序调用 HttpServletRequest.getSession(true)这样的语句时才被创建，注意如果JSP没有显示的使用 &lt;% @page session=”false”%&gt; 关闭session，则JSP文件在编译成Servlet时将会自动加上这样一条语句 HttpSession session = HttpServletRequest.getSession(true);这也是JSP中隐含的 session对象的来历。由于session会消耗内存资源，因此，如果不打算使用session，应该在所有的JSP中关闭它。<br>何时删除：     </p>
+<ul>
+<li>a.程序调用HttpSession.invalidate();                   </li>
+<li>b.距离上一次收到客户端发送的session id时间间隔超过了session的超时设置;       </li>
+<li>c.服务器进程被停止（非持久session）       </li>
+</ul>
+<p>如何做到在浏览器关闭的时候删除cookie？<br>严格的讲，做不到这一点。可以做一点努力的办法是在所有的客户端页面里使用javascript代码window.oncolose来监视浏览器的关闭动作，然后向服务器发送一个请求来删除session。但是对于浏览器崩溃或者强行杀死进程这些非常规手段仍然无能为力。</p>
+<h2 id="六、Session的其他问题"><a href="#六、Session的其他问题" class="headerlink" title="六、Session的其他问题"></a>六、Session的其他问题</h2><p>1、存放在session中的对象必须是可序列化的吗？<br>不是必需的。要求对象可序列化只是为了session能够在集群中被复制或者能够持久保存或者在必要时server能够暂时把session交换出内存。<br>2、如何才能正确的应付客户端禁止cookie的可能性对所有的URL使用URL重写，包括超链接，form的action，和重定向的URL<br>3、开两个浏览器窗口访问应用程序会使用同一个session还是不同的session</p>
+<h2 id="七、理解Cookie机制"><a href="#七、理解Cookie机制" class="headerlink" title="七、理解Cookie机制"></a>七、理解Cookie机制</h2><p>1）cookie机制的基本原理就如上面的例子一样简单，但是还有几个问题需要解决：“会员卡”如何分发；“会员卡”的内容；以及客户如何使用“会员卡”。<br>2）正统的cookie分发是通过扩展HTTP协议来实现的，服务器通过在HTTP的响应头中加上一行特殊的指示以提示浏览器按照指示生成相应的cookie。然而纯粹的客户端脚本如JavaScript或者VBScript也可以生成cookie。<br>3） 而cookie的使用是由浏览器按照一定的原则在后台自动发送给服务器的。浏览器检查所有存储的cookie，如果某个cookie所声明的作用范围大于 等于将要请求的资源所在的位置，则把该cookie附在请求资源的HTTP请求头上发送给服务器。意思是麦当劳的会员卡只能在麦当劳的店里出示，如果某家 分店还发行了自己的会员卡，那么进这家店的时候除了要出示麦当劳的会员卡，还要出示这家店的会员卡。</p>
+<h2 id="八、cookie的内容"><a href="#八、cookie的内容" class="headerlink" title="八、cookie的内容"></a>八、cookie的内容</h2><p>主要包括：名字，值，过期时间，路径和域。</p>
+<ul>
+<li><p>路径、域和作用范围：其中域可以指定某一个域比如.google.com，相当于总店招牌，比如宝洁公司，也可以指定一个域下的具体某台机器比如www.google.com或者froogle.google.com，可以用飘柔来做比。路径就是跟在域名后面的URL路径，比如/或者/foo等等，可以用某飘柔专柜做比。<br>路径与域合在一起就构成了cookie的作用范围。        </p>
+</li>
+<li><p>过期时间：如 果不设置过期时间，则表示这个cookie的生命期为浏览器会话期间，只要关闭浏览器窗口，cookie就消失了。这种生命期为浏览器会话期的 cookie被称为会话cookie。会话cookie一般不存储在硬盘上而是保存在内存里，当然这种行为并不是规范规定的。如果设置了过期时间，浏览器 就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie仍然有效直到超过设定的过期时间。<br>浏览器差异：存 储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口。而对于保存在内存里的cookie，不同的浏览器有不同的处理方式。对于 IE，在一个打开的窗口上按Ctrl-N（或者从文件菜单）打开的窗口可以与原窗口共享，而使用其他方式新开的IE进程则不能共享已经打开的窗口的内存 cookie；对于Mozilla Firefox0.8，所有的进程和标签页都可以共享同样的cookie。一般来说是用javascript的window.open打开的窗口会与原窗 口共享内存cookie。浏览器对于会话cookie的这种只认cookie不认人的处理方式经常给采用session机制的web应用程序开发者造成很大的困扰。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">后台开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/13/HTTP的session和cookie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-token详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/13/token详解/">token详解</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/13/token详解/" class="archive-article-date">
+  	<time datetime="2018-02-13T13:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="token详解"><a href="#token详解" class="headerlink" title="token详解"></a>token详解</h1><h2 id="传统身份验证的方法"><a href="#传统身份验证的方法" class="headerlink" title="传统身份验证的方法"></a>传统身份验证的方法</h2><p>HTTP 是一种没有状态的协议，也就是它并不知道是谁是访问应用。这里我们把用户看成是客户端，客户端使用用户名还有密码通过了身份验证，不过下回这个客户端再发送请求时候，还得再验证一下。</p>
+<p>解决的方法就是，当用户请求登录的时候，如果没有问题，我们在服务端生成一条记录，这个记录里可以说明一下登录的用户是谁，然后把这条记录的 ID 号发送给客户端，客户端收到以后把这个 ID 号存储在 Cookie 里，下次这个用户再向服务端发送请求的时候，可以带着这个 Cookie ，这样服务端会验证一个这个 Cookie 里的信息，看看能不能在服务端这里找到对应的记录，如果可以，说明用户已经通过了身份验证，就把用户请求的数据返回给客户端。</p>
+<p>上面说的就是 Session，我们需要在服务端存储为登录的用户生成的 Session ，这些 Session 可能会存储在内存，磁盘，或者数据库里。我们可能需要在服务端定期的去清理过期的 Session 。</p>
+<h2 id="基于-Token-的身份验证方法"><a href="#基于-Token-的身份验证方法" class="headerlink" title="基于 Token 的身份验证方法"></a>基于 Token 的身份验证方法</h2><p>使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：</p>
+<ol>
+<li>客户端使用用户名跟密码请求登录        </li>
+<li>服务端收到请求，去验证用户名与密码       </li>
+<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端           </li>
+<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里     </li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token      </li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
+</ol>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><p>实施 Token 验证的方法挺多的，还有一些标准方法，比如 JWT，读作：jot ，表示：JSON Web Tokens 。JWT 标准的 Token 有三个部分：</p>
+<ul>
+<li>header</li>
+<li>payload</li>
+<li>signature</li>
+</ul>
+<p>中间用点分隔开，并且都会使用 Base64 编码，所以真正的 Token 看起来像这样：</p>
+<pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0
+Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKX
+tabJecpejuef8AqKYMAJc    
+</code></pre><h3 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h3><p>header 部分主要是两部分内容，一个是 Token 的类型，另一个是使用的算法，比如下面类型就是 JWT，使用的算法是 HS256。</p>
+<pre><code>{
+  &quot;typ&quot;: &quot;JWT&quot;,
+  &quot;alg&quot;: &quot;HS256&quot;
+}
+</code></pre><p>上面的内容要用 Base64 的形式编码一下，所以就变成这样：</p>
+<pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+</code></pre><h3 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h3><p>Payload 里面是 Token 的具体内容，这些内容里面有一些是标准字段，你也可以添加其它需要的内容。下面是标准字段：</p>
+<ul>
+<li>iss：Issuer，发行者</li>
+<li>sub：Subject，主题</li>
+<li>aud：Audience，观众</li>
+<li>exp：Expiration time，过期时间</li>
+<li>nbf：Not before</li>
+<li>iat：Issued at，发行时间</li>
+<li>jti：JWT ID</li>
+</ul>
+<p>比如下面这个 Payload ，用到了 iss 发行人，还有 exp 过期时间。另外还有两个自定义的字段，一个是 name ，还有一个是 admin 。</p>
+<pre><code>{
+ &quot;iss&quot;: &quot;ninghao.net&quot;,
+ &quot;exp&quot;: &quot;1438955445&quot;,
+ &quot;name&quot;: &quot;wanghao&quot;,
+ &quot;admin&quot;: true
+}
+</code></pre><p>使用 Base64 编码以后就变成了这个样子：</p>
+<pre><code>eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsI
+mFkbWluIjp0cnVlfQ
+</code></pre><h2 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h2><p>JWT 的最后一部分是 Signature ，这部分内容有三个部分，先是用 Base64 编码的 header.payload ，再用加密算法加密一下，加密的时候要放进去一个 Secret ，这个相当于是一个密码，这个密码秘密地存储在服务端。</p>
+<ul>
+<li>header</li>
+<li>payload</li>
+<li><p>secret</p>
+<pre><code>encodedString = base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload); 
+HMACSHA256(encodedString, &apos;secret&apos;);
+</code></pre></li>
+</ul>
+<p>处理完成以后看起来像这样：</p>
+<pre><code>SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc
+</code></pre><p>最后这个在服务端生成并且要发送给客户端的 Token 看起来像这样：</p>
+<pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0
+Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKX
+tabJecpejuef8AqKYMAJc
+</code></pre><p>客户端收到这个 Token 以后把它存储下来，下回向服务端发送请求的时候就带着这个 Token 。服务端收到这个 Token ，然后进行验证，通过以后就会返回给客户端想要的资源。</p>
+<blockquote>
+<p>参考资料<br><a href="https://ninghao.net/blog/2834" target="_blank" rel="external">https://ninghao.net/blog/2834</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">后台开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/13/token详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-阿里云搭建shadowsockets代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/25/阿里云搭建shadowsockets代理/">阿里云搭建shadowsockets代理</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/25/阿里云搭建shadowsockets代理/" class="archive-article-date">
+  	<time datetime="2018-01-25T14:23:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/25/阿里云搭建shadowsockets代理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python内建模块random" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/25/python内建模块random/">python内建模块random</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/25/python内建模块random/" class="archive-article-date">
+  	<time datetime="2018-01-25T11:37:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/25/python内建模块random/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/25/python多线程/">python多线程</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/25/python多线程/" class="archive-article-date">
+  	<time datetime="2018-01-25T11:37:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/25/python多线程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-linux定时执行shell-Script" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -469,334 +847,9 @@
 
 
   
-    <article id="post-python音频处理库pydub" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/23/python音频处理库pydub/">python音频处理库pydub</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/23/python音频处理库pydub/" class="archive-article-date">
-  	<time datetime="2018-01-23T07:41:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="源代码分析"><a href="#源代码分析" class="headerlink" title="源代码分析"></a><font color = blue>源代码分析</font></h1><h2 id="代码目录结构"><a href="#代码目录结构" class="headerlink" title="代码目录结构"></a><strong>代码目录结构</strong></h2>
-        
-          <a class="article-more-a" href="/2018/01/23/python音频处理库pydub/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python第三方库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">音频处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/23/python音频处理库pydub/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-自动生成钢琴纯音乐" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/22/自动生成钢琴纯音乐/">自动生成钢琴纯音乐</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/22/自动生成钢琴纯音乐/" class="archive-article-date">
-  	<time datetime="2018-01-22T15:29:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="乐理基础"><a href="#乐理基础" class="headerlink" title="乐理基础"></a>乐理基础</h2><p>音名：C、D、E、F、G、A、B；</br><br>唱名：Do、Re、Mi、Fa、Sol、La、Si；</br><br>
-        
-          <a class="article-more-a" href="/2018/01/22/自动生成钢琴纯音乐/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">音频处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/22/自动生成钢琴纯音乐/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Github介绍以及初步使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/22/Github介绍以及初步使用/">Github介绍以及初步使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/22/Github介绍以及初步使用/" class="archive-article-date">
-  	<time datetime="2018-01-22T12:32:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Github介绍"><a href="#1-Github介绍" class="headerlink" title="1.Github介绍"></a>1.Github介绍</h2><p>gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。gitHub于2008年4月10日正式上线，除了git代码仓库托管及基本的 Web管理界面以外，还提供了订阅、讨论组、文本渲染、在线文件编辑器、协作图谱（报表）、代码片段分享（Gist）等功能。目前，其注册用户已经超过350万，托管版本数量也是非常之多，其中不乏知名开源项目 Ruby on Rails、jQuery、python 等。<br>
-        
-          <a class="article-more-a" href="/2018/01/22/Github介绍以及初步使用/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/22/Github介绍以及初步使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-安装nodejs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/22/安装nodejs/">安装nodejs</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/22/安装nodejs/" class="archive-article-date">
-  	<time datetime="2018-01-22T12:08:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-进入官网，选择对应版本下载"><a href="#1-进入官网，选择对应版本下载" class="headerlink" title="1.进入官网，选择对应版本下载"></a>1.进入官网，选择对应版本下载</h2><p>点此处打开node.js官网 → <a href="https://nodejs.org/en/">Node.js官网</a>     </p>
-<p>进入官网之后点击DOWNLOADS页面<br>
-        
-          <a class="article-more-a" href="/2018/01/22/安装nodejs/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/22/安装nodejs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-开源协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/20/开源协议/">开源协议</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/20/开源协议/" class="archive-article-date">
-  	<time datetime="2018-01-20T14:24:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="为什么要代码开源"><a href="#为什么要代码开源" class="headerlink" title="为什么要代码开源"></a>为什么要代码开源</h2><p>一般而言一个真正优秀的项目往往很难凭一己之力开发出来，除了那些实力可以吊打整个银河系的coder(膜拜)。开源代码最成功的先例就是linux OS，对于开源的linux OS，用户可以通过网络或其他途径免费获得，并可以任意修改其源代码。这是其他的操作系统所做不到的。正是由于这一点，来自全世界的无数程序员参与了Linux的修改、编写工作，程序员可以根据自己的兴趣和灵感对其进行改变，这让Linux吸收了无数程序员的精华，不断壮大。 手机操作系统Android的蓬勃发展也离不开开源的助推力，这样的例子数不胜数。<br>
-        
-          <a class="article-more-a" href="/2018/01/20/开源协议/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/20/开源协议/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -887,7 +940,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -895,15 +948,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -911,11 +960,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">关于此博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python内建模块</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -924,10 +981,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音频处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
